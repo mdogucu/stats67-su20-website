@@ -119,32 +119,9 @@ footer a:hover{
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
+  border: 3px solid #e3980b;
 }
 
-.week-list {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
-}
-
-
-.week {
-  position: relative;
-  box-shadow: 1px 1px 1px 1px  whitesmoke;
-  box-sizing: border-box;
-  padding: 1em;
-  margin-top: 1em;
-  width: 48%;
-}
-
-.week-title{
-  font-size: 20px;
-      border-bottom: 2px solid #ae8f68;
-      border-top: 2px solid #ae8f68;
-
-}
 
 
 
