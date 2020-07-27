@@ -75,9 +75,7 @@ footer a:hover{
   color: #5c5c5c;
 }
 
-.main-text h1{
-  color:#c1933d;
-}
+
 
 .main-text i{
   color:#e56646;
@@ -90,6 +88,10 @@ footer a:hover{
 
 .jumbotron{
   background: whitesmoke;
+}
+
+.accordion .blockquote{
+  background-color: gray;
 }
 
 
