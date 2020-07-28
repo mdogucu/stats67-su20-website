@@ -119,7 +119,7 @@ footer a:hover{
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
-  border: 3px solid #e3980b;
+  border: 1px solid #e3980b;
 }
 
 
