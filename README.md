@@ -1,5 +1,5 @@
 ## Stats 67 
-<img src="man/img/stats-67-logo.svg" alt="Stats 67 logo" width="150" align = "right"/>
+<img src="img/stats-67-logo.svg" alt="Stats 67 logo" width="150" align = "right"/>
 
 
   
