@@ -8,7 +8,7 @@ University of California Irvine
 
 Summer II 2020 
 
-[Dr. Mine Dogucu](https://minedogucu.com)
+[Dr. Mine Dogucu](https://minedogucu.com)  
 Course TA: Federica Zoe Ricci
     
 <hr>
