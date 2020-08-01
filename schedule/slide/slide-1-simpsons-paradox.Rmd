@@ -1,0 +1,118 @@
+---
+title: "Simpson's Paradox"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+---
+
+```{r message = FALSE, echo = FALSE}
+library(tidyverse)
+library(datasets)
+```
+
+## Simpson's Paradox - UC Berkeley Admissions, 1973
+
+```{r echo = FALSE, fig.height=5, fig.align='center', message = FALSE}
+ucb <- data.frame(UCBAdmissions)
+
+gender <-
+  group_by(ucb, Gender) %>%
+  summarize(Total = sum(Freq))
+
+
+gender_admit <-
+  group_by(ucb, Admit, Gender) %>%
+  summarize(Freq = sum(Freq)) %>%
+  inner_join(gender) %>%
+  mutate(Prop = Freq/Total)
+
+
+
+gender_admit %>% 
+  ggplot(aes(x = Gender, y = Prop, fill = Admit)) +
+  geom_bar(stat = "identity") +
+  theme(text = element_text(size=30)) +
+  labs(title = "Admit Rate by Gender")
+
+
+```
+
+---
+
+## Simpson's Paradox - UC Berkeley Admissions, 1973
+
+```{r echo = FALSE, fig.height=5, fig.align='center', message = FALSE}
+
+dept <-
+  group_by(ucb, Dept) %>%
+  summarize(Total = sum(Freq))
+
+
+dept_admit <-
+  group_by(ucb, Admit, Dept) %>%
+  summarize(Freq = sum(Freq)) %>%
+  inner_join(dept) %>%
+  mutate(Prop = Freq/Total)
+
+
+
+ggplot(dept_admit, aes(x = Dept, 
+                         y = Prop, fill = Admit)) +
+  geom_bar(stat = "identity")   +
+  theme(text = element_text(size=30)) +
+  labs(title = "Admit Rate by Dept")
+
+
+```
+
+
+---
+
+## Simpson's Paradox - UC Berkeley Admissions, 1973
+
+```{r echo = FALSE, fig.height=5, fig.align='center', message = FALSE}
+
+gender_dept <-
+  group_by(ucb, Gender, Dept) %>%
+  summarize(Freq = sum(Freq)) %>%
+  inner_join(dept) %>%
+  mutate(Prop=Freq/Total)
+
+ggplot(gender_dept, aes(x = Dept, y = Prop, 
+                        fill = Gender)) +
+  geom_bar(stat = "identity") +
+  theme(text = element_text(size=15)) +
+  labs(title = "App Rate based on Gender for each Dept")
+  
+```
+
+
+---
+
+## Simpson's Paradox 
+
+If we observe a certain trend between two variables and this effect disappears or reverses when a third variable is introduced then this phenomenon Simpson's paradox. 
+
+More examples on [Wikipedia](https://en.wikipedia.org/wiki/Simpson%27s_paradox)
+
+---
+
+## Moral of the Story
+
+We need to move beyond thinking about the relationship between just two variables. We need to keep asking if there are/could be any **confounding** variables.
+

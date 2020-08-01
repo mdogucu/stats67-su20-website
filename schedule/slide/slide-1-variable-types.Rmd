@@ -1,0 +1,146 @@
+---
+title: "Variable Types"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+class: center middle
+
+```{r echo = FALSE}
+library(DiagrammeR)
+library(DiagrammeRsvg)
+library(rsvg)
+```
+
+## Variables
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('img/data-candy.png')
+knitr::include_graphics('img/data-candy-tail.png')
+```
+
+---
+
+## Variables
+
+Variables `sugarpercent`, `pricepercent`, and `winpercent` are __numerical variables__. 
+
+We can do certain analyses on these variables such as finding an average `winpercent` or the maximum or minimum `winpercent`.
+
+Note: Not everything represented by numbers is a numeric variable. e.g. Student ID number is not a numeric variable.
+
+
+---
+
+## Variables
+
+
+Variables such as `competitorname`, `chocolate`, and `fruity` are __categorical variables__. 
+
+We cannot take averages or find maximum or minimum of these variables. 
+
+Categorical variables have __levels__. For instance `chocolate` and `fruity` both have two levels as `TRUE` and `FALSE`. 
+
+---
+
+
+
+
+```{r echo = FALSE, fig.align='center'}
+diagram_small <- grViz("
+    digraph {
+        # graph aesthetics
+        graph [ranksep = 0.3]
+
+        # node definitions with substituted label text
+        1 [label = 'Variables']
+        2 [label = 'Categorical']
+        3 [label = 'Numeric']
+
+        
+        # edge definitions with the node IDs
+        1 -> 2
+        1 -> 3
+
+    }
+")
+
+tmp <- capture.output(rsvg_png(charToRaw(export_svg(diagram_small)),'img/diagram_small.png'))
+
+knitr::include_graphics("img/diagram_small.png") 
+
+```
+
+---
+
+## Categorical Variables
+
+If the levels of the categorical variable has a comparable ordering then it is called an __ordinal variable__. 
+
+e.g. variable scholarship_status might have three levels as no scholarship, partial scholarship and full scholarship. We can order these levels from less to more or vice versa. 
+
+If there is no ordering then a categorical variable would be called a __nominal variable__. e.g. state names.
+
+
+---
+
+## Numeric Variables
+
+Consider a variable `n_kids` which represents number of kids somebody has. Then this variable can take values (0, 1, 2, ...). Notice that this variable can take only integer values. This variable is said to be __discrete__ since it does not take on  infinitely many numbers that we are not able to count. 
+
+
+Numeric variables that can take infinitely many numbers are said to be __continuous__. Consider somebody's height in cm. This is a continuous variable. Even though we might say somebody is 173 cm, in reality the height could be 170.612476314631 cm. So height can take infinitely many values. 
+
+---
+
+
+```{r echo = FALSE, fig.align='center'}
+diagram <- grViz("
+    digraph {
+        # graph aesthetics
+        graph [ranksep = 0.3]
+
+        # node definitions with substituted label text
+        1 [label = 'Variables']
+        2 [label = 'Categorical']
+        3 [label = 'Numeric']
+        4 [label = 'Nominal']
+        5 [label = 'Ordinal']
+        6 [label = 'Discrete']
+        7 [label = 'Continuous']
+
+        
+        # edge definitions with the node IDs
+        1 -> 2
+        1 -> 3
+        2 -> 4
+        2 -> 5
+        3 -> 6
+        3 -> 7
+    }
+")
+
+tmp <- capture.output(rsvg_png(charToRaw(export_svg(diagram)),'img/diagram.png'))
+
+knitr::include_graphics("img/diagram.png") 
+
+```
+
+

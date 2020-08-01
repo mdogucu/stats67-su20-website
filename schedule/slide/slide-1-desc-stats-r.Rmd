@@ -1,0 +1,128 @@
+---
+title: "Descriptive Statistics in R"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+---
+```{r echo = FALSE, message = FALSE}
+library(titanic)
+library(tidyverse)
+titanic <- titanic_train %>% 
+  mutate(Survived = as.logical(Survived),
+         Sex = as.factor(Sex),
+         Embarked = as.factor(Embarked))
+  
+
+```
+
+---
+
+## Data
+
+```{r}
+glimpse(titanic)
+```
+
+---
+
+## Outline
+
+- Summarizing Categorical Data in R
+
+
+- Summarizing Numerical Data in R
+
+We will only summarize a _single_ variable at a time but later we will talk about relationship between two variables.
+
+---
+
+## Summarizing Categorical Data
+
+__Counts__ or __proportions__ are used to summarize categorical variables. 
+
+They are often summarized with a frequency table.
+
+
+---
+
+## Summarizing Categorical Data in R
+
+```{r}
+count(titanic, Survived)
+```
+
+There are 342 people who survived and 549 who did not. 
+
+---
+
+## Summarizing Categorical Data in R
+
+
+There are total 549 + 342 people. We can use this to calculate the proportions
+
+```{r}
+549/(549+342)
+
+342/(549+342)
+```
+
+
+---
+
+## Mean in R
+
+```{r}
+summarize(titanic, mean(Fare))
+```
+---
+
+## Median in R
+
+```{r}
+summarize(titanic, mean(Fare))
+```
+
+---
+
+
+## Mode in R 
+
+```{r}
+count(titanic, Fare, sort = TRUE)
+```
+
+---
+
+## Quartiles
+
+You can specify quartiles (Q3)
+
+```{r}
+summarize(titanic, quantile(Fare, 0.75))
+```
+
+---
+## Standard Deviation and Variance
+
+```{r}
+summarize(titanic, sd(Fare))
+```
+
+```{r}
+summarize(titanic, var(Fare))
+```

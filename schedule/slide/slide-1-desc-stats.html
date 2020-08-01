@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Descriptive Statistics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Dogucu" />
+    <link rel="stylesheet" href="slide-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Descriptive Statistics
+### Dr. Dogucu
+
+---
+
+
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt; 
+ Copyright &amp;copy; &lt;a href="https://mdogucu.ics.uci.edu"&gt;Dr. Mine Dogucu&lt;/a&gt;. &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;&lt;/div&gt; 
+
+---
+
+
+## Outline
+
+
+- Summarizing Categorical Data 
+
+
+- Summarizing Numerical Data 
+
+
+We will only summarize a single variable at a time but later we will talk about relationship between two variables.
+
+---
+
+## Summarizing Categorical Data
+
+Categorical data are often summarized with a frequency table.
+
+__Counts__ or __proportions__ are used to summarize categorical variables. 
+
+&lt;table align = "center"&gt;
+&lt;thead&gt;
+  &lt;th&gt; &lt;/th&gt;
+  &lt;th&gt;TRUE &lt;/th&gt;
+  &lt;th&gt; FALSE &lt;/th&gt;
+  &lt;th&gt; Total Count &lt;/th&gt;
+
+&lt;/thead&gt;
+
+&lt;tr&gt;
+&lt;td&gt;fruity &lt;/td&gt;
+&lt;td&gt; 47&lt;/td&gt;
+&lt;td&gt; 38&lt;/td&gt;
+&lt;td&gt; 85&lt;/td&gt;
+
+
+&lt;/tr&gt;
+
+&lt;/table&gt;
+
+&lt;br&gt;
+
+&lt;table align = "center" &gt;
+&lt;thead&gt;
+  &lt;th&gt; &lt;/th&gt;
+  &lt;th&gt;TRUE &lt;/th&gt;
+  &lt;th&gt; FALSE &lt;/th&gt;
+  &lt;th&gt; Total Proportion &lt;/th&gt;
+
+&lt;/thead&gt;
+
+&lt;tr&gt;
+&lt;td&gt;fruity &lt;/td&gt;
+&lt;td&gt; 0.5529412&lt;/td&gt;
+&lt;td&gt; 0.4470588&lt;/td&gt;
+&lt;td&gt; 1&lt;/td&gt;
+
+
+&lt;/tr&gt;
+
+&lt;/table&gt;
+---
+
+## Summarizing Numerical Data
+
+Consider the following data which represents the number of hours slept for 10 people who were surveyed.
+
+&lt;table&gt;
+
+&lt;tr&gt;
+
+&lt;td&gt; 7 &lt;/td&gt;
+&lt;td&gt; 7.5 &lt;/td&gt;
+&lt;td&gt; 8 &lt;/td&gt;
+&lt;td&gt; 5.5 &lt;/td&gt;
+&lt;td&gt; 10 &lt;/td&gt;
+&lt;td&gt; 7.2 &lt;/td&gt;
+&lt;td&gt; 7 &lt;/td&gt;
+&lt;td&gt; 8 &lt;/td&gt;
+&lt;td&gt; 9 &lt;/td&gt;
+&lt;td&gt; 8 &lt;/td&gt;
+
+
+&lt;/tr&gt;
+
+
+
+
+&lt;/table&gt;
+
+
+---
+
+## Mean
+
+`$$\bar x = \frac{7+7.5+8+5.5+10+7.2+7+8+9+8}{10} = 7.72$$`
+
+The mean is calculated by summing the observed values and then dividing by the number of observations.
+
+.formula[
+`$$\bar x = \frac{x_1 + x_2+.... x_n}{n}$$`
+]
+
+where `\(x_1\)` represents the mean of observed values, `\(x_1\)`, `\(x_2\)`, ... `\(x_n\)` represents the n observed values.
+---
+## Median
+
+If all the observations are listed from smallest to largest (or vice versa), median is the observation that is in the middle. 
+
+&lt;table&gt;
+
+&lt;tr&gt;
+
+&lt;td&gt; 5.5 &lt;/td&gt;
+&lt;td&gt; 7 &lt;/td&gt;
+&lt;td&gt; 7 &lt;/td&gt;
+&lt;td&gt; 7.2 &lt;/td&gt;
+&lt;td&gt; 7.5 &lt;/td&gt;
+&lt;td&gt; 8 &lt;/td&gt;
+&lt;td&gt; 8 &lt;/td&gt;
+&lt;td&gt; 8 &lt;/td&gt;
+&lt;td&gt; 9 &lt;/td&gt;
+&lt;td&gt; 10 &lt;/td&gt;
+
+
+&lt;/tr&gt;
+
+
+&lt;/table&gt;
+
+In this case, we have two numbers in the middle 7.5 and 8. The average of these numbers would be the median. In this case, the median is 7.75. 
+
+`$$\frac{7.5 + 8}{2} = 7.75$$`
+
+---
+
+## Mode
+
+&lt;table align = "center"&gt;
+
+&lt;thead&gt;
+&lt;th&gt; Observation &lt;/th&gt;
+&lt;th&gt; Frequency &lt;/th&gt;
+
+&lt;/thead&gt;
+
+&lt;tr&gt;
+
+&lt;td&gt; 5.5 &lt;/td&gt; &lt;td&gt; 1&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt; 7 &lt;/td&gt; &lt;td&gt; 2&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt; 7.2 &lt;/td&gt; &lt;td&gt; 1&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt; 7.5 &lt;/td&gt; &lt;td&gt; 1&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt; 8 &lt;/td&gt; &lt;td&gt; 3&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt; 9 &lt;/td&gt; &lt;td&gt; 1&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt; 10 &lt;/td&gt; &lt;td&gt; 1&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;/table&gt;
+
+Mode by definition is the observation that with the highest frequency. In this case, the mode is 8. 
+
+
+---
+
+## Q1, Q3, and Interquartile Range
+
+You can divide the data into four. The median splits the data in half, in other words 50% of the data fall below the median. First quartile (Q1) is the point at which 25% of the data fall below of. Third quartile (Q3) is the point at which 75% of the data fall below of. Q1 and Q3 can be considered 25th and 75th percentiles respectively. 
+
+.formula[Interquartile Range (IQR) = Q3 - Q1]
+
+---
+## Standard deviation and Variance
+
+
+Let's take a detour. Consider Dr. Dogucu teaching three classes. All of these classes have 5 students. Below are midterm results from these classes. 
+
+Class 1: 80 80 80 80 80  
+Class 2: 76 78 80 82 84  
+Class 3: 60 70 80 90 100  
+
+All of these classes have an average of 80 points. But the data differ! In order to explain how these are different we examine how far off each observed value is from the mean on average. In class 1 all students are at the man value so there is no variance. Class 2 students deviate from the mean slightly on average. Class 3 has the highest deviation from the mean on average. 
+
+---
+
+#### Standard deviation and Variance
+
+
+&lt;table align = "center"&gt;
+&lt;thead&gt;
+
+&lt;th&gt;x&lt;sub&gt;i&lt;/sub&gt; &lt;/th&gt; &lt;th&gt;  x&lt;sub&gt;i&lt;/sub&gt; - x&amp;#772 &lt;/th&gt; &lt;th&gt; (x&lt;sub&gt;i&lt;/sub&gt; - x&amp;#772) &lt;sup&gt;2&lt;/sup&gt;&lt;/th&gt;
+&lt;/thead&gt;
+
+&lt;tr&gt; 
+&lt;td&gt;5.5 &lt;/td&gt; &lt;td&gt; 5.5-7.72 = -2.22 hr&lt;/td&gt; &lt;td&gt; (-2.2 hr)&lt;sup&gt;2&lt;/sup&gt; = 4.9284 hr &lt;sup&gt;2&lt;/sup&gt; &lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt; 
+&lt;td&gt;7 &lt;/td&gt; &lt;td&gt; 7-7.72 = -0.72 hr&lt;/td&gt; &lt;td&gt; (-0.72 hr)&lt;sup&gt;2&lt;/sup&gt; = 0.5184 hr &lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt; 
+&lt;td&gt;7 &lt;/td&gt; &lt;td&gt; 7-7.72 = -0.72 hr&lt;/td&gt; &lt;td&gt; (-0.72 hr)&lt;sup&gt;2&lt;/sup&gt; = 0.5184 hr &lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt; 
+&lt;td&gt;7.2 &lt;/td&gt; &lt;td&gt; 7.2-7.72 = -0.52 hr&lt;/td&gt; &lt;td&gt; (-0.52 hr)&lt;sup&gt;2&lt;/sup&gt; = 0.2704 hr &lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt; 
+&lt;td&gt;7.5 &lt;/td&gt; &lt;td&gt; 7.5-7.72 = -0.22 hr&lt;/td&gt; &lt;td&gt; (-0.22 hr)&lt;sup&gt;2&lt;/sup&gt; = 0.0484 hr &lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt; 
+&lt;td&gt;8 &lt;/td&gt; &lt;td&gt; 8-7.72 = 0.28 hr&lt;/td&gt; &lt;td&gt; (0.28 hr)&lt;sup&gt;2&lt;/sup&gt; = 0.0784 hr &lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt; 
+&lt;td&gt;8 &lt;/td&gt;  &lt;td&gt; 8-7.72 = 0.28 hr&lt;/td&gt; &lt;td&gt; (0.28 hr)&lt;sup&gt;2&lt;/sup&gt; = 0.0784 hr &lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt; 
+&lt;td&gt;8 &lt;/td&gt; &lt;td&gt; 8-7.72 = 0.28 hr&lt;/td&gt; &lt;td&gt; (0.28 hr)&lt;sup&gt;2&lt;/sup&gt; = 0.0784 hr &lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt; 
+&lt;td&gt;9 &lt;/td&gt; &lt;td&gt; 9-7.72 = 1.28 hr&lt;/td&gt; &lt;td&gt; (1.28 hr)&lt;sup&gt;2&lt;/sup&gt; = 1.6384 hr &lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt; 
+&lt;td&gt;10 &lt;/td&gt; &lt;td&gt; 10-7.72 = 2.28 hr&lt;/td&gt; &lt;td&gt; (2.28 hr)&lt;sup&gt;2&lt;/sup&gt; = 5.1984 hr &lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+
+---
+
+## Total distance from the mean
+
+
+`\(\Sigma_{i = 1}^{n} (x - \bar x )^2 =\)`
+
+$ 4.9284 + 0.5184 + 0.5184 + 0.2704 + 0.0484 +$ 
+`\(0.0784 + 0.0784 + 0.0784+ 1.6384 + 5.1984 = 13.356 \text{ hr}^2\)`
+
+---
+
+
+## Sample variance
+
+&lt;br&gt;    
+.formula[
+
+`$$s^2 = \frac{\Sigma_{i = 1}^{n} (x - \bar x )^2}{n-1}$$` 
+
+]
+
+&lt;br&gt;
+
+`$$s^2= \frac{13.356}{10-1} = 1.484\text{ hr}^2$$`
+
+---
+
+## Sample standard deviation
+
+&lt;br&gt;
+.formula[
+`$$s = \sqrt{\frac{\Sigma_{i = 1}^{n} (x - \bar x )^2}{n-1}}$$`
+]
+
+&lt;br&gt;
+`$$s= \sqrt{1.484} = 1.218195 \text{ hr}$$`
+
+
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+---
+title: "Introduction to Data"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+---
+
+class: center middle
+
+## Data Matrices  
+
+
+
+```{r echo = FALSE, message=FALSE}
+library(magrittr)
+library(dplyr)
+library(fivethirtyeight)
+
+bad_drivers <- bad_drivers
+candy_rankings <- candy_rankings %>% 
+  select(competitorname, chocolate, fruity, sugarpercent, pricepercent, winpercent)
+```
+
+
+
+
+[Dear Mona, Which State Has the Worst Drivers?](https://fivethirtyeight.com/features/which-state-has-the-worst-drivers/)
+
+---
+
+## Data Matrices  
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('img/data-matrix.png')
+knitr::include_graphics('img/data-matrix-tail.png')
+```
+
+---
+
+## Data Matrices
+
+- The data matrix has 8 __variables__ (state, num_drivers, perc_speeding, perc_not_distracted, perc_no_previous, insurance_premiums, losses). 
+
+- The data matrix has 51 __cases__. Each case represents a US state (or District of Columbia). 
+
+
+---
+
+## Data Matrix for the Quiz
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('img/data-candy.png')
+knitr::include_graphics('img/data-candy-tail.png')
+```
+
+---
+
+class: center middle
+
+## Bob Ross
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zIbR5TAz2xQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+class: center middle
+
+
+## Data Matrices in R
+
+
+[RStudio Cloud](https://rstudio.cloud/spaces/58379/projects)
+
+---
+class: center middle 
+
+## Demo - Adding Chunks
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('img/code-chunk.png')
+```
+
+---
+class: center middle 
+
+## Demo - Run Code
+
+```{r echo=FALSE, out.width='50%'}
+knitr::include_graphics('img/run-code.png')
+```
+
+
+---
+
+class: center middle 
+
+
+# Coding Principles
+
+False - 0  
+True - 1
+
+

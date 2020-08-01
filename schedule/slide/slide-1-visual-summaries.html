@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Visual Summaries</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Dogucu" />
+    <link rel="stylesheet" href="slide-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Visual Summaries
+### Dr. Dogucu
+
+---
+
+
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt; 
+ Copyright &amp;copy; &lt;a href="https://mdogucu.ics.uci.edu"&gt;Dr. Mine Dogucu&lt;/a&gt;. &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;&lt;/div&gt; 
+
+---
+
+
+
+
+
+
+## Goals
+
+We will learn to 
+- make visuals
+- read and interpret visuals
+- use vocabulary to describe visuals.
+
+---
+
+## Bar plot with counts
+
+&lt;img src="slide-1-visual-summaries_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Bar plot with proportions
+
+&lt;img src="slide-1-visual-summaries_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Histogram
+
+&lt;img src="slide-1-visual-summaries_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Fun fact
+
+__histo__ comes from the Greek word _histos_ that literally means "anything set up right".
+
+__gram__: comes from the Greek word _gramma_ which means "that which is drawn".
+
+.footnote[Online Etymology Dictionary]
+
+
+---
+
+## Histogram
+
+- Consider the height distribution in our class.
+
+- How would the distribution change if Michael Jordan (198.1 cm) were to join our class?
+
+- How would the distribution change if Tyrion Lannister (135 cm) were to join our class?
+
+---
+
+## Note
+
+When data display a skewed distribution we rely on median rather than the mean to understand the center of the distribution.
+---
+
+## Histogram
+
+---
+
+
+
+## Box plot
+
+
+
+---
+
+## Histogram vs. Boxplot
+
+.pull-left[
+
+![](slide-1-visual-summaries_files/figure-html/unnamed-chunk-5-1.gif)&lt;!-- --&gt;
+]
+
+.pull-right[
+![](slide-1-visual-summaries_files/figure-html/unnamed-chunk-6-1.gif)&lt;!-- --&gt;
+
+]
+---
+
+## Summary
+
+
+
+&lt;table align = "center"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;variable&lt;/th&gt;
+    &lt;th&gt;plot&lt;/th&gt;
+  &lt;/tr&gt;
+  
+   &lt;tr&gt; 
+    &lt;td&gt; categorical &lt;/td&gt;
+    &lt;td&gt; bar plot &lt;/td&gt;
+  &lt;/tr&gt;
+  
+  &lt;tr&gt; 
+  &lt;td&gt; numeric &lt;/td&gt;
+  &lt;td&gt; histogram &lt;/td&gt;
+  &lt;/tr&gt;
+  
+  
+  &lt;tr&gt; 
+  &lt;td&gt; numeric &lt;/td&gt;
+  &lt;td&gt; box plot &lt;/td&gt;
+  &lt;/tr&gt;
+  
+&lt;/table&gt;
+
+---
+
+## Data Visualization in R
+
+For data visualization in R we will be using the `ggplot()` function.
+---
+
+## Fun facts
+
+- `ggplot`'s gg stands for Grammar of Graphics.
+- Grammar of Graphics is a book by Leland Wilkenson.
+
+
+---
+
+If you wanted to make the following plot and R could understand English what would you tell R? 
+
+&lt;img src="slide-1-visual-summaries_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Three Steps of Making a basic ggplot
+
+- Make space for a plot using the dataset. 
+- Decide on what goes on the axes.
+- Decide what kind of a plot.
+---
+
+## Step 1 - Make space for the plot
+
+.left-panel[
+
+```r
+ggplot(candy_rankings)
+```
+]
+.right-panel[
+
+![](slide-1-visual-summaries_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Step 2 - Decide on variables and their axes
+
+.left-panel[
+
+```r
+ggplot(candy_rankings) +
+  aes(x = chocolate)
+```
+]
+.right-panel[
+
+![](slide-1-visual-summaries_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Step 3 - Decide on the type of plot
+
+.left-panel[
+
+```r
+ggplot(candy_rankings) +
+  aes(x = chocolate) +
+  geom_bar() 
+```
+]
+.right-panel[
+
+![](slide-1-visual-summaries_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Practice
+
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+&lt;img src="slide-1-visual-summaries_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Warning &amp; Message
+
+⚠️When you see __warning__ or a __message__. The code runs and returns a ggplot but also lets us know that something is going on.
+---
+## What is binwidth?
+
+Warnings and messages are mostly function specific and require some thinking (and possibly Googling) to figure things out. 
+
+If bar plots have bars and they are called bar plots, technically histograms are bin plots because they have bins. 
+
+The warning is basically warning us that by default, `geom_histogram()` displays 30 bins. It is asking us to set the binwidth. 
+
+Where do you think the binwidth argument would go?
+
+---
+
+## Binwidth
+
+.left-panel[
+
+```r
+ggplot(candy_rankings) +
+  aes(x = winpercent) +
+  geom_histogram(binwidth = 3) 
+```
+]
+.right-panel[
+
+![](slide-1-visual-summaries_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+]
+
+
+
+---
+class: center middle 
+
+## Colors
+
+.large[
+🌈
+] 
+
+Pick your favorite color(s) from the list at:
+
+[bit.ly/colors-r](http:/bit.ly/colors-r)
+
+---
+
+# color = ?
+
+.left-panel[
+
+
+
+```r
+ggplot(candy_rankings) +
+  aes(x = chocolate) +
+  geom_bar(color = 'darkblue') 
+```
+
+]
+
+.right-panel[
+![](slide-1-visual-summaries_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+# fill = ?
+
+.left-panel[
+
+
+
+```r
+ggplot(candy_rankings) +
+  aes(x = chocolate) +
+  geom_bar(color = 'darkblue',
+           fill = 'coral') 
+```
+
+]
+
+.right-panel[
+![](slide-1-visual-summaries_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+]
+
+
+
+---
+
+## Fun fact
+
+- [BBC](https://bbc.github.io/rcookbook/)   
+- [fivethirtyeight](https://blog.revolutionanalytics.com/2016/07/data-journalism-with-r-at-538.html?utm_content=bufferc03e0&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer)  
+
+---
+
+class: center middle
+
+[RStudio Cheat Sheets](https://rstudio.com/resources/cheatsheets/)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

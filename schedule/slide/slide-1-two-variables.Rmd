@@ -1,0 +1,267 @@
+---
+title: "Relationship Between Two Variables"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+---
+```{r message = FALSE, echo = FALSE, warning = FALSE, message=FALSE}
+library(tidyverse)
+library(openintro)
+theme_set(theme_gray(base_size = 22))
+babies <- babies %>% 
+  mutate(smoke = as.logical(smoke),
+         parity = as.logical(parity)) %>% 
+  drop_na()
+```
+
+```{r}
+glimpse(babies)
+```
+
+---
+
+`case` id number
+
+`bwt` birthweight, in ounces
+
+`gestation` length of gestation, in days
+
+`parity` binary indicator for a first pregnancy (FALSE=first pregnancy, TRUE = not-first pregnancy)
+
+`age` mother's age in years
+
+`height` mother's height in inches
+
+`weight` mother's weight in pounds
+
+`smoke` binary indicator for whether the mother smokes
+
+---
+
+## Questions
+
+- Are mothers more likely to be nonsmokers if it is their first baby?
+
+- Do nonsmoker mothers have babies with longer gestation period?
+
+- Do mothers with higher weight have babies with higher weight?
+
+---
+
+
+
+## Contingency Table
+
+Contingency tables summarize counts or proportions for two categorical variables. 
+
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-cly1{text-align:left;vertical-align:middle}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg" align = "center">
+  <tr>
+    <th class="tg-cly1" colspan="2" rowspan="2"></th>
+    <th class="tg-baqh" colspan="2">smoke</th>
+  </tr>
+  <tr>
+    <td class="tg-0lax">TRUE</td>
+    <td class="tg-0lax">FALSE</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh" rowspan="2">parity</td>
+    <td class="tg-0lax">TRUE</td>
+    <td class="tg-0lax">118</td>
+    <td class="tg-0lax">190</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">FALSE</td>
+    <td class="tg-0lax">341</td>
+    <td class="tg-0lax">525</td>
+  </tr>
+</table>
+
+---
+
+## Stacked Bar Plot
+
+```{r echo = FALSE, message=FALSE, fig.align='center'}
+ggplot(babies) +
+  aes(x = parity, fill = smoke) +
+  geom_bar()
+```
+
+
+---
+## Side-by-Side Boxplot
+
+```{r echo = FALSE , fig.align='center'}
+ggplot(babies) +
+  aes(x = smoke, y = gestation) +
+  geom_boxplot()
+```
+
+---
+
+## Scatter plot
+
+```{r echo = FALSE , fig.align='center'}
+ggplot(babies) +
+  aes(x = weight, y = bwt) +
+  geom_point() 
+```
+
+---
+
+## Scatter plot
+
+
+```{r echo = FALSE , fig.align='center', message=FALSE}
+ggplot(babies) +
+  aes(x = weight, y = bwt) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+---
+
+## Summary
+
+<table align = "center">
+  <tr>
+    <th>variable 1</th>
+    <th>variable 2</th>
+    <th>plot</th>
+  </tr>
+  
+   <tr> 
+    <td> categorical </td>
+    <td> categorical </td>
+    <td> stacked bar plot </td>
+  </tr>
+  
+  <tr> 
+  <td> categorical </td>
+  <td> numeric </td>
+  <td> side-by-side box plot </td>
+  </tr>
+  
+  <tr> 
+  <td> numeric </td>
+  <td> numeric </td>
+  <td> scatter plot </td>
+  </tr>
+  
+
+</table>
+
+---
+
+## Relationship
+
+If two variables are related to each other in some way we would call them __associated__.
+
+If two variables are not related to each other in any way we would call them __independent__.
+
+---
+
+## Relationship
+
+When we examine the relationship between two variables, we often want to know if the relationship between them is causal. In other words, does one variable cause the other? For instance, is mother's higher weight the reason for higher weight in the baby? We don't know!
+
+When we suspect that two variables have a causal relationship we can say
+
+The __explanatory variable__ might causally affect the __response variable__.
+
+Relationship between two variables does not imply one causes the other. 
+
+---
+
+## Stacked Bar Plot in R
+
+.left-panel[
+```{r eval = FALSE}
+ggplot(babies) +
+  aes(x = parity, 
+      fill = smoke) +
+  geom_bar()
+```
+]
+
+.right-panel[
+
+```{r echo = FALSE, message=FALSE, fig.align='center'}
+ggplot(babies) +
+  aes(x = parity, fill = smoke) +
+  geom_bar()
+```
+]
+
+---
+
+## Side-by-Side Boxplot in R
+
+.left-panel[
+
+```{r eval = FALSE}
+ggplot(babies) +
+  aes(x = smoke, 
+      y = gestation) +
+  geom_boxplot()
+```
+
+]
+
+.right-panel[
+```{r echo = FALSE , fig.align='center'}
+ggplot(babies) +
+  aes(x = smoke, 
+      y = gestation) +
+  geom_boxplot()
+```
+]
+---
+
+## Scatter plot in R
+
+.left-panel[
+
+```{r eval = FALSE}
+ggplot(babies) +
+  aes(x = weight, 
+      y = bwt) +
+  geom_point() 
+```
+
+]
+
+.right-panel[
+
+```{r echo = FALSE , fig.align='center'}
+ggplot(babies) +
+  aes(x = weight, 
+      y = bwt) +
+  geom_point() 
+```
+
+]
+

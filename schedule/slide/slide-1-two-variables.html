@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Relationship Between Two Variables</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Dogucu" />
+    <link rel="stylesheet" href="slide-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Relationship Between Two Variables
+### Dr. Dogucu
+
+---
+
+
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt; 
+ Copyright &amp;copy; &lt;a href="https://mdogucu.ics.uci.edu"&gt;Dr. Mine Dogucu&lt;/a&gt;. &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;&lt;/div&gt; 
+
+---
+
+
+
+```r
+glimpse(babies)
+```
+
+```
+## Rows: 1,174
+## Columns: 8
+## $ case      &lt;int&gt; 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,...
+## $ bwt       &lt;int&gt; 120, 113, 128, 108, 136, 138, 132, 120, 143, 140, 144, 141, 110...
+## $ gestation &lt;int&gt; 284, 282, 279, 282, 286, 244, 245, 289, 299, 351, 282, 279, 281...
+## $ parity    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, ...
+## $ age       &lt;int&gt; 27, 33, 28, 23, 25, 33, 23, 25, 30, 27, 32, 23, 36, 30, 38, 25,...
+## $ height    &lt;int&gt; 62, 64, 64, 67, 62, 62, 65, 62, 66, 68, 64, 63, 61, 63, 63, 65,...
+## $ weight    &lt;int&gt; 100, 135, 115, 125, 93, 178, 140, 125, 136, 120, 124, 128, 99, ...
+## $ smoke     &lt;lgl&gt; FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FAL...
+```
+
+---
+
+`case` id number
+
+`bwt` birthweight, in ounces
+
+`gestation` length of gestation, in days
+
+`parity` binary indicator for a first pregnancy (FALSE=first pregnancy, TRUE = not-first pregnancy)
+
+`age` mother's age in years
+
+`height` mother's height in inches
+
+`weight` mother's weight in pounds
+
+`smoke` binary indicator for whether the mother smokes
+
+---
+
+## Questions
+
+- Are mothers more likely to be nonsmokers if it is their first baby?
+
+- Do nonsmoker mothers have babies with longer gestation period?
+
+- Do mothers with higher weight have babies with higher weight?
+
+---
+
+
+
+## Contingency Table
+
+Contingency tables summarize counts or proportions for two categorical variables. 
+
+
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-cly1{text-align:left;vertical-align:middle}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg" align = "center"&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-cly1" colspan="2" rowspan="2"&gt;&lt;/th&gt;
+    &lt;th class="tg-baqh" colspan="2"&gt;smoke&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;TRUE&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;FALSE&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-baqh" rowspan="2"&gt;parity&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;TRUE&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;118&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;190&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;FALSE&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;341&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;525&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+---
+
+## Stacked Bar Plot
+
+&lt;img src="slide-1-two-variables_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Side-by-Side Boxplot
+
+&lt;img src="slide-1-two-variables_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Scatter plot
+
+&lt;img src="slide-1-two-variables_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Scatter plot
+
+
+&lt;img src="slide-1-two-variables_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Summary
+
+&lt;table align = "center"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;variable 1&lt;/th&gt;
+    &lt;th&gt;variable 2&lt;/th&gt;
+    &lt;th&gt;plot&lt;/th&gt;
+  &lt;/tr&gt;
+  
+   &lt;tr&gt; 
+    &lt;td&gt; categorical &lt;/td&gt;
+    &lt;td&gt; categorical &lt;/td&gt;
+    &lt;td&gt; stacked bar plot &lt;/td&gt;
+  &lt;/tr&gt;
+  
+  &lt;tr&gt; 
+  &lt;td&gt; categorical &lt;/td&gt;
+  &lt;td&gt; numeric &lt;/td&gt;
+  &lt;td&gt; side-by-side box plot &lt;/td&gt;
+  &lt;/tr&gt;
+  
+  &lt;tr&gt; 
+  &lt;td&gt; numeric &lt;/td&gt;
+  &lt;td&gt; numeric &lt;/td&gt;
+  &lt;td&gt; scatter plot &lt;/td&gt;
+  &lt;/tr&gt;
+  
+
+&lt;/table&gt;
+
+---
+
+## Relationship
+
+If two variables are related to each other in some way we would call them __associated__.
+
+If two variables are not related to each other in any way we would call them __independent__.
+
+---
+
+## Relationship
+
+When we examine the relationship between two variables, we often want to know if the relationship between them is causal. In other words, does one variable cause the other? For instance, is mother's higher weight the reason for higher weight in the baby? We don't know!
+
+When we suspect that two variables have a causal relationship we can say
+
+The __explanatory variable__ might causally affect the __response variable__.
+
+Relationship between two variables does not imply one causes the other. 
+
+---
+
+## Stacked Bar Plot in R
+
+.left-panel[
+
+```r
+ggplot(babies) +
+  aes(x = parity, 
+      fill = smoke) +
+  geom_bar()
+```
+]
+
+.right-panel[
+
+&lt;img src="slide-1-two-variables_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Side-by-Side Boxplot in R
+
+.left-panel[
+
+
+```r
+ggplot(babies) +
+  aes(x = smoke, 
+      y = gestation) +
+  geom_boxplot()
+```
+
+]
+
+.right-panel[
+&lt;img src="slide-1-two-variables_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+]
+---
+
+## Scatter plot in R
+
+.left-panel[
+
+
+```r
+ggplot(babies) +
+  aes(x = weight, 
+      y = bwt) +
+  geom_point() 
+```
+
+]
+
+.right-panel[
+
+&lt;img src="slide-1-two-variables_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,420 @@
+---
+title: "Visual Summaries"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+---
+
+
+```{r message = FALSE, echo = FALSE, warning = FALSE, message=FALSE}
+library(tidyverse)
+library(fivethirtyeight)
+library(emojifont)
+library(openintro)
+library(fGarch)
+library(gganimate)
+theme_set(theme_gray(base_size = 22))
+```
+
+
+
+## Goals
+
+We will learn to 
+- make visuals
+- read and interpret visuals
+- use vocabulary to describe visuals.
+
+---
+
+## Bar plot with counts
+
+```{r echo = FALSE, fig.align='center'}
+ggplot(candy_rankings) +
+  aes(x = chocolate) +
+  geom_bar()
+```
+
+---
+
+## Bar plot with proportions
+
+```{r echo = FALSE, fig.align='center'}
+ggplot(candy_rankings) +
+  aes(x = chocolate, y = ..prop.., group = 1) +
+  geom_bar()
+```
+
+
+---
+
+## Histogram
+
+```{r echo = FALSE, fig.align='center'}
+ggplot(candy_rankings) +
+  aes(x = winpercent) +
+  geom_histogram(binwidth = 3)  
+```
+
+---
+
+## Fun fact
+
+__histo__ comes from the Greek word _histos_ that literally means "anything set up right".
+
+__gram__: comes from the Greek word _gramma_ which means "that which is drawn".
+
+.footnote[Online Etymology Dictionary]
+
+
+---
+
+## Histogram
+
+- Consider the height distribution in our class.
+
+- How would the distribution change if Michael Jordan (198.1 cm) were to join our class?
+
+- How would the distribution change if Tyrion Lannister (135 cm) were to join our class?
+
+---
+
+## Note
+
+When data display a skewed distribution we rely on median rather than the mean to understand the center of the distribution.
+---
+
+## Histogram
+
+---
+
+
+
+## Box plot
+
+
+
+---
+
+## Histogram vs. Boxplot
+
+.pull-left[
+
+```{r echo = FALSE, message=FALSE, warning=FALSE, fig.height=6, cache = TRUE}
+set.seed(12345)
+
+symmetric <- rnorm(n = 10000, mean = 0, sd = 1)
+
+right_skewed <- rsnorm(n = 10000, mean = 0, sd = 1, xi = 20)
+
+left_skewed <- rsnorm(n = 10000, mean = 0, sd = 1, xi = -20)
+
+type <- c(
+  rep("left-skewed", 10000),
+  rep("symmetric", 10000),
+  rep("right-skewed", 10000)
+)
+
+x <- c(left_skewed,
+       symmetric,
+       right_skewed)
+
+data <- tibble(x = x,
+                  type = type)
+
+
+data %>% 
+  ggplot(aes(x = x)) +
+  geom_histogram() +
+  transition_states(type,
+                    transition_length = 1,
+                    state_length = 10) +
+  labs(title = 'Distribution: {closest_state}',
+       x = 'observations')
+
+```
+]
+
+.pull-right[
+```{r echo = FALSE, fig.height=6, cache = TRUE, message = FALSE}
+data %>% 
+  ggplot(aes(x = 1, y = x)) +
+  geom_boxplot() +
+    theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank()) +
+  transition_states(type,
+                    transition_length = 1,
+                    state_length = 10) +
+  labs(title = 'Distribution: {closest_state}',
+       y = "observations")
+```
+
+]
+---
+
+## Summary
+
+
+
+<table align = "center">
+  <tr>
+    <th>variable</th>
+    <th>plot</th>
+  </tr>
+  
+   <tr> 
+    <td> categorical </td>
+    <td> bar plot </td>
+  </tr>
+  
+  <tr> 
+  <td> numeric </td>
+  <td> histogram </td>
+  </tr>
+  
+  
+  <tr> 
+  <td> numeric </td>
+  <td> box plot </td>
+  </tr>
+  
+</table>
+
+---
+
+## Data Visualization in R
+
+For data visualization in R we will be using the `ggplot()` function.
+---
+
+## Fun facts
+
+- `ggplot`'s gg stands for Grammar of Graphics.
+- Grammar of Graphics is a book by Leland Wilkenson.
+
+
+---
+
+If you wanted to make the following plot and R could understand English what would you tell R? 
+
+```{r echo = FALSE, fig.height=6, fig.width=9, fig.align='center'}
+ggplot(candy_rankings) +
+  aes(x = chocolate) +
+  geom_bar()
+
+```
+
+---
+## Three Steps of Making a basic ggplot
+
+- Make space for a plot using the dataset. 
+- Decide on what goes on the axes.
+- Decide what kind of a plot.
+---
+
+## Step 1 - Make space for the plot
+
+.left-panel[
+```{r eval = FALSE}
+ggplot(candy_rankings)
+```
+]
+.right-panel[
+
+```{r echo = FALSE, fig.height=6, fig.width=9}
+ggplot(candy_rankings)
+
+```
+]
+
+---
+
+## Step 2 - Decide on variables and their axes
+
+.left-panel[
+```{r eval = FALSE}
+ggplot(candy_rankings) +
+  aes(x = chocolate)
+```
+]
+.right-panel[
+
+```{r echo = FALSE, fig.height=6, fig.width=9}
+ggplot(candy_rankings) +
+  aes(x = chocolate)
+
+```
+]
+
+---
+
+## Step 3 - Decide on the type of plot
+
+.left-panel[
+```{r eval = FALSE}
+ggplot(candy_rankings) +
+  aes(x = chocolate) +
+  geom_bar() 
+```
+]
+.right-panel[
+
+```{r echo = FALSE, fig.height=6, fig.width=9}
+ggplot(candy_rankings) +
+  aes(x = chocolate) +
+  geom_bar()
+
+```
+]
+
+---
+
+## Practice
+
+```{r echo = FALSE, fig.height=6, fig.width=9, fig.align='center', warning=FALSE}
+ggplot(candy_rankings) +
+  aes(x = winpercent) +
+  geom_histogram() 
+
+```
+
+---
+
+## Warning & Message
+
+`r emoji(search_emoji('warning'))`When you see __warning__ or a __message__. The code runs and returns a ggplot but also lets us know that something is going on.
+---
+## What is binwidth?
+
+Warnings and messages are mostly function specific and require some thinking (and possibly Googling) to figure things out. 
+
+If bar plots have bars and they are called bar plots, technically histograms are bin plots because they have bins. 
+
+The warning is basically warning us that by default, `geom_histogram()` displays 30 bins. It is asking us to set the binwidth. 
+
+Where do you think the binwidth argument would go?
+
+---
+
+## Binwidth
+
+.left-panel[
+```{r eval = FALSE}
+ggplot(candy_rankings) +
+  aes(x = winpercent) +
+  geom_histogram(binwidth = 3) 
+```
+]
+.right-panel[
+
+```{r echo = FALSE, fig.height=6, fig.width=9}
+ggplot(candy_rankings) +
+  aes(x = winpercent) +
+  geom_histogram(binwidth = 3) 
+
+```
+]
+
+
+
+---
+class: center middle 
+
+## Colors
+
+.large[
+`r emoji(search_emoji('rainbow'))[1]`
+] 
+
+Pick your favorite color(s) from the list at:
+
+[bit.ly/colors-r](http:/bit.ly/colors-r)
+
+---
+
+# color = ?
+
+.left-panel[
+
+
+```{r fig.height=6, fig.width=9, eval = FALSE}
+ggplot(candy_rankings) +
+  aes(x = chocolate) +
+  geom_bar(color = 'darkblue') 
+
+```
+
+]
+
+.right-panel[
+```{r echo = FALSE, fig.height=6, fig.width=9}
+ggplot(candy_rankings) +
+  aes(x = chocolate) +
+  geom_bar(color = 'darkblue') 
+```
+
+]
+
+---
+
+# fill = ?
+
+.left-panel[
+
+
+```{r fig.height=6, fig.width=9, eval = FALSE}
+ggplot(candy_rankings) +
+  aes(x = chocolate) +
+  geom_bar(color = 'darkblue',
+           fill = 'coral') 
+
+```
+
+]
+
+.right-panel[
+```{r echo = FALSE, fig.height=6, fig.width=9}
+ggplot(candy_rankings) +
+  aes(x = chocolate) +
+  geom_bar(color = 'darkblue',
+           fill = 'coral') 
+```
+
+]
+
+
+
+---
+
+## Fun fact
+
+- [BBC](https://bbc.github.io/rcookbook/)   
+- [fivethirtyeight](https://blog.revolutionanalytics.com/2016/07/data-journalism-with-r-at-538.html?utm_content=bufferc03e0&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer)  
+
+---
+
+class: center middle
+
+[RStudio Cheat Sheets](https://rstudio.com/resources/cheatsheets/)
+
+
+
+
+
+
