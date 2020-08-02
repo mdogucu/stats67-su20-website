@@ -1,0 +1,10 @@
+```{r echo = FALSE, message = FALSE}
+library(titanic)
+library(tidyverse)
+titanic <- titanic_train %>% 
+  mutate(Survived = as.logical(Survived),
+         Sex = as.factor(Sex),
+         Embarked = as.factor(Embarked))
+
+``` 
+

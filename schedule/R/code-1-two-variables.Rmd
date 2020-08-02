@@ -1,0 +1,16 @@
+```{r message = FALSE}
+library(tidyverse)
+library(ggplot2)
+library(openintro)
+babies <- babies %>% 
+  mutate(smoke = as.logical(smoke),
+         parity = as.logical(parity)) %>% 
+  drop_na()
+```
+
+```{r}
+ggplot(babies) +
+  aes(x = parity, y = ) +
+  geom_bar()
+```
+
