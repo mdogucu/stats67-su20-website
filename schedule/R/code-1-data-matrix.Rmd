@@ -1,0 +1,39 @@
+## Part 1 - Loading Data
+
+In this lecture we have started learning about data matrices. The following code (you do not have to understand it) calls the data about work of Bob Ross.
+
+```{r message = FALSE}
+library(tidyverse)
+library(fivethirtyeight)
+bob_ross <- bob_ross %>% 
+  mutate(tree = as.factor(tree),
+         mountain = as.factor(mountain))
+
+
+```
+
+## Part 2 - Getting to Know the Data
+Here glimpse at your data
+
+
+
+
+
+
+## Part 3 - Summarizing Data
+
+We will learn how to summarize data with numbers
+
+```{r}
+count(bob_ross, tree)
+```
+
+
+By the end of this week's lecture we will learn how to visualize data!
+
+```{r}
+ggplot(bob_ross) +
+  aes(x = tree) +
+  geom_bar()
+```
+
