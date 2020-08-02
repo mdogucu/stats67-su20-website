@@ -86,7 +86,7 @@ __gram__: comes from the Greek word _gramma_ which means "that which is drawn".
 
 ## Histogram
 
-- Consider the height distribution in our class.
+Consider the height distribution in our class.
 
 - How would the distribution change if Michael Jordan (198.1 cm) were to join our class?
 
@@ -99,9 +99,6 @@ __gram__: comes from the Greek word _gramma_ which means "that which is drawn".
 When data display a skewed distribution we rely on median rather than the mean to understand the center of the distribution.
 ---
 
-## Histogram
-
----
 
 
 

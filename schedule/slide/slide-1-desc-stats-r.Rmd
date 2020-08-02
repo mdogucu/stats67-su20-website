@@ -94,7 +94,7 @@ summarize(titanic, mean(Fare))
 ## Median in R
 
 ```{r}
-summarize(titanic, mean(Fare))
+summarize(titanic, median(Fare))
 ```
 
 ---

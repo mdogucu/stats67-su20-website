@@ -209,7 +209,7 @@ ggplot(babies) +
 
 .right-panel[
 
-```{r echo = FALSE, message=FALSE, fig.align='center'}
+```{r echo = FALSE, message=FALSE, fig.align='center', fig.height=5}
 ggplot(babies) +
   aes(x = parity, fill = smoke) +
   geom_bar()
@@ -232,7 +232,7 @@ ggplot(babies) +
 ]
 
 .right-panel[
-```{r echo = FALSE , fig.align='center'}
+```{r echo = FALSE , fig.align='center', fig.height=5}
 ggplot(babies) +
   aes(x = smoke, 
       y = gestation) +
@@ -256,7 +256,7 @@ ggplot(babies) +
 
 .right-panel[
 
-```{r echo = FALSE , fig.align='center'}
+```{r echo = FALSE , fig.align='center', fig.height=5}
 ggplot(babies) +
   aes(x = weight, 
       y = bwt) +
