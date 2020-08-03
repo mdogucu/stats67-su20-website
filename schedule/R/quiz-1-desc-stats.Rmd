@@ -1,0 +1,16 @@
+```{r message = FALSE}
+library(openintro)
+library(tidyverse)
+mammals <-
+  mammals %>% 
+  drop_na()
+options(digits=10)
+```
+
+
+
+
+
+
+
+
