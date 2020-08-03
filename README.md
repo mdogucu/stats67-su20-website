@@ -19,7 +19,7 @@ Course website is hosted at [stats4cs.com](https://stats4cs.com).
 
 <hr>
 
-**Students** if you see anything missing or broken links please feel free to file an issue in this repo or let me know.
+**Students** if you see anything missing or broken links please feel free to file an issue in this repo or let me know. Note that this is a public repo so if you create an issue it would be publicly be available. If you are concerned about privacy you can directly email me.
 
 **Instructors** if you are planning to use any of the website design or resources feel free to do so but please attribute accordingly. 
 
