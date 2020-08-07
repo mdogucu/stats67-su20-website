@@ -1,0 +1,40 @@
+# QUESTION 1
+
+Run the following chunk (for this class you're not required to know what it does, but we added comments so that you can understand it, if you are interested).
+
+```{r message = FALSE}
+
+# Loading libraries 
+library(openintro) # For the dataset
+library(tidyverse) # For ggplot, count() and summarize()
+
+# Removing NA values (some functions like summarize() return NA by default if you input a vector with NA values)
+email <-
+  email %>% 
+  drop_na()
+
+# Setting to 10 the number of decimals returned
+options(digits=10)
+
+# Replacing the dataset with a subset that includes only the variables that we are interested in
+email <- email %>%
+  select(spam, to_multiple, sent_email, dollar, num_char)
+
+# Transforming the binary variables to factors: it will make easier to use them in plots
+email$spam <-  as.factor(email$spam)
+
+email <- email %>% 
+  mutate(spam = as.factor(spam),
+         to_multiple = as.factor(to_multiple),
+         sent_email = as.factor(sent_email))
+
+```
+
+
+
+
+
+
+
+
+
