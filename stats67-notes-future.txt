@@ -1,0 +1,4 @@
+Two variables:
+
+match rq with plots
+in scatterplot what goes on x? what goes on y?
