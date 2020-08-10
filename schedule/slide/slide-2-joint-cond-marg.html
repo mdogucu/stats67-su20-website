@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Joint, Marginal, Conditional Probability</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Dogucu" />
+    <link rel="stylesheet" href="slide-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Joint, Marginal, Conditional Probability
+### Dr. Dogucu
+
+---
+
+
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt; 
+ Copyright &amp;copy; &lt;a href="https://mdogucu.ics.uci.edu"&gt;Dr. Mine Dogucu&lt;/a&gt;. &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;&lt;/div&gt; 
+
+---
+
+## Data - GSS 2018
+
+The General Social Survey (GSS) is sociological survey that has been regularly conducted since 1972. It is a comprehensive survey that provides information on experiences of residents of the United States. 
+
+
+&lt;table align = "center"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2" rowspan="2"&gt;&lt;/th&gt;
+    &lt;th colspan="3"&gt;Belief in Life After Death&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;No&lt;br&gt;&lt;/td&gt;
+    &lt;td&gt;Total&lt;br&gt;&lt;/td&gt;
+
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="3"&gt;College Science Course&lt;br&gt;&lt;/td&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;375&lt;/td&gt;
+    &lt;td&gt;75&lt;/td&gt;
+    &lt;td&gt;450&lt;/td&gt;
+
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;No&lt;/td&gt;
+    &lt;td&gt;485&lt;/td&gt;
+    &lt;td&gt;115&lt;/td&gt;
+    &lt;td&gt;600&lt;/td&gt;
+
+  &lt;/tr&gt;
+  
+  &lt;tr&gt;
+    &lt;td&gt;Total&lt;/td&gt;
+    &lt;td&gt;860&lt;/td&gt;
+    &lt;td&gt;190&lt;/td&gt;
+    &lt;td&gt;1050&lt;/td&gt;
+
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+## Events
+
+Let B represent an event that a randomly selected person in this sample believes in life after death
+
+--
+
+Let C represent an event that a randomly selected person in this sample took a college level science course. 
+
+---
+
+## Joint Probability
+
+&lt;table align = "center"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2" rowspan="2"&gt;&lt;/th&gt;
+    &lt;th colspan="3"&gt;Belief in Life After Death&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;No&lt;br&gt;&lt;/td&gt;
+    &lt;td&gt;Total&lt;br&gt;&lt;/td&gt;
+
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="3"&gt;College Science Course&lt;br&gt;&lt;/td&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;375&lt;/td&gt;
+    &lt;td&gt;75&lt;/td&gt;
+    &lt;td&gt;450&lt;/td&gt;
+
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;No&lt;/td&gt;
+    &lt;td&gt;485&lt;/td&gt;
+    &lt;td&gt;115&lt;/td&gt;
+    &lt;td&gt;600&lt;/td&gt;
+
+  &lt;/tr&gt;
+  
+  &lt;tr&gt;
+    &lt;td&gt;Total&lt;/td&gt;
+    &lt;td&gt;860&lt;/td&gt;
+    &lt;td&gt;190&lt;/td&gt;
+    &lt;td&gt;1050&lt;/td&gt;
+
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+Note that events `\(B\)` and `\(C\)` are not mutually exclusive. A randomly selected person can believe in life after death and might have taken a college science course. `\(B \cap C \neq \emptyset\)`.
+
+--
+
+`\(P(B \cap C) = \frac{375}{1050}\)`
+
+--
+
+Note that `\(P(B\cap C) = P(C\cap B)\)`. Order does _not_ matter.
+
+---
+## Marginal Probability
+
+&lt;table align = "center"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2" rowspan="2"&gt;&lt;/th&gt;
+    &lt;th colspan="3"&gt;Belief in Life After Death&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;No&lt;br&gt;&lt;/td&gt;
+    &lt;td&gt;Total&lt;br&gt;&lt;/td&gt;
+
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="3"&gt;College Science Course&lt;br&gt;&lt;/td&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;375&lt;/td&gt;
+    &lt;td&gt;75&lt;/td&gt;
+    &lt;td&gt;450&lt;/td&gt;
+
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;No&lt;/td&gt;
+    &lt;td&gt;485&lt;/td&gt;
+    &lt;td&gt;115&lt;/td&gt;
+    &lt;td&gt;600&lt;/td&gt;
+
+  &lt;/tr&gt;
+  
+  &lt;tr&gt;
+    &lt;td&gt;Total&lt;/td&gt;
+    &lt;td&gt;860&lt;/td&gt;
+    &lt;td&gt;190&lt;/td&gt;
+    &lt;td&gt;1050&lt;/td&gt;
+
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+`\(P(B)\)` represents a __marginal probability__. So do `\(P(C)\)`, `\(P(B^C)\)` and `\(P(C^C)\)`. In order to calculate these probabilities we could only use the values in the margins of the contingency table, hence the name. 
+
+`\(P(B) = \frac{860}{1050}\)`  
+`\(P(C) = \frac{450}{1050}\)`
+
+
+---
+
+
+
+## Conditional Probability
+
+&lt;table align = "center"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2" rowspan="2"&gt;&lt;/th&gt;
+    &lt;th colspan="3"&gt;Belief in Life After Death&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;No&lt;br&gt;&lt;/td&gt;
+    &lt;td&gt;Total&lt;br&gt;&lt;/td&gt;
+
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="3"&gt;College Science Course&lt;br&gt;&lt;/td&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;375&lt;/td&gt;
+    &lt;td&gt;75&lt;/td&gt;
+    &lt;td&gt;450&lt;/td&gt;
+
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;No&lt;/td&gt;
+    &lt;td&gt;485&lt;/td&gt;
+    &lt;td&gt;115&lt;/td&gt;
+    &lt;td&gt;600&lt;/td&gt;
+
+  &lt;/tr&gt;
+  
+  &lt;tr&gt;
+    &lt;td&gt;Total&lt;/td&gt;
+    &lt;td&gt;860&lt;/td&gt;
+    &lt;td&gt;190&lt;/td&gt;
+    &lt;td&gt;1050&lt;/td&gt;
+
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`\(P(B|C)\)` represents a __conditional probability__. So do `\(P(B^c|C)\)`, `\(P(C| B)\)` and `\(P(C|B^c)\)`. To calculate these probabilities we focus on the row or the column of the given information. We _reduce_ the sample space to this given information. 
+
+--
+
+Probability that a randomly selected person believes in life after death given that they have taken a college science course  
+`\(P(B|C) = \frac{375}{450}\)`
+
+---
+
+## Conditional Probability
+
+The order matters!
+
+`\(P(\text{has a dog | like dogs}) \neq\)` `\(P(\text{like dogs | has a dog})\)`
+
+---
+
+## Addition Rule
+
+&lt;table align = "center"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2" rowspan="2"&gt;&lt;/th&gt;
+    &lt;th colspan="3"&gt;Belief in Life After Death&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;No&lt;br&gt;&lt;/td&gt;
+    &lt;td&gt;Total&lt;br&gt;&lt;/td&gt;
+
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="3"&gt;College Science Course&lt;br&gt;&lt;/td&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;375&lt;/td&gt;
+    &lt;td&gt;75&lt;/td&gt;
+    &lt;td&gt;450&lt;/td&gt;
+
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;No&lt;/td&gt;
+    &lt;td&gt;485&lt;/td&gt;
+    &lt;td&gt;115&lt;/td&gt;
+    &lt;td&gt;600&lt;/td&gt;
+
+  &lt;/tr&gt;
+  
+  &lt;tr&gt;
+    &lt;td&gt;Total&lt;/td&gt;
+    &lt;td&gt;860&lt;/td&gt;
+    &lt;td&gt;190&lt;/td&gt;
+    &lt;td&gt;1050&lt;/td&gt;
+
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`\(P(B\cup C) = P(B) + P(C) - P(B \cap C)\)`
+
+--
+
+`\(P(B\cup C) = \frac{860}{1050} + \frac{450}{1050} -\frac{375}{1050} = \frac{935}{1050}\)`
+
+--
+
+$P(B\cup C)\frac{375}{1050} + \frac{75}{1050} + 
+\frac{485}{1050} = \frac{935}{1050}$
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

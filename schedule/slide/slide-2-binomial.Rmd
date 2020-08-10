@@ -1,0 +1,167 @@
+---
+title: "Binomial Distribution"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+---
+
+## Conditions
+
+- The trials have to be independent from each other.
+- The probability of success has to be the same for each trial.
+- The number of trials is fixed. 
+- Each trial outcome is either a success or a failure.
+
+---
+
+## Binomial Distribution
+
+The random variable X represents the number of successes in $n$ trials where in independent trial the probability of success is $p$.
+
+--
+
+$X\sim \text{Binomial}(n, p)$
+
+--
+
+$P(X = x) = f(x) = {n \choose x}p^{x} (1-p)^{n-x}$
+
+--
+
+$S = \{0,1,2...,n\}$
+
+--
+
+$E(X) = np$
+
+--
+
+$Var(X) = np(1-p)$
+
+
+---
+
+__Example__
+
+A vet has been assigned to work at a farm where 70% of the animals have been infected by avian influenza. What is the probability that 3 of the selected animals are infected? 
+
+--
+
+$n = 10$, $x = 3$, $p = 0.70$
+
+--
+
+$P(X = 3) = f(x) = {10 \choose 3}0.70^{3} (1-0.70)^{10-3}$
+
+--
+
+$P(X = 3)= \frac{10!}{3!7!}0.70^30.30^7=0.009001692$
+
+--
+```{r}
+dbinom(x = 3, size = 10, prob = 0.70)
+```
+
+
+---
+
+class: center middle
+
+## pmf when $n = 10$ and $p = 0.70$
+
+
+```{r echo = FALSE, message = FALSE, fig.align="center", fig.height = 5}
+library(tidyverse)
+theme_set(theme_gray(base_size = 22))
+
+x <- seq(0,10)
+y <- dbinom(x, size = 10 , prob = 0.70)
+
+data <- data.frame(x = x,
+                   y = y)
+
+data %>% 
+  ggplot() +
+  aes(x = x, y = y) +
+  geom_segment(data = data, 
+               aes(x = x, y = 0, 
+                   xend = x, yend = y)) +
+  labs(x = expression(paste("x")),
+       y = expression(paste("f(x)"))) +
+      scale_x_continuous(breaks=seq(0,10))
+
+
+```
+
+---
+
+## Cumulative Probability Function
+
+What is the probability that at most three of the ten selected animals are infected? 
+
+$P(X \leq 3) = P(X = 0) + P(X = 1) + P(X = 2) + P(X = 3)$
+
+--
+
+$\frac{10!}{10!0!}0.70^{0}0.30^10 + \frac{10!}{9!1!}0.70^{1}0.30^9 + \frac{10!}{8!2!}0.70^{2}0.30^8 + \frac{10!}{7!3!}0.70^{3}0.30^7$
+
+--
+
+
+```{r}
+dbinom(x = 0, size = 10, prob = 0.70) +
+  dbinom(x = 1, size = 10, prob = 0.70) +
+  dbinom(x = 2, size = 10, prob = 0.70) +
+  dbinom(x = 3, size = 10, prob = 0.70)
+
+```
+
+
+---
+
+## Cumulative Probability Function
+
+$P(X \leq 3)$
+
+```{r}
+pbinom(q = 3, size = 10, prob = 0.70)
+```
+
+---
+
+## Expected Value 
+
+What is the expected value of number of infected animals in 10 selected animals?
+
+--
+
+$E(X) = np$
+$E(X) = 10\times0.70=7$
+
+
+--
+
+## Variance
+
+What is the variance of number of infected animals in 10 selected animals?
+
+--
+
+$Var(X) = np(1-p)$
+
+$Var(X) = 10\times0.7(1-0.7) = 2.1$

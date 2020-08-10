@@ -1,0 +1,59 @@
+---
+title: "Bernoulli Distribution"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+---
+
+## Trial
+
+Assume a random process with only two outcomes. e.g. a medical test of a disease with positive or negative result. A trial can be thought of a single medical test given to one person.
+
+---
+
+## Success
+
+We are interested in $p$ which represents the proportion of people in the population with this disease. 
+
+A success of a trial is in this case getting a positive result.
+
+--
+
+Consider a disease that is found in 8% of the population. Then the probability of success would be 0.08.
+
+--
+
+We denote success with 1 and failure with 0.
+
+$P(X=1) = 0.08$   
+$P(X=0) = 1 - 0.08 = 0.92$ 
+
+
+---
+
+## Bernoulli Distribution
+
+If X is a random variable that takes value 1 with probability of success $p$ and 0 with probability $1-p$, then X follows a Bernoulli distribution.
+
+
+$X \sim \text{Bernoulli} (p)$
+
+Expected Value, $\mu = p$
+
+Variance, $\sigma^2 = p(1-p)$
+

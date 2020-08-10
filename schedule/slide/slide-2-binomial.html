@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Introduction to Probability</title>
+    <title>Binomial Distribution</title>
     <meta charset="utf-8" />
     <meta name="author" content="Dr. Dogucu" />
     <link rel="stylesheet" href="slide-style.css" type="text/css" />
@@ -10,7 +10,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Introduction to Probability
+# Binomial Distribution
 ### Dr. Dogucu
 
 ---
@@ -25,235 +25,144 @@ layout: true
 
 ---
 
-class: middle
+## Conditions
 
-## Random process
-
-In random processes there is more than one possible outcome and the deterministic prediction of the outcome is difficult.
-
-e.g. flip of a coin  
-e.g. roll of a die
-
+- The trials have to be independent from each other.
+- The probability of success has to be the same for each trial.
+- The number of trials is fixed. 
+- Each trial outcome is either a success or a failure.
 
 ---
 
-## Sample Space
+## Binomial Distribution
 
-.pull-left[
-&lt;br&gt;
-**Sample space** is the set of all possible outcomes of a random process.
-
-In a single roll of a die:
-
-`\(S = \{ 1, 2, 3, 4, 5, 6\}\)`
-
-
-
-In flipping a single coin twice:
-
-`\(S = \{ HH, TT, HT, TH\}\)`
-
-]
-
-.pull-right[
-
-&lt;br&gt;
-
-&lt;img src="https://cdn.pixabay.com/photo/2014/04/03/00/37/die-308887_960_720.png" width="40%" style="display: block; margin: auto;" /&gt;
-
-]
-
-
-
----
-
-## Event
-
-An __event__ is a subset of the sample space.
+The random variable X represents the number of successes in `\(n\)` trials where in independent trial the probability of success is `\(p\)`.
 
 --
 
-Let A represent the event that a single roll die results in an **even** number.
-
-`\(A = \{2, 4, 6 \}\)`
+`\(X\sim \text{Binomial}(n, p)\)`
 
 --
 
-Let B represent the event that a single roll die results in an **odd** number.
-
-`\(B = \{1, 3, 5 \}\)`
+`\(P(X = x) = f(x) = {n \choose x}p^{x} (1-p)^{n-x}\)`
 
 --
 
-Let C represent the event that a single roll die results in a **prime** number.
-
-`\(C = \{2, 3, 5 \}\)`
-
----
-
-## Venn Diagram
-
-&lt;img src="img/venn.jpg" width="60%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Complement of an Event
-
-.pull-left[
-
-**Definition** Complement of an event is the set of all outcomes in the sample space that are not in the event itself.
-
-**Example** Complement of event `\(C\)` is the set of outcomes in a roll die that are not prime.
-
-**Notation** `\(C^c\)`
-
-**Pronunciation** C complement
-
-`\(C^c = \{1, 4, 6\}\)`
-
-]
-
-
-.pull-right[
-
-&lt;img src="img/venn.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Mutually Exclusive or Disjoint Events
-
-.pull-left[
-
-**Definition** Mutually exclusive or disjoint events are two events that cannot happen at the same time
-
-**Example** Events A and B are mutually exclusive because an outcome of a roll of a die cannot be even *and* odd.
-
-Events A and C are *not* mutually exclusive because 2 is both an even number and a prime number so event A and C can happen simultaneously. 
-
-
-]
-
-
-.pull-right[
-
-&lt;img src="img/venn.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-
-## Events and Set Notation
-
-
-.pull-left[
-&lt;br&gt;
-&lt;br&gt;
-&lt;div align ="center"&gt;
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Description &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Notation &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Reading &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Elements &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Union &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(A \cup C\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; A or C &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; {2, 3, 4, 5, 6} &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Intersection &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(A \cap C\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; A and C &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; {2} &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;/div&gt;
-
-]
-
-.pull-right[
-
-&lt;img src="img/venn.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
-
----
-
-
-
-
-
-## Defining Probability
-
-**Frequentist definition**
-
-The probability of an outcome is defined to be the proportion of times the outcome is observed under high number of repetitions of the random process.
+`\(S = \{0,1,2...,n\}\)`
 
 --
 
-Assume that we are repeating the random process of a coin flip and are recording `\(X\)`, the number of heads in `\(n\)` coin flips. Then
-
-`$$P(H) = \lim_{n\to\infty}\frac{X}{n}$$`
----
-
-## Defining Probability
-
-
-**Bayesian definition**
-
-When defining probability in addition to considering number of times an outcome occurs, Bayesians consider prior information that they have about an outcome. 
-
-More on this in Stats 115.
-
-
----
-
-## Axioms of Probability
-
-
-1) The probability of any event is between zero and one:
-
-`$$0 \leq P(A) \leq 1$$`
+`\(E(X) = np\)`
 
 --
 
-2) The probabilities must add up to 1. 
+`\(Var(X) = np(1-p)\)`
 
-`$$P(S) = 1$$`
---
-
-3) The probability of mutually exclusive events is additive. 
-
-`$$\bigcup\limits_{i=1}^{\infty} A_{i} = \Sigma_{i =1}^\infty P(A_i)$$`
 
 ---
 
-## Probability of Complementary Events
+__Example__
 
-`\(P(A) + P(A^c) = 1\)`
-
----
-
-## Independence and Multiplication Rule
-
-Two processes are independent if knowing about the outcome of one does not help predict the outcome of the other. 
-
-e.g. two flips of a single coin
+A vet has been assigned to work at a farm where 70% of the animals have been infected by avian influenza. What is the probability that 3 of the selected animals are infected? 
 
 --
 
-If events A and B are from two independent processes, then
+`\(n = 10\)`, `\(x = 3\)`, `\(p = 0.70\)`
 
-`\(P(A \cap B) = P(A) \times P(B)\)`
+--
+
+`\(P(X = 3) = f(x) = {10 \choose 3}0.70^{3} (1-0.70)^{10-3}\)`
+
+--
+
+`\(P(X = 3)= \frac{10!}{3!7!}0.70^30.30^7=0.009001692\)`
+
+--
+
+```r
+dbinom(x = 3, size = 10, prob = 0.70)
+```
+
+```
+## [1] 0.009001692
+```
+
+
+---
+
+class: center middle
+
+## pmf when `\(n = 10\)` and `\(p = 0.70\)`
+
+
+&lt;img src="slide-2-binomial_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Cumulative Probability Function
+
+What is the probability that at most three of the ten selected animals are infected? 
+
+`\(P(X \leq 3) = P(X = 0) + P(X = 1) + P(X = 2) + P(X = 3)\)`
+
+--
+
+`\(\frac{10!}{10!0!}0.70^{0}0.30^10 + \frac{10!}{9!1!}0.70^{1}0.30^9 + \frac{10!}{8!2!}0.70^{2}0.30^8 + \frac{10!}{7!3!}0.70^{3}0.30^7\)`
+
+--
+
+
+
+```r
+dbinom(x = 0, size = 10, prob = 0.70) +
+  dbinom(x = 1, size = 10, prob = 0.70) +
+  dbinom(x = 2, size = 10, prob = 0.70) +
+  dbinom(x = 3, size = 10, prob = 0.70)
+```
+
+```
+## [1] 0.01059208
+```
+
+
+---
+
+## Cumulative Probability Function
+
+`\(P(X \leq 3)\)`
+
+
+```r
+pbinom(q = 3, size = 10, prob = 0.70)
+```
+
+```
+## [1] 0.01059208
+```
+
+---
+
+## Expected Value 
+
+What is the expected value of number of infected animals in 10 selected animals?
+
+--
+
+`\(E(X) = np\)`
+`\(E(X) = 10\times0.70=7\)`
+
+
+--
+
+## Variance
+
+What is the variance of number of infected animals in 10 selected animals?
+
+--
+
+`\(Var(X) = np(1-p)\)`
+
+`\(Var(X) = 10\times0.7(1-0.7) = 2.1\)`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

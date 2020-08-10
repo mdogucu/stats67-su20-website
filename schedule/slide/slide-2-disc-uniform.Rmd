@@ -1,0 +1,148 @@
+---
+title: "Discrete Uniform Distribution"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+---
+
+```{r message = FALSE, echo = FALSE}
+library(openintro)
+library(tidyverse)
+library(titanic)
+```
+
+
+
+
+
+
+
+
+
+
+## Review
+
+It is estimated that 45.3% of emails we receive are spam [(Statista)](https://www.statista.com/statistics/420400/spam-email-traffic-share-annual/). Mohsen has received 30 emails today. 
+
+1) How many of these emails would you expect to be spam? Call this value $\mu$.
+
+2) If Mohsen was to receive 30 emails every day would you expect $\mu$ many spam email every time? Is there variance? Calculate. 
+
+3) Pause and think. Of the 30 emails he received, what is the probability that 29 are spam? 
+
+4) What is the probability that the number of spam emails he received is less than 9?
+
+---
+
+
+---
+## Discrete Uniform Distribution
+
+In discrete uniform distribution, all values are equally likely to be observed. A fair roll die follows a uniform distribution. 
+
+$X\sim unif(a,b)$
+
+pmf: $P(X=x) = \frac{1}{n}$
+
+$\Omega_X = \{a, a+1, ..., b-1, b\}$
+
+---
+## Discrete Uniform Distribution
+
+A broken phone alarm starts ringing once every day randomly. Let X be the random variable representing the hour on the 24 hour system when the alarm goes on. 
+
+Then $\Omega_X = \{0, 1, 2, ...,22,23\}$
+
+$X\sim unif(0,23)$
+
+The probability that the alarm goes sometime between 15:00 - 16:00.
+
+$P(X = 15) = \frac{1}{24} = 0.04167$
+
+---
+
+## Discrete Uniform Distribution
+
+
+Note that the R function `dunif()` is used to calculate probability density function of continuous uniform distributions and __not__ for probability mass function of discrete uniform distributions. 
+
+
+---
+
+## Discrete Uniform Distribution
+
+R is an open-source language. That means any body can contribute to R. 
+
+Luckily someone wanted to contribute with a discrete uniform probability mass function.
+
+However, this function is not installed when R is installed.
+
+
+---
+
+## R packages
+
+When we download R or open RStdudio cloud, we have R functions that we can use such as `dbinom()`. These already installed set of functions are part of __base R__.
+
+The rest comes from the open source community who develop functions, datasets and provide it for the public use in R packages. 
+
+For instance the `ddunif()` function comes from the `fitur` package. 
+
+---
+## Using R packages
+
+In order to use a package, you first have to make sure it is downloaded. 
+
+```{r eval = FALSE}
+install.packages("fitur")
+```
+
+You only do installation process once. Once it is downloaded it will always be downloaded to your computer.
+
+---
+## Using R packages
+
+Once a package is downloaded you can use any function or object provided within the package. In order to use the `ddunif()` function from `fitur` package we have two options. 
+
+Option 1:
+```{r message = FALSE}
+library(fitur)
+ddunif(x = 15, min = 0, max = 23)
+```
+
+Use this option if you are going to keep using functions from the same package over and over again. `library(fitur)` and all packages you load should be at the top of your code.
+
+---
+
+## Using R packages
+
+Option 2:
+```{r}
+fitur::ddunif(x = 15, min = 0, max = 23)
+```
+
+Use this option if you are going to use functions from this package only few times. 
+
+Use this option if there is a function name conflict (i.e. another function with the same name exists in another package that you are using)
+
+Also, this is a good option if you are unfamiliar with a package and you want to remind yourself which package the function belongs to. 
+
+---
+
+
+

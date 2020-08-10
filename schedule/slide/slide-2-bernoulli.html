@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Introduction to Probability</title>
+    <title>Bernoulli Distribution</title>
     <meta charset="utf-8" />
     <meta name="author" content="Dr. Dogucu" />
     <link rel="stylesheet" href="slide-style.css" type="text/css" />
@@ -10,7 +10,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Introduction to Probability
+# Bernoulli Distribution
 ### Dr. Dogucu
 
 ---
@@ -25,235 +25,42 @@ layout: true
 
 ---
 
-class: middle
+## Trial
 
-## Random process
-
-In random processes there is more than one possible outcome and the deterministic prediction of the outcome is difficult.
-
-e.g. flip of a coin  
-e.g. roll of a die
-
+Assume a random process with only two outcomes. e.g. a medical test of a disease with positive or negative result. A trial can be thought of a single medical test given to one person.
 
 ---
 
-## Sample Space
+## Success
 
-.pull-left[
-&lt;br&gt;
-**Sample space** is the set of all possible outcomes of a random process.
+We are interested in `\(p\)` which represents the proportion of people in the population with this disease. 
 
-In a single roll of a die:
-
-`\(S = \{ 1, 2, 3, 4, 5, 6\}\)`
-
-
-
-In flipping a single coin twice:
-
-`\(S = \{ HH, TT, HT, TH\}\)`
-
-]
-
-.pull-right[
-
-&lt;br&gt;
-
-&lt;img src="https://cdn.pixabay.com/photo/2014/04/03/00/37/die-308887_960_720.png" width="40%" style="display: block; margin: auto;" /&gt;
-
-]
-
-
-
----
-
-## Event
-
-An __event__ is a subset of the sample space.
+A success of a trial is in this case getting a positive result.
 
 --
 
-Let A represent the event that a single roll die results in an **even** number.
-
-`\(A = \{2, 4, 6 \}\)`
+Consider a disease that is found in 8% of the population. Then the probability of success would be 0.08.
 
 --
 
-Let B represent the event that a single roll die results in an **odd** number.
+We denote success with 1 and failure with 0.
 
-`\(B = \{1, 3, 5 \}\)`
-
---
-
-Let C represent the event that a single roll die results in a **prime** number.
-
-`\(C = \{2, 3, 5 \}\)`
-
----
-
-## Venn Diagram
-
-&lt;img src="img/venn.jpg" width="60%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Complement of an Event
-
-.pull-left[
-
-**Definition** Complement of an event is the set of all outcomes in the sample space that are not in the event itself.
-
-**Example** Complement of event `\(C\)` is the set of outcomes in a roll die that are not prime.
-
-**Notation** `\(C^c\)`
-
-**Pronunciation** C complement
-
-`\(C^c = \{1, 4, 6\}\)`
-
-]
-
-
-.pull-right[
-
-&lt;img src="img/venn.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Mutually Exclusive or Disjoint Events
-
-.pull-left[
-
-**Definition** Mutually exclusive or disjoint events are two events that cannot happen at the same time
-
-**Example** Events A and B are mutually exclusive because an outcome of a roll of a die cannot be even *and* odd.
-
-Events A and C are *not* mutually exclusive because 2 is both an even number and a prime number so event A and C can happen simultaneously. 
-
-
-]
-
-
-.pull-right[
-
-&lt;img src="img/venn.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-
-## Events and Set Notation
-
-
-.pull-left[
-&lt;br&gt;
-&lt;br&gt;
-&lt;div align ="center"&gt;
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Description &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Notation &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Reading &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Elements &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Union &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(A \cup C\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; A or C &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; {2, 3, 4, 5, 6} &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Intersection &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(A \cap C\) &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; A and C &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; {2} &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;/div&gt;
-
-]
-
-.pull-right[
-
-&lt;img src="img/venn.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
+`\(P(X=1) = 0.08\)`   
+`\(P(X=0) = 1 - 0.08 = 0.92\)` 
 
 
 ---
 
+## Bernoulli Distribution
+
+If X is a random variable that takes value 1 with probability of success `\(p\)` and 0 with probability `\(1-p\)`, then X follows a Bernoulli distribution.
 
 
+`\(X \sim \text{Bernoulli} (p)\)`
 
+Expected Value, `\(\mu = p\)`
 
-## Defining Probability
-
-**Frequentist definition**
-
-The probability of an outcome is defined to be the proportion of times the outcome is observed under high number of repetitions of the random process.
-
---
-
-Assume that we are repeating the random process of a coin flip and are recording `\(X\)`, the number of heads in `\(n\)` coin flips. Then
-
-`$$P(H) = \lim_{n\to\infty}\frac{X}{n}$$`
----
-
-## Defining Probability
-
-
-**Bayesian definition**
-
-When defining probability in addition to considering number of times an outcome occurs, Bayesians consider prior information that they have about an outcome. 
-
-More on this in Stats 115.
-
-
----
-
-## Axioms of Probability
-
-
-1) The probability of any event is between zero and one:
-
-`$$0 \leq P(A) \leq 1$$`
-
---
-
-2) The probabilities must add up to 1. 
-
-`$$P(S) = 1$$`
---
-
-3) The probability of mutually exclusive events is additive. 
-
-`$$\bigcup\limits_{i=1}^{\infty} A_{i} = \Sigma_{i =1}^\infty P(A_i)$$`
-
----
-
-## Probability of Complementary Events
-
-`\(P(A) + P(A^c) = 1\)`
-
----
-
-## Independence and Multiplication Rule
-
-Two processes are independent if knowing about the outcome of one does not help predict the outcome of the other. 
-
-e.g. two flips of a single coin
-
---
-
-If events A and B are from two independent processes, then
-
-`\(P(A \cap B) = P(A) \times P(B)\)`
+Variance, `\(\sigma^2 = p(1-p)\)`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

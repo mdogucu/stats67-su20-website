@@ -1,0 +1,133 @@
+---
+title: "Geometric Distribution"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+---
+
+## Example
+
+According to a [Gallup survey](https://news.gallup.com/poll/1576/abortion.aspx)the latest trend shows that 21% of people think that abortion should be illegal in all circumstances. A journalist is writing an article and wants to include different opinions. What is the probability that the first person to think that abortion should be illegal in all circumstances is the third person the journalist approaches? The journalist is finding people randomly.
+
+--
+
+Success is finding someone who thinks that abortion should be illegal in all circumstances
+
+Probability of success is finding such person = $p$ = 0.21
+
+--
+
+$(1 - 0.21) \times (1-0.21) \times 0.21 = 0.131061$
+
+---
+
+## Geometric Distribution
+
+Let X be the number of failures needed __before__ the first success is observed in independent trials. $X$ follows a geometric distribution
+
+$S = \{0, 1, 2, 3, 4, ...\}$
+
+--
+
+$X \sim \text{Geometric} (p)$
+
+--
+
+$f(x) = (1-p)^x(p)$
+$P(X = 2) = f(2) = (1-0.21)^2(0.21)$
+
+---
+
+## Geometric pmf in R
+
+```{r}
+dgeom(x = 2, prob = 0.21)
+```
+
+---
+
+## Geometric pmf when $p = 0.21$
+
+```{r echo = FALSE, message = FALSE, fig.align="center", fig.height = 5}
+library(tidyverse)
+theme_set(theme_gray(base_size = 22))
+
+x <- seq(0,20)
+y <- dgeom(x, 0.21)
+
+data <- data.frame(x = x,
+                   y = y)
+
+data %>% 
+  ggplot() +
+  aes(x = x, y = y) +
+  geom_segment(data = data, 
+               aes(x = x, y = 0, 
+                   xend = x, yend = y)) +
+  labs(x = expression(paste("x")),
+       y = expression(paste("f(x)")))
+
+```
+
+---
+
+## Cumulative Distribution Function
+
+The journalist wants to find a person who thinks that abortion should be illegal in all circumstances. What is the probability that the journalist will have to reach out to 3 people at most before she is able to find such a person.
+
+Possible scenarios:
+
+The journalist reaches out to 1 person and finds success - $P(X = 0)$
+
+The journalist finds success at the 2nd person - $P(X = 1)$
+
+The journalist finds success at the 3rd person - $P(X = 2)$
+
+---
+
+## Cumulative Distribution Function
+
+$P(X = 0) + P(X = 1) + P(X = 2) = P(X \leq2)$
+
+--
+
+$[0.21] + [(1-0.21) \cdot 0.21] + [(1-0.21) \cdot (1-0.21) \cdot 0.21] = 0.506961$
+
+--
+
+```{r}
+pgeom(q = 2, prob = 0.21)
+```
+
+---
+
+## Expected Value
+
+How many failures would we expect on average to have before a success is found? 
+
+$E(X)=\frac{1-p}{p} = \frac{1-0.21}{0.21} = 3.761905$
+
+--
+
+## Variance
+
+If the reporter was to repeat this process would she always need 3.761905 failures before a success is found or would there be variance?
+
+--
+
+$Var(X) = \frac{1-p}{p^2} = \frac{1-0.21}{0.21^2} = 17.91383$

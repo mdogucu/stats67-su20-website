@@ -1,0 +1,179 @@
+---
+title: "Poisson Distribution"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+## Poisson Distribution
+
+Let $X$ represent the number of occurrences of an event with in a  __fixed__ time or space.
+
+--
+
+$X \sim Poisson (\lambda)$
+
+--
+
+$P(X = x) = f(x) =\frac{\lambda^x}{x!} e^{-\lambda}$ 
+
+--
+
+$S = \{0,1,2....\}$
+
+--
+
+$E(X) = Var(X) = \lambda$
+
+---
+
+## Probability Mass Function 
+
+```{r echo = FALSE, message = FALSE, fig.align="center", fig.width=10}
+library(tidyverse)
+theme_set(theme_gray(base_size = 22))
+
+x <- rep(seq(0, 20), 3)
+lambda <- c(rep(1, 21), rep (5, 21), rep(10, 21))
+
+
+y <- dpois(x, lambda)
+
+data <- data.frame(x = x,
+                   y = y,
+                   lambda = lambda)
+
+data$lambda <- 
+  factor(data$lambda,
+         levels = c("1", "5", "10"),
+         labels =
+           c(expression(paste(lambda, " = 1")),
+             expression(paste(lambda, " = 5")),
+             expression(paste(lambda, " = 10"))))
+
+data %>% 
+  ggplot() +
+  aes(x = x, y = y) +
+  geom_segment(data = data, 
+               aes(x = x, y = 0, 
+                   xend = x, yend = y)) +
+  facet_wrap(data$lambda, 
+             labeller = label_parsed) +
+  labs(x = expression(paste("x")),
+       y = expression(paste("f(X = x)")))
+
+```
+
+---
+
+class:center middle
+
+## Pangolins
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5BgDCDVZk8A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+---
+
+class: middle
+
+## Pangolins
+
+
+It is estimated that one pangolin is snatched from the wild every five minutes ([TRAFFIC](https://www.traffic.org/what-we-do/species/pangolins/)).
+
+---
+
+What is the probability that 7 pangolins will be snatched from the wild in the next hour? (Note: fixed time here is an hour)
+
+--
+
+$P(X = 7) = f(7) = ?$
+
+--
+
+$E(X) = \lambda = 1 \times 12 = 12$
+
+--
+
+$P(X = 7) = f(7) = \frac{12^7}{7!} e^{-12} = 0.04368219$
+
+```{r}
+((12^7)/factorial(7))*exp(-12)
+```
+
+--
+
+```{r}
+dpois(x = 7, lambda = 12)
+```
+
+---
+
+class:center middle
+
+### pmf when $\lambda = 12$
+
+
+```{r echo = FALSE, message = FALSE, fig.align="center", fig.height = 5}
+
+x <- seq(0,30)
+y <- dpois(x, 12)
+
+data <- data.frame(x = x,
+                   y = y)
+
+data %>% 
+  ggplot() +
+  aes(x = x, y = y) +
+  geom_segment(data = data, 
+               aes(x = x, y = 0, 
+                   xend = x, yend = y)) +
+  labs(x = expression(paste("x")),
+       y = expression(paste("f(x)")))
+
+```
+
+---
+
+## cdf 
+
+What is the probability that less than 3 pangolins will be snatched from the wild in the next hour?
+
+--
+
+$P(X < 3) = P(X \leq 2) = P(X = 0) + P(X = 1) + P(X = 2)$
+
+```{r}
+dpois(x = 0, lambda = 12) + 
+  dpois(x = 1, lambda = 12) +
+  dpois(x = 2, lambda = 12)
+
+
+
+```
+
+--
+
+```{r}
+ppois(q = 2, lambda = 12)
+```
+
+
