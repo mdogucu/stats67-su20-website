@@ -145,7 +145,7 @@ $P(X = 2) =f(2)=\frac{3}{8} = 0.375$
 </table>
 
 
-$P(X \leq 2) =F(2)=\frac{3}{8} = 0.875$
+$P(X \leq 2) =F(2)=\frac{7}{8} = 0.875$
 
 
 ---
@@ -268,7 +268,10 @@ $Var(X)= 3 - 1.5^2 = 0.75$
 
 Let $X$ and $Y$ represent random variables and $a$ and $b$ represent constants. Then 
 
-$E(aX +bY) = a\cdot E(X) + b \cdot E(Y)$
+$E(aX +bY) = a\cdot E(X) + b \cdot E(Y),$
+
+and, if $X$ and $Y$ are independent,
+
 $Var(aX +bY) = a^2\cdot Var(X) + b^2 \cdot Var(Y)$
 
 
