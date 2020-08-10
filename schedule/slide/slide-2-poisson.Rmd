@@ -23,7 +23,7 @@ layout: true
 
 ## Poisson Distribution
 
-Let $X$ represent the number of occurrences of an event with in a  __fixed__ time or space.
+Let $X$ represent the number of occurrences of an event within a  __fixed__ time or space.
 
 --
 
