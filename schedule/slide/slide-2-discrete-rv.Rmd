@@ -26,19 +26,19 @@ A numeric outcome of a random process is called a random variable.
 
 --
 
-We will use capital letters towards the end of the alphabet such as $X, Y, Z$ to represent random variables.
-
-We will use the corresponding lower case letters $x, y, z$ to represent observed outcomes.
+A **discrete random** variable has a countable number of possible outcomes.
 
 --
 
-A **discrete random** variable has a countable number of possible outcomes.
+We will use capital letters towards the end of the alphabet such as $X, Y, Z$ to represent random variables.
+
+We will use the corresponding lower case letters $x, y, z$ to represent observed outcomes.
 
 ---
 
 ## Discrete Random Variable
 
-Random process: 3 coins flipped simultaneously
+Random process: 3 flips of a single coin
 
 --
 
@@ -46,22 +46,25 @@ Sample Space: $\{HHH, HHT, HTH, THH, HTT, THT, TTH, TTT\}$
 
 --
 
-Example: Let X be a discrete random variable that represents the total number of heads in 3 coin flips.
+Let X be a discrete random variable that represents the total number of heads in 3 coin flips.
 
---
+---
+
+## Discrete Random Variable
+
 
 <table align = "center">
 <tr>
-<td>x <sub>i</sub></td>
+<td>x </td>
 
 <td>0</td> <td>1</td> <td>2</td> <td>3</td>
 
 </tr>
 
 <tr>
-<td>P(X=x<sub>i</sub>) = f(x)</td>
+<td>P(X=x) = f(x)</td>
 
-<td>0125</td> <td>0.375</td> <td>0.375</td> <td>0.125</td>
+<td>0.125</td> <td>0.375</td> <td>0.375</td> <td>0.125</td>
 
 </tr>
 
@@ -103,48 +106,52 @@ data %>%
 
 <table align = "center">
 <tr>
-<td>x <sub>i</sub></td>
+<td>x</td>
 
 <td>0</td> <td>1</td> <td>2</td> <td>3</td>
 
 </tr>
 
 <tr>
-<td>P(X=x<sub>i</sub>) = f(x)</td>
+<td>P(X=x) = f(x)</td>
 
-<td>0125</td> <td>0.375</td> <td>0.375</td> <td>0.125</td>
+<td>0.125</td> <td>0.375</td> <td>0.375</td> <td>0.125</td>
 
 </tr>
 
 </table>
 
+$P(X = 2) =f(2)=\frac{3}{8} = 0.375$
+
+--
 ## Cumulative Distribution Function (cdf)
 
 
 <table align = "center">
 <tr>
-<td>x <sub>i</sub></td>
+<td>x</td>
 
 <td>0</td> <td>1</td> <td>2</td> <td>3</td>
 
 </tr>
 
 <tr>
-<td>P(X &le;x<sub>i</sub>) = F(x)</td>
+<td>P(X &le;x) = F(x)</td>
 
-<td>0125</td> <td>0.5</td> <td>0.875</td> <td>1</td>
+<td>0.125</td> <td>0.5</td> <td>0.875</td> <td>1</td>
 
 </tr>
 
 </table>
 
---
 
-$P(X = 2) =f(2)=\frac{3}{8} = 0.375$
+$P(X \leq 2) =F(2)=\frac{3}{8} = 0.875$
+
+
+---
 
 ## Cumulative Distribution Function
-
-For discrete random variable, $X$ the distribution of all possible values of $x$ can be shown with a probability mass function (pmf). 
+ 
 
 ```{r echo = FALSE, message = FALSE, fig.align="center", fig.height = 5}
 library(tidyverse)
@@ -175,16 +182,16 @@ If we repeat this random process of 3 coin flips many times, how many number of 
 
 <table align = "center">
 <tr>
-<td>x <sub>i</sub></td>
+<td>x </td>
 
 <td>0</td> <td>1</td> <td>2</td> <td>3</td>
 
 </tr>
 
 <tr>
-<td>P(X=x<sub>i</sub>) = f(x)</td>
+<td>P(X=x) = f(x)</td>
 
-<td>0125</td> <td>0.375</td> <td>0.375</td> <td>0.125</td>
+<td>0.125</td> <td>0.375</td> <td>0.375</td> <td>0.125</td>
 
 </tr>
 
@@ -210,7 +217,7 @@ Variance is the average squared deviation from the average.
 
 ~~Variance is the average squared deviation from the average.~~
 
-Variance is the expected squared deviation of from the expected value.
+Variance is the expected squared deviation from the expected value.
 
 $$Var(X)= E[(X-E(X))^2]$$
 --
@@ -226,16 +233,16 @@ $$Var(X)= E(X^2) - [E(X)]^2$$
 
 <table align = "center">
 <tr>
-<td>x <sub>i</sub></td>
+<td>x </td>
 
 <td>0</td> <td>1</td> <td>2</td> <td>3</td>
 
 </tr>
 
 <tr>
-<td>P(X=x<sub>i</sub>) = f(x)</td>
+<td>P(X=x) = f(x)</td>
 
-<td>0125</td> <td>0.375</td> <td>0.375</td> <td>0.125</td>
+<td>0.125</td> <td>0.375</td> <td>0.375</td> <td>0.125</td>
 
 </tr>
 

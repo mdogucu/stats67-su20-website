@@ -31,19 +31,19 @@ A numeric outcome of a random process is called a random variable.
 
 --
 
-We will use capital letters towards the end of the alphabet such as `\(X, Y, Z\)` to represent random variables.
-
-We will use the corresponding lower case letters `\(x, y, z\)` to represent observed outcomes.
+A **discrete random** variable has a countable number of possible outcomes.
 
 --
 
-A **discrete random** variable has a countable number of possible outcomes.
+We will use capital letters towards the end of the alphabet such as `\(X, Y, Z\)` to represent random variables.
+
+We will use the corresponding lower case letters `\(x, y, z\)` to represent observed outcomes.
 
 ---
 
 ## Discrete Random Variable
 
-Random process: 3 coins flipped simultaneously
+Random process: 3 flips of a single coin
 
 --
 
@@ -51,22 +51,25 @@ Sample Space: `\(\{HHH, HHT, HTH, THH, HTT, THT, TTH, TTT\}\)`
 
 --
 
-Example: Let X be a discrete random variable that represents the total number of heads in 3 coin flips.
+Let X be a discrete random variable that represents the total number of heads in 3 coin flips.
 
---
+---
+
+## Discrete Random Variable
+
 
 &lt;table align = "center"&gt;
 &lt;tr&gt;
-&lt;td&gt;x &lt;sub&gt;i&lt;/sub&gt;&lt;/td&gt;
+&lt;td&gt;x &lt;/td&gt;
 
 &lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
 
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;P(X=x&lt;sub&gt;i&lt;/sub&gt;) = f(x)&lt;/td&gt;
+&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
 
-&lt;td&gt;0125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
+&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
 
 &lt;/tr&gt;
 
@@ -89,48 +92,52 @@ For discrete random variable, `\(X\)` the distribution of all possible values of
 
 &lt;table align = "center"&gt;
 &lt;tr&gt;
-&lt;td&gt;x &lt;sub&gt;i&lt;/sub&gt;&lt;/td&gt;
+&lt;td&gt;x&lt;/td&gt;
 
 &lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
 
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;P(X=x&lt;sub&gt;i&lt;/sub&gt;) = f(x)&lt;/td&gt;
+&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
 
-&lt;td&gt;0125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
+&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
 
 &lt;/tr&gt;
 
 &lt;/table&gt;
 
+`\(P(X = 2) =f(2)=\frac{3}{8} = 0.375\)`
+
+--
 ## Cumulative Distribution Function (cdf)
 
 
 &lt;table align = "center"&gt;
 &lt;tr&gt;
-&lt;td&gt;x &lt;sub&gt;i&lt;/sub&gt;&lt;/td&gt;
+&lt;td&gt;x&lt;/td&gt;
 
 &lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
 
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;P(X &amp;le;x&lt;sub&gt;i&lt;/sub&gt;) = F(x)&lt;/td&gt;
+&lt;td&gt;P(X &amp;le;x) = F(x)&lt;/td&gt;
 
-&lt;td&gt;0125&lt;/td&gt; &lt;td&gt;0.5&lt;/td&gt; &lt;td&gt;0.875&lt;/td&gt; &lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.5&lt;/td&gt; &lt;td&gt;0.875&lt;/td&gt; &lt;td&gt;1&lt;/td&gt;
 
 &lt;/tr&gt;
 
 &lt;/table&gt;
 
---
 
-`\(P(X = 2) =f(2)=\frac{3}{8} = 0.375\)`
+`\(P(X \leq 2) =F(2)=\frac{3}{8} = 0.875\)`
+
+
+---
 
 ## Cumulative Distribution Function
-
-For discrete random variable, `\(X\)` the distribution of all possible values of `\(x\)` can be shown with a probability mass function (pmf). 
+ 
 
 &lt;img src="slide-2-discrete-rv_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 
@@ -142,16 +149,16 @@ If we repeat this random process of 3 coin flips many times, how many number of 
 
 &lt;table align = "center"&gt;
 &lt;tr&gt;
-&lt;td&gt;x &lt;sub&gt;i&lt;/sub&gt;&lt;/td&gt;
+&lt;td&gt;x &lt;/td&gt;
 
 &lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
 
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;P(X=x&lt;sub&gt;i&lt;/sub&gt;) = f(x)&lt;/td&gt;
+&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
 
-&lt;td&gt;0125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
+&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
 
 &lt;/tr&gt;
 
@@ -177,7 +184,7 @@ Variance is the average squared deviation from the average.
 
 ~~Variance is the average squared deviation from the average.~~
 
-Variance is the expected squared deviation of from the expected value.
+Variance is the expected squared deviation from the expected value.
 
 `$$Var(X)= E[(X-E(X))^2]$$`
 --
@@ -193,16 +200,16 @@ Variance is the expected squared deviation of from the expected value.
 
 &lt;table align = "center"&gt;
 &lt;tr&gt;
-&lt;td&gt;x &lt;sub&gt;i&lt;/sub&gt;&lt;/td&gt;
+&lt;td&gt;x &lt;/td&gt;
 
 &lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
 
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td&gt;P(X=x&lt;sub&gt;i&lt;/sub&gt;) = f(x)&lt;/td&gt;
+&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
 
-&lt;td&gt;0125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
+&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
 
 &lt;/tr&gt;
 

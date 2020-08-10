@@ -22,7 +22,7 @@ layout: true
 
 ## Example
 
-According to a [Gallup survey](https://news.gallup.com/poll/1576/abortion.aspx)the latest trend shows that 21% of people think that abortion should be illegal in all circumstances. A journalist is writing an article and wants to include different opinions. What is the probability that the first person to think that abortion should be illegal in all circumstances is the third person the journalist approaches? The journalist is finding people randomly.
+According to a [Gallup survey](https://news.gallup.com/poll/1576/abortion.aspx) the latest trend shows that 21% of people think that abortion should be illegal in all circumstances. A journalist is writing an article and wants to include different opinions. What is the probability that the first person to think that abortion should be illegal in all circumstances is the third person the journalist approaches? The journalist is finding people randomly.
 
 --
 
@@ -48,7 +48,8 @@ $X \sim \text{Geometric} (p)$
 
 --
 
-$f(x) = (1-p)^x(p)$
+$f(x) = (1-p)^x(p)$  
+
 $P(X = 2) = f(2) = (1-0.21)^2(0.21)$
 
 ---
@@ -107,6 +108,14 @@ $P(X = 0) + P(X = 1) + P(X = 2) = P(X \leq2)$
 --
 
 $[0.21] + [(1-0.21) \cdot 0.21] + [(1-0.21) \cdot (1-0.21) \cdot 0.21] = 0.506961$
+
+--
+
+```{r}
+dgeom(x = 0, prob = 0.21) +
+  dgeom(x = 1, prob = 0.21) +
+  dgeom(x = 2, prob = 0.21)
+```
 
 --
 

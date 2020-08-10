@@ -208,6 +208,8 @@ The probability of an outcome is defined to be the proportion of times the outco
 Assume that we are repeating the random process of a coin flip and are recording $X$, the number of heads in $n$ coin flips. Then
 
 $$P(H) = \lim_{n\to\infty}\frac{X}{n}$$
+
+$$P(H) =\frac{1}{2}$$
 ---
 
 ## Defining Probability
@@ -246,6 +248,10 @@ $$\bigcup\limits_{i=1}^{\infty} A_{i} = \Sigma_{i =1}^\infty P(A_i)$$
 
 $P(A) + P(A^c) = 1$
 
+--
+
+e.g. If we know the the probability that somebody owns a bike is 0.08, then we would know that the probability that somebody does not own a bike is 0.92.
+
 ---
 
 ## Independence and Multiplication Rule
@@ -259,3 +265,9 @@ e.g. two flips of a single coin
 If events A and B are from two independent processes, then
 
 $P(A \cap B) = P(A) \times P(B)$
+
+--
+
+Probability of getting two heads in two flips of a single coin is
+
+$\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$

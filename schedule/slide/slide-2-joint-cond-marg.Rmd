@@ -70,7 +70,7 @@ The General Social Survey (GSS) is sociological survey that has been regularly c
 
 ## Events
 
-Let B represent an event that a randomly selected person in this sample believes in life after death
+Let B represent an event that a randomly selected person in this sample believes in life after death.
 
 --
 
@@ -173,7 +173,6 @@ Note that $P(B\cap C) = P(C\cap B)$. Order does _not_ matter.
 </tbody>
 </table>
 
-
 $P(B)$ represents a __marginal probability__. So do $P(C)$, $P(B^C)$ and $P(C^C)$. In order to calculate these probabilities we could only use the values in the margins of the contingency table, hence the name. 
 
 $P(B) = \frac{860}{1050}$  
@@ -226,7 +225,7 @@ $P(C) = \frac{450}{1050}$
 </tbody>
 </table>
 
-$P(B|C)$ represents a __conditional probability__. So do $P(B^c|C)$, $P(C| B)$ and $P(C|B^c)$. To calculate these probabilities we focus on the row or the column of the given information. We _reduce_ the sample space to this given information. 
+$P(B|C)$ represents a __conditional probability__. So do $P(B^c|C)$, $P(C| B)$ and $P(C|B^c)$. To calculate the probabilities we focus on the row or the column of the given information. We _reduce_ the sample space to this given information. 
 
 --
 
@@ -293,5 +292,4 @@ $P(B\cup C) = \frac{860}{1050} + \frac{450}{1050} -\frac{375}{1050} = \frac{935}
 
 --
 
-$P(B\cup C)\frac{375}{1050} + \frac{75}{1050} + 
-\frac{485}{1050} = \frac{935}{1050}$
+$P(B\cup C)= \frac{375}{1050} + \frac{75}{1050} +\frac{485}{1050} = \frac{935}{1050}$
