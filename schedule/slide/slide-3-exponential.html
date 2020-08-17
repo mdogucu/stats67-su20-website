@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Discrete Random Variables</title>
+    <title>Exponential Distribution</title>
     <meta charset="utf-8" />
     <meta name="author" content="Dr. Dogucu" />
     <link rel="stylesheet" href="slide-style.css" type="text/css" />
@@ -10,7 +10,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Discrete Random Variables
+# Exponential Distribution
 ### Dr. Dogucu
 
 ---
@@ -23,223 +23,242 @@ layout: true
 &lt;div class="my-footer"&gt; 
  Copyright &amp;copy; &lt;a href="https://mdogucu.ics.uci.edu"&gt;Dr. Mine Dogucu&lt;/a&gt;. &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;&lt;/div&gt; 
 
----
-
-## Discrete Random Variables
-
-A numeric outcome of a random process is called a random variable.
-
---
-
-A **discrete random** variable has a countable number of possible outcomes.
-
---
-
-We will use capital letters towards the end of the alphabet such as `\(X, Y, Z\)` to represent random variables.
-
-We will use the corresponding lower case letters `\(x, y, z\)` to represent observed outcomes.
 
 ---
 
-## Discrete Random Variable
+## pdf
 
-Random process: 3 flips of a single coin
-
---
-
-Sample Space: `\(\{HHH, HHT, HTH, THH, HTT, THT, TTH, TTT\}\)`
-
---
-
-Let X be a discrete random variable that represents the total number of heads in 3 coin flips.
-
----
-
-## Discrete Random Variable
+`\(X \sim \text{Exp}(\lambda)\)`
 
 
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x &lt;/td&gt;
+.pull-left[
+&lt;img src="img/exponential-pdf.png" width="90%" style="display: block; margin: auto;" /&gt;
 
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
+]
 
-&lt;/tr&gt;
+.pull-right[
 
-&lt;tr&gt;
-&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
+&lt;img src="slide-3-exponential_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
---
-
-`\(P(X = 2) =f(2)=\frac{3}{8} = 0.375\)`
-
----
-## Probability Mass Function
-
-For discrete random variable, `\(X\)` the distribution of all possible values of `\(x\)` can be shown with a probability mass function (pmf). 
-
-&lt;img src="slide-2-discrete-rv_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
-## Probability Mass Function (pmf)
+## Expected Value and Variance
 
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x&lt;/td&gt;
-
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
-
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
-`\(P(X = 2) =f(2)=\frac{3}{8} = 0.375\)`
+`\(E(X) = \frac{1}{\lambda}\)`
 
 --
-## Cumulative Distribution Function (cdf)
 
 
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x&lt;/td&gt;
 
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
+`\(Var(X) = \frac{1}{\lambda^2}\)`
 
-&lt;/tr&gt;
+---
 
-&lt;tr&gt;
-&lt;td&gt;P(X &amp;le;x) = F(x)&lt;/td&gt;
+## Example
 
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.5&lt;/td&gt; &lt;td&gt;0.875&lt;/td&gt; &lt;td&gt;1&lt;/td&gt;
+Suppose your waiting time (in minutes) for a bus is `\(X \sim Exp(0.1)\)`. 
 
-&lt;/tr&gt;
+--
 
-&lt;/table&gt;
+.pull-right[
+
+&lt;img src="slide-3-exponential_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+]
 
 
-`\(P(X \leq 2) =F(2)=\frac{7}{8} = 0.875\)`
+
+
+--
+
+`\(f(x) =0.1 e^{-0.1 x} \text{ for } \  x \ \epsilon \ [0, \infty)\)`
+
+--
+
+`\(f(10) =0.1 e^{-0.1\cdot10}\)`
+
+--
+
+
+```r
+0.1*exp(-0.1*10)
+```
+
+```
+## [1] 0.03678794
+```
+
+--
+
+
+```r
+dexp(x = 10, rate = 0.1)
+```
+
+```
+## [1] 0.03678794
+```
+
+---
+
+## Calculating Probability
+
+You show up at the bus stop. What is the probability that you will wait for 10 minutes for the bus?
+
+--
+
+
+.pull-right[
+
+&lt;img src="slide-3-exponential_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+]
+
+--
+
+
+`\(P(X = 10) = 0\)`
+
+--
+
+`\(\int_{10}^{10}\lambda e^{-\lambda x}dx\)`
+
 
 
 ---
 
-## Cumulative Distribution Function
- 
+## Calculating Probability
 
-&lt;img src="slide-2-discrete-rv_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+What is the probability that you will wait for the bus less than 10 minutes?
+
+--
+
+.pull-right[
+
+&lt;img src="slide-3-exponential_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+Cumulative probability!
+
+--
+
+`\(\int_{0}^{10}\lambda e^{-\lambda x}dx\)`
+
+--
+
+`\(\int_{0}^{10}0.1 e^{-0.1 x}dx\)`
+
+--
+
+
+```r
+pexp(q = 10, rate = 0.1)
+```
+
+```
+## [1] 0.6321206
+```
 
 ---
 
-## Expected Value
+## Calculating Probability
 
-If we repeat this random process of 3 coin flips many times, how many number of heads would we expect to see on average?
+What is the probability that you will wait between 10 to 20 minutes for the bus?
 
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x &lt;/td&gt;
+.pull-right[
 
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
+&lt;img src="slide-3-exponential_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
 
-&lt;/tr&gt;
+]
 
-&lt;tr&gt;
-&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
 
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
-`\(E(X) = \sum_{S} x f(x)\)`
+`\(P(10&lt;X&lt;20) = ?\)`
 
 --
 
-`\(E(X) = (0\cdot 0.125) + (1\cdot 0.375) + (2\cdot 0.375) + (3\cdot 0.125)\)`
+`\(\int_{10}^{20}0.1 e^{-0.1 x}dx\)`
 
-`\(E(X) = \mu = 1.5\)`
+
+--
+
+`\(P(X&lt;20) - P(X&lt;10)\)`
+
+--
+
+
+```r
+pexp(q = 20, rate = 0.1) -
+  pexp(q = 10, rate = 0.1)
+```
+
+```
+## [1] 0.2325442
+```
+
+
 
 ---
 
-## Variance
+## Expected Value and Variance
 
-Variance is the average squared deviation from the average.
+What is the expected value of the waiting time for a bus?
+
+--
+
+`\(E(X) = \frac{1}{\lambda}\)`
+
+--
+
+`\(E(X) = \frac{1}{0.1} = 10\)` minutes
+
+--
+
+What is the variance  of the waiting time for a bus?
+
+--
+
+`\(Var(X) = \frac{1}{\lambda^2}\)`
+
+--
+
+`\(Var(X) = \frac{1}{0.1^2} = 100 \text{ minutes}^2\)`
 
 ---
+class: middle 
 
-## Variance
+.pull-left[
 
-~~Variance is the average squared deviation from the average.~~
+__Poisson__
 
-Variance is the expected squared deviation from the expected value.
+&lt;svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 512 512"&gt;&lt;path d="M488 128h-8V80c0-44.8-99.2-80-224-80S32 35.2 32 80v48h-8c-13.25 0-24 10.74-24 24v80c0 13.25 10.75 24 24 24h8v160c0 17.67 14.33 32 32 32v32c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-32h192v32c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-32h6.4c16 0 25.6-12.8 25.6-25.6V256h8c13.25 0 24-10.75 24-24v-80c0-13.26-10.75-24-24-24zM112 400c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32zm16-112c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h256c17.67 0 32 14.33 32 32v128c0 17.67-14.33 32-32 32H128zm272 112c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z"/&gt;&lt;/svg&gt;
 
-`$$Var(X)= E[(X-E(X))^2]$$`
---
+Discrete
 
-`$$Var(X)= E[(X-\mu)^2]$$`
---
+Number of events (bus)
 
-`$$Var(X)= E(X^2) - [E(X)]^2$$`
----
+Every ten minutes we expect __1 bus__
 
-## Variance
+]
 
+.pull-right[
 
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x &lt;/td&gt;
+__Exponential__
 
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
+&lt;svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 512 512"&gt;&lt;path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm57.1 350.1L224.9 294c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h48c6.6 0 12 5.4 12 12v137.7l63.5 46.2c5.4 3.9 6.5 11.4 2.6 16.8l-28.2 38.8c-3.9 5.3-11.4 6.5-16.8 2.6z"/&gt;&lt;/svg&gt;
 
-&lt;/tr&gt;
+Continuous
 
-&lt;tr&gt;
-&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
+Time between two events
 
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
+We expect to wait __10 minutes__ for a bus
 
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
-`\(Var(X)= E(X^2) - [E(X)]^2\)`
-
---
-
-`\(E(X^2) = \sum_{S} x^2 f(x)\)` 
-
---
-
-`\(E(X^2) = (0^2\cdot 0.125) + (1^2\cdot 0.375) + (2^2\cdot 0.375) + (3^2\cdot 0.125) = 3\)`
-
---
-
-`\(Var(X)= 3 - 1.5^2 = 0.75\)`
-
----
-
-## Linear Combination of Random Variables
-
-Let `\(X\)` and `\(Y\)` represent random variables and `\(a\)` and `\(b\)` represent constants. Then 
-
-`\(E(aX +bY) = a\cdot E(X) + b \cdot E(Y),\)`
-
-and, if `\(X\)` and `\(Y\)` are independent,
-
-`\(Var(aX +bY) = a^2\cdot Var(X) + b^2 \cdot Var(Y)\)`
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

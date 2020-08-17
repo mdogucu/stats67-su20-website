@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Discrete Random Variables</title>
+    <title>Discrete Random Variables Review</title>
     <meta charset="utf-8" />
     <meta name="author" content="Dr. Dogucu" />
     <link rel="stylesheet" href="slide-style.css" type="text/css" />
@@ -10,7 +10,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Discrete Random Variables
+# Discrete Random Variables Review
 ### Dr. Dogucu
 
 ---
@@ -23,223 +23,155 @@ layout: true
 &lt;div class="my-footer"&gt; 
  Copyright &amp;copy; &lt;a href="https://mdogucu.ics.uci.edu"&gt;Dr. Mine Dogucu&lt;/a&gt;. &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;&lt;/div&gt; 
 
+
 ---
 
-## Discrete Random Variables
-
-A numeric outcome of a random process is called a random variable.
+A **discrete random** variable has a countable number of possible numeric outcomes.
 
 --
 
-A **discrete random** variable has a countable number of possible outcomes.
+Probability mass function (pmf):
+
+`\(P(X = x) = f(x)\)`
 
 --
 
-We will use capital letters towards the end of the alphabet such as `\(X, Y, Z\)` to represent random variables.
+Cumulative distribution function (cdf):
 
-We will use the corresponding lower case letters `\(x, y, z\)` to represent observed outcomes.
-
----
-
-## Discrete Random Variable
-
-Random process: 3 flips of a single coin
+`\(P(X \leq x) = F(x)\)`
 
 --
-
-Sample Space: `\(\{HHH, HHT, HTH, THH, HTT, THT, TTH, TTT\}\)`
-
---
-
-Let X be a discrete random variable that represents the total number of heads in 3 coin flips.
-
----
-
-## Discrete Random Variable
-
-
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x &lt;/td&gt;
-
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
-
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
---
-
-`\(P(X = 2) =f(2)=\frac{3}{8} = 0.375\)`
-
----
-## Probability Mass Function
-
-For discrete random variable, `\(X\)` the distribution of all possible values of `\(x\)` can be shown with a probability mass function (pmf). 
-
-&lt;img src="slide-2-discrete-rv_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
-
----
-
-## Probability Mass Function (pmf)
-
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x&lt;/td&gt;
-
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
-
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
-`\(P(X = 2) =f(2)=\frac{3}{8} = 0.375\)`
-
---
-## Cumulative Distribution Function (cdf)
-
-
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x&lt;/td&gt;
-
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;P(X &amp;le;x) = F(x)&lt;/td&gt;
-
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.5&lt;/td&gt; &lt;td&gt;0.875&lt;/td&gt; &lt;td&gt;1&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
-
-`\(P(X \leq 2) =F(2)=\frac{7}{8} = 0.875\)`
-
-
----
-
-## Cumulative Distribution Function
- 
-
-&lt;img src="slide-2-discrete-rv_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
-
----
-
-## Expected Value
-
-If we repeat this random process of 3 coin flips many times, how many number of heads would we expect to see on average?
-
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x &lt;/td&gt;
-
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
-
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
 
 `\(E(X) = \sum_{S} x f(x)\)`
 
 --
 
-`\(E(X) = (0\cdot 0.125) + (1\cdot 0.375) + (2\cdot 0.375) + (3\cdot 0.125)\)`
-
-`\(E(X) = \mu = 1.5\)`
-
----
-
-## Variance
-
-Variance is the average squared deviation from the average.
-
----
-
-## Variance
-
-~~Variance is the average squared deviation from the average.~~
-
-Variance is the expected squared deviation from the expected value.
-
-`$$Var(X)= E[(X-E(X))^2]$$`
---
-
-`$$Var(X)= E[(X-\mu)^2]$$`
---
-
-`$$Var(X)= E(X^2) - [E(X)]^2$$`
----
-
-## Variance
-
-
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x &lt;/td&gt;
-
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
-
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
 `\(Var(X)= E(X^2) - [E(X)]^2\)`
 
---
-
-`\(E(X^2) = \sum_{S} x^2 f(x)\)` 
-
---
-
-`\(E(X^2) = (0^2\cdot 0.125) + (1^2\cdot 0.375) + (2^2\cdot 0.375) + (3^2\cdot 0.125) = 3\)`
-
---
-
-`\(Var(X)= 3 - 1.5^2 = 0.75\)`
 
 ---
 
-## Linear Combination of Random Variables
 
-Let `\(X\)` and `\(Y\)` represent random variables and `\(a\)` and `\(b\)` represent constants. Then 
+## Bernoulli Distribution
 
-`\(E(aX +bY) = a\cdot E(X) + b \cdot E(Y),\)`
+If X is a random variable that takes value 1 with probability of success `\(p\)` and 0 with probability `\(1-p\)`, then X follows a Bernoulli distribution.
 
-and, if `\(X\)` and `\(Y\)` are independent,
 
-`\(Var(aX +bY) = a^2\cdot Var(X) + b^2 \cdot Var(Y)\)`
+`\(X \sim \text{Bernoulli} (p)\)`
+
+--
+
+`\(E(X) = \mu = p\)`
+
+--
+
+`\(Var(X)=\sigma^2 = p(1-p)\)`
+
+---
+
+
+## Geometric Distribution
+
+Let X be the number of failures needed __before__ the first success is observed in independent trials. `\(X\)` follows a geometric distribution
+
+.pull-left[
+
+`\(S = \{0, 1, 2, 3, 4, ...\}\)`
+
+`\(X \sim \text{Geometric} (p)\)`
+
+`\(f(x) = (1-p)^x(p)\)`  
+
+`\(E(X)=\frac{1-p}{p}\)`
+
+`\(Var(X) = \frac{1-p}{p^2}\)`
+
+]
+
+.pull-right[
+
+
+```r
+dgeom(x, prob) #pmf
+```
+
+
+
+
+```r
+pgeom(q, prob) #cdf
+```
+
+]
+
+---
+
+## Binomial Distribution
+
+The random variable X represents the number of successes in `\(n\)` trials where in independent trial the probability of success is `\(p\)`.
+
+.pull-left[
+
+`\(X\sim \text{Binomial}(n, p)\)`
+
+`\(P(X = x) = f(x) = {n \choose x}p^{x} (1-p)^{n-x}\)`
+
+
+`\(E(X) = np\)`  
+
+
+`\(Var(X) = np(1-p)\)`
+
+]
+
+.pull-right[
+
+
+```r
+dbinom(x, size, prob) #pmf
+```
+
+
+
+```r
+pbinom(q, size, prob) #cdf
+```
+
+]
+
+---
+
+## Poisson Distribution
+
+Let `\(X\)` represent the number of occurrences of an event within a  __fixed__ time or space.
+
+.pull-left[
+
+`\(X \sim Poisson (\lambda)\)`
+
+
+`\(P(X = x) = f(x) =\frac{\lambda^x}{x!} e^{-\lambda}\)` 
+
+
+
+`\(E(X) = Var(X) = \lambda\)`
+
+]
+
+.pull-right[
+
+
+```r
+dpois(x, lambda) #pmf
+```
+
+
+
+```r
+ppois(q, lambda) #cdf
+```
+
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

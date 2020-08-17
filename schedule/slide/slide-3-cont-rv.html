@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Discrete Random Variables</title>
+    <title>Continuous Random Variables</title>
     <meta charset="utf-8" />
     <meta name="author" content="Dr. Dogucu" />
     <link rel="stylesheet" href="slide-style.css" type="text/css" />
@@ -10,7 +10,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Discrete Random Variables
+# Continuous Random Variables
 ### Dr. Dogucu
 
 ---
@@ -23,223 +23,207 @@ layout: true
 &lt;div class="my-footer"&gt; 
  Copyright &amp;copy; &lt;a href="https://mdogucu.ics.uci.edu"&gt;Dr. Mine Dogucu&lt;/a&gt;. &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;&lt;/div&gt; 
 
----
-
-## Discrete Random Variables
-
-A numeric outcome of a random process is called a random variable.
-
---
-
-A **discrete random** variable has a countable number of possible outcomes.
-
---
-
-We will use capital letters towards the end of the alphabet such as `\(X, Y, Z\)` to represent random variables.
-
-We will use the corresponding lower case letters `\(x, y, z\)` to represent observed outcomes.
 
 ---
 
-## Discrete Random Variable
+class: middle
 
-Random process: 3 flips of a single coin
+## Continuous Random Variables
 
---
-
-Sample Space: `\(\{HHH, HHT, HTH, THH, HTT, THT, TTH, TTT\}\)`
+A continuous random variable `\(X\)` would have a sample space ( `\(S_X\)` ) that is unaccountably infinite. 
 
 --
 
-Let X be a discrete random variable that represents the total number of heads in 3 coin flips.
+Let X be the the proportion of bike owners on campus. Then `\(S_x = [0, 1]\)`.
+
+--
+
+Let Y be the the survival time after some surgery. Then `\(S_Y = [0, \infty)\)`.
 
 ---
 
-## Discrete Random Variable
+## Probability Density Function (pdf) - `\(f(x)\)`
 
+A probability __density__ function gives the relative likelihood of the continuous random variable within the sample space.
 
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x &lt;/td&gt;
-
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
-
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
+`$$f(x) \geq0 \text{ for all } x \ \epsilon \ S_X$$`
 
 --
 
-`\(P(X = 2) =f(2)=\frac{3}{8} = 0.375\)`
+`$$\int_{x \ \epsilon \ S_X} f(x)dx = 1$$`
+--
 
----
-## Probability Mass Function
-
-For discrete random variable, `\(X\)` the distribution of all possible values of `\(x\)` can be shown with a probability mass function (pmf). 
-
-&lt;img src="slide-2-discrete-rv_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
-
+`$$P(X\ \epsilon \ B) = \int_{x \ \epsilon \ B} f(x)dx$$`
 ---
 
-## Probability Mass Function (pmf)
+## Example - pdf
 
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x&lt;/td&gt;
+.pull-left[
 
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
+&lt;img src="img/cont_f.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
 
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
-
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
-`\(P(X = 2) =f(2)=\frac{3}{8} = 0.375\)`
+.pull-right[
+&lt;img src="slide-3-cont-rv_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+]
 
 --
-## Cumulative Distribution Function (cdf)
+
+`\(x^2 \geq0\)`
+
+--
+
+`\((1-x) \geq0\)`
 
 
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x&lt;/td&gt;
+--
+&lt;svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt; `\(f(x) \geq0 \text{ for all } x \ \epsilon \ S_X\)`  
 
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;P(X &amp;le;x) = F(x)&lt;/td&gt;
-
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.5&lt;/td&gt; &lt;td&gt;0.875&lt;/td&gt; &lt;td&gt;1&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
-
-`\(P(X \leq 2) =F(2)=\frac{7}{8} = 0.875\)`
 
 
 ---
 
-## Cumulative Distribution Function
- 
+## Area Under the Curve = 1
 
-&lt;img src="slide-2-discrete-rv_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+.pull-left[
+
+&lt;img src="img/cont_f.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="slide-3-cont-rv_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+`\(\int_0^1 12(x^2)(1-x)dx\)`
+--
+`\(12\int_0^1 (x^2-x^3)dx\)` 
+--
+`\(12\big[\frac{x^3}{3} -\frac{x^4}{4}\bigg\rvert_0^1\big] = 1\)`
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt; `\(\int_{x \ \epsilon \ S_X} f(x)dx = 1\)`
+---
+
+## Probability is Area Under the Curve
+
+.pull-right[
+
+&lt;img src="img/cont_f.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="slide-3-cont-rv_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+`\(P(0.25&lt;X&lt;0.50) =\)` 
+
+`\(\int_{0.25}^{0.50} 12(x^2)(1-x)dx\)`
+
+--
+
+`\(12\int_{0.25}^{0.50} (x^2-x^3)dx\)` 
+
+--
+
+`\(12\big[\frac{x^3}{3} -\frac{x^4}{4}\bigg\rvert_{0.25}^{0.50}\big] = 0.2617188\)`
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt; `\(P(X\ \epsilon \ B) = \int_{x \ \epsilon \ B} f(x)dx\)` 
+
+---
+
+## `\(P(X=x_i) = 0\)`
+
+.pull-right[
+
+&lt;img src="img/cont_f.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="slide-3-cont-rv_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+`\(P(X=0.40) =\)` 
+
+`\(\int_{0.40}^{0.40} 12(x^2)(1-x)dx\)`
+
+--
+
+`\(12\int_{0.40}^{0.40} (x^2-x^3)dx\)` 
+
+--
+
+`\(12\big[\frac{x^3}{3} -\frac{x^4}{4}\bigg\rvert_{0.40}^{0.40}\big] = 0\)`
+---
+
+## cdf
+
+.pull-right[
+
+&lt;img src="img/cont_f.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="slide-3-cont-rv_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+`\(P(X\leq x) = \int_l^x f(t)dt\)` 
+
+
+`\(P(X\leq 0.70) =\)` 
+
+`\(\int_{0}^{0.70} 12(t^2)(1-t)dt\)`
+
+--
+
+`\(12\big[\frac{t^3}{3} -\frac{t^4}{4}\bigg\rvert_{0}^{0.70}\big] = 0.6516996\)`
+
+--
+
+Note: `\(f(x) = \frac{dF(x)}{dx}\)`
+
+
 
 ---
 
 ## Expected Value
 
-If we repeat this random process of 3 coin flips many times, how many number of heads would we expect to see on average?
-
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x &lt;/td&gt;
-
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
-
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
-`\(E(X) = \sum_{S} x f(x)\)`
+`\(E(X) = \int_{x \ \epsilon \ S_X} xf(x)dx\)`
 
 --
 
-`\(E(X) = (0\cdot 0.125) + (1\cdot 0.375) + (2\cdot 0.375) + (3\cdot 0.125)\)`
+`\(\int_0^1 x12(x^2)(1-x)dx\)`
 
-`\(E(X) = \mu = 1.5\)`
+--
+
+`\(12\int_0^1 (x^3-x^4)dx\)` 
+
+--
+
+`\(12\big[\frac{x^4}{4} -\frac{x^5}{5}\bigg\rvert_0^1\big] = 0.6\)`
 
 ---
 
 ## Variance
 
-Variance is the average squared deviation from the average.
-
----
-
-## Variance
-
-~~Variance is the average squared deviation from the average.~~
-
-Variance is the expected squared deviation from the expected value.
-
-`$$Var(X)= E[(X-E(X))^2]$$`
---
-
-`$$Var(X)= E[(X-\mu)^2]$$`
---
-
-`$$Var(X)= E(X^2) - [E(X)]^2$$`
----
-
-## Variance
-
-
-&lt;table align = "center"&gt;
-&lt;tr&gt;
-&lt;td&gt;x &lt;/td&gt;
-
-&lt;td&gt;0&lt;/td&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;3&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;P(X=x) = f(x)&lt;/td&gt;
-
-&lt;td&gt;0.125&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.375&lt;/td&gt; &lt;td&gt;0.125&lt;/td&gt;
-
-&lt;/tr&gt;
-
-&lt;/table&gt;
-
-`\(Var(X)= E(X^2) - [E(X)]^2\)`
+`\(Var(X) = E(X^2)- [E(X)]^2\)`
 
 --
 
-`\(E(X^2) = \sum_{S} x^2 f(x)\)` 
+`\(E(X^2) = ?\)`
 
 --
 
-`\(E(X^2) = (0^2\cdot 0.125) + (1^2\cdot 0.375) + (2^2\cdot 0.375) + (3^2\cdot 0.125) = 3\)`
+`\(E(X^2) = \int_0^1 x^212(x^2)(1-x)dx\)`
 
 --
 
-`\(Var(X)= 3 - 1.5^2 = 0.75\)`
+`\(E(X^2) = 12\int_0^1 (x^4-x^5)dx\)` 
 
----
+--
 
-## Linear Combination of Random Variables
+`\(E(X^2) = 12\big[\frac{x^5}{5} -\frac{x^6}{6}\bigg\rvert_0^1\big] = 0.4\)`
 
-Let `\(X\)` and `\(Y\)` represent random variables and `\(a\)` and `\(b\)` represent constants. Then 
+--
 
-`\(E(aX +bY) = a\cdot E(X) + b \cdot E(Y),\)`
-
-and, if `\(X\)` and `\(Y\)` are independent,
-
-`\(Var(aX +bY) = a^2\cdot Var(X) + b^2 \cdot Var(Y)\)`
+`\(Var(X) = 0.4- 0.6^2 = 0.04\)`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

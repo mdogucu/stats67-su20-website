@@ -1,0 +1,163 @@
+---
+title: "Discrete Random Variables Review"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+A **discrete random** variable has a countable number of possible numeric outcomes.
+
+--
+
+Probability mass function (pmf):
+
+$P(X = x) = f(x)$
+
+--
+
+Cumulative distribution function (cdf):
+
+$P(X \leq x) = F(x)$
+
+--
+
+$E(X) = \sum_{S} x f(x)$
+
+--
+
+$Var(X)= E(X^2) - [E(X)]^2$
+
+
+---
+
+
+## Bernoulli Distribution
+
+If X is a random variable that takes value 1 with probability of success $p$ and 0 with probability $1-p$, then X follows a Bernoulli distribution.
+
+
+$X \sim \text{Bernoulli} (p)$
+
+--
+
+$E(X) = \mu = p$
+
+--
+
+$Var(X)=\sigma^2 = p(1-p)$
+
+---
+
+
+## Geometric Distribution
+
+Let X be the number of failures needed __before__ the first success is observed in independent trials. $X$ follows a geometric distribution
+
+.pull-left[
+
+$S = \{0, 1, 2, 3, 4, ...\}$
+
+$X \sim \text{Geometric} (p)$
+
+$f(x) = (1-p)^x(p)$  
+
+$E(X)=\frac{1-p}{p}$
+
+$Var(X) = \frac{1-p}{p^2}$
+
+]
+
+.pull-right[
+
+```{r eval = FALSE}
+dgeom(x, prob) #pmf
+```
+
+
+
+```{r eval = FALSE}
+pgeom(q, prob) #cdf
+```
+
+]
+
+---
+
+## Binomial Distribution
+
+The random variable X represents the number of successes in $n$ trials where in independent trial the probability of success is $p$.
+
+.pull-left[
+
+$X\sim \text{Binomial}(n, p)$
+
+$P(X = x) = f(x) = {n \choose x}p^{x} (1-p)^{n-x}$
+
+
+$E(X) = np$  
+
+
+$Var(X) = np(1-p)$
+
+]
+
+.pull-right[
+
+```{r eval = FALSE}
+dbinom(x, size, prob) #pmf
+```
+
+
+```{r eval = FALSE}
+pbinom(q, size, prob) #cdf
+```
+
+]
+
+---
+
+## Poisson Distribution
+
+Let $X$ represent the number of occurrences of an event within a  __fixed__ time or space.
+
+.pull-left[
+
+$X \sim Poisson (\lambda)$
+
+
+$P(X = x) = f(x) =\frac{\lambda^x}{x!} e^{-\lambda}$ 
+
+
+
+$E(X) = Var(X) = \lambda$
+
+]
+
+.pull-right[
+
+```{r eval = FALSE}
+dpois(x, lambda) #pmf
+```
+
+
+```{r eval = FALSE}
+ppois(q, lambda) #cdf
+```
+
+]
