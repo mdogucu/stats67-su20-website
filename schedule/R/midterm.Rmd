@@ -1,0 +1,23 @@
+
+# Run this chunk first
+
+```{r}
+data(college_recent_grads)
+college_recent_grads <-
+  college_recent_grads %>% 
+  filter(major_category %in% c("Engineering" , "Computers & Mathematics", "Physical Sciences", "Health", "Law & Public Policy", "Business", "Biology & Life Science"))
+```
+
+
+# Plot
+
+Use the following chunk to create the plot.
+
+```{r}
+
+
+```
+
+To better visualize the plot, you can modify the size of the window where the plot appears by simply dragging its borders.
+
+
