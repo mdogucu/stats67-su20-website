@@ -1,7 +1,9 @@
 
 # Run this chunk first
 
-```{r}
+```{r message=FALSE}
+library(tidyverse)
+library(fivethirtyeight)
 data(college_recent_grads)
 college_recent_grads <-
   college_recent_grads %>% 
@@ -18,6 +20,6 @@ Use the following chunk to create the plot.
 
 ```
 
-To better visualize the plot, you can modify the size of the window where the plot appears by simply dragging its borders.
+Do not worry about text appearance problems on smaller screens.
 
 
