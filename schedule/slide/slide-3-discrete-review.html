@@ -56,6 +56,7 @@ Cumulative distribution function (cdf):
 
 If X is a random variable that takes value 1 with probability of success `\(p\)` and 0 with probability `\(1-p\)`, then X follows a Bernoulli distribution.
 
+`\(S = \{0, 1\}\)`
 
 `\(X \sim \text{Bernoulli} (p)\)`
 
@@ -112,6 +113,8 @@ The random variable X represents the number of successes in `\(n\)` trials where
 
 .pull-left[
 
+`\(S = \{0, 1, ..., n \}\)`
+
 `\(X\sim \text{Binomial}(n, p)\)`
 
 `\(P(X = x) = f(x) = {n \choose x}p^{x} (1-p)^{n-x}\)`
@@ -146,6 +149,9 @@ pbinom(q, size, prob) #cdf
 Let `\(X\)` represent the number of occurrences of an event within a  __fixed__ time or space.
 
 .pull-left[
+
+`\(S = \{0, 1, 2, 3, 4, ...\}\)`
+
 
 `\(X \sim Poisson (\lambda)\)`
 
