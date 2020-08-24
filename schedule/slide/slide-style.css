@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
 .title-slide {
   background-color: #ae8f68; 
   color: whitesmoke;
@@ -19,8 +22,11 @@ font-size: 30px;
 
 ul {
   font-size: 30px;
+  list-style-type: square;
 
 }
+
+
 
 blockquote {
   background: #f9f9f9;
@@ -122,7 +128,16 @@ div.my-footer a{
 
 }
 
+.subtopic{
+  background-color: #E7E2CF;
+}
 
+.subtopic-note{
+  font-family: 'Indie Flower', cursive;
+  font-size:80px;
+  background-color: #E7E2CF;
+
+}
 
 *{
  font-size: 100%;

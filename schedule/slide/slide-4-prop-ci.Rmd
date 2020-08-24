@@ -1,0 +1,599 @@
+---
+title: "Confidence Interval for a Single Proportion"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+class: middle
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+options(scipen=0)
+library(tidyverse)
+library(fivethirtyeight)
+library(scales)
+
+theme_set(theme_gray(base_size = 18))
+
+
+```
+
+## Remembering CLT
+
+
+```{r fig.height = 4, fig.align='center'}
+set.seed(7)
+
+bike_prop <- 0.15
+
+bike <- c(rep("yes", bike_prop*10000), rep("no", (1-bike_prop)*10000))
+
+pop <- tibble(bike)
+
+
+pop %>% 
+  ggplot() +
+  aes(x = bike, y = ..prop.., group = 1) +
+  geom_bar() +
+  labs(title = "Population Distribution")
+
+
+```
+
+Let $\pi$ represent the proportion of bike owners on campus then $\pi =$ `r bike_prop`. 
+
+---
+
+## Getting to sampling distribution of single proportion
+
+$p_1$ - Proportion of first sample (n = 100)
+
+```{r}
+sample1 <- pop %>% 
+  sample_n(100) %>% 
+  count(bike) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  filter(bike == "yes") %>% 
+  select(prop) %>% 
+  pull()
+
+sample1
+```
+
+$p_2$ -Proportion of second sample (n = 100)
+
+```{r}
+pop %>% 
+  sample_n(100) %>% 
+  count(bike) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  filter(bike == "yes") %>% 
+  select(prop) %>% 
+  pull()
+```
+
+$p_3$ -Proportion of third sample (n = 100)
+
+```{r}
+pop %>% 
+  sample_n(100) %>% 
+  count(bike) %>% 
+  mutate(prop = n/sum(n)) %>% 
+  filter(bike == "yes") %>% 
+  select(prop) %>% 
+  pull()
+```
+
+....
+
+---
+
+```{r cache = TRUE}
+
+sample_props <- vector()
+
+
+for (i in 1:10000){
+ 
+    sample <- pop %>% 
+    sample_n(100) 
+    
+     sample_props[i] <- min(prop.table(table(sample$bike)))
+  
+  
+  
+}
+
+sample_props_data <- tibble(sample_props = sample_props)
+```
+
+
+
+### Sampling Distribution of Single Proportion
+
+```{r}
+
+sample_props_data %>% 
+  ggplot() +
+  aes(x = sample_props) +
+  geom_histogram(binwidth=0.01) +
+  geom_vline(xintercept = bike_prop, color= "#e56646") +
+  labs(x = "Sample proportions")
+```
+
+---
+
+If certain conditions are met then
+
+$$p \sim \text{approximately } N(\pi, \frac{\pi(1-\pi)}{n})$$
+
+---
+
+class: middle
+
+## In Reality
+
+- We only have one sample and thus one point estimate of the population parameter. How can make use of it? 
+
+--
+
+- First we will assume the sample proportion is the best thing we have at hand and use it as a point estimate of the population proportion. 
+
+--
+
+- Second, even though we embrace the sample proportion as a point estimate of the population proportion, we will need to acknowledge that it has some error. 
+
+---
+
+class: middle 
+
+## Standard Error
+
+
+$p \sim  \text{approximately } N(\text{mean} = \pi, \text{sd} = \sqrt{\frac{\pi(1-\pi)}{n}})$
+
+--
+
+We call the standard deviation of the sampling distribution __standard error__ of the estimate. 
+
+Standard error of single proportion is $\sqrt{\frac{p(1-p)}{n}}$.
+
+---
+
+## Confidence Interval 
+
+CI = $\text{point estimate} \pm \text { margin of error}$
+
+--
+
+CI = $\text{point estimate} \pm \text { critical value} \times \text{standard error}$
+
+--
+
+CI for single proportion = $p \pm \text {critical value} \times \text{standard error}$
+
+--
+
+CI for single proportion = $p \pm \text {critical value} \times \sqrt{\frac{p(1-p)}{n}}$
+
+--
+
+95% CI for single proportion = $p \pm 1.96 \times \sqrt{\frac{p(1-p)}{n}}$ because ...
+
+---
+
+95% of the data falls within 1.96 standard deviations in the normal distribution.
+      
+```{r}
+
+z <- seq(-4, 4, by = 0.01)
+y <- dnorm(z)
+data <- tibble(z = z, y = y)
+qplot(z, y, data = data, 
+          geom = "line") +
+  geom_ribbon(data = subset(data, z > -1.96 & z <1.96),
+                  aes(ymax = y), 
+                  ymin = 0,
+                  fill = "#e56646", 
+                  colour = NA, 
+                  alpha = 0.5) +
+  ylab("") +
+  scale_x_continuous(breaks = c(-1.96,0,1.96)) +
+  annotate(geom = "text", x = 0, y = 0.15, label = "95%") +
+  annotate(geom = "text", x = 2.3, y = 0.01, label = "2.5%") +
+  annotate(geom = "text", x = - 2.3, y = 0.01, label = "2.5%")
+
+  
+```
+      
+---
+
+## How do we know that?
+
+```{r echo = TRUE}
+qnorm(0.025, mean = 0 , sd = 1)
+```
+
+```{r echo = TRUE}
+qnorm(0.975, mean = 0 , sd = 1)
+```
+
+---
+
+## 95% CI for the first sample
+
+Recall $p = 0.17$ and $n = 100$
+
+--
+
+95% CI for single proportion = $p \pm 1.96 \times \sqrt{\frac{p(1-p)}{n}}$ 
+
+--
+
+95% CI = $0.17 \pm 1.96 \times \sqrt{\frac{0.17(1-0.17)}{100}}$ 
+
+--
+
+95% CI = $0.17 \pm 1.96 \times 0.03756328$ 
+
+--
+
+95%CI = $0.17 \pm 0.07362403$
+
+--
+
+95%CI = (0.09637597, 0.243624)
+
+---
+
+## 95% CI for the first sample
+
+95%CI = (0.09637597, 0.243624)
+
+We are 95% confident that the true population proportion of bike owners is in this confidence interval.
+
+
+
+---
+class: middle center
+
+95%CI = (0.09637597, 0.243624)
+
+
+```{r}
+tibble(p = bike_prop, n = 1, lower_bound = 0.09637597, upper_bound = 0.243624) %>% 
+  ggplot() +
+  aes(x = p, y = n) +
+  geom_point() +
+  geom_errorbarh(aes(xmin = lower_bound, xmax = upper_bound, height = .01)) +
+  labs(y = " ",
+       x = " ") +
+  theme(axis.text.y = element_blank()) 
+```
+
+---
+
+## Understanding Confidence Intervals
+
+
+I have taken 100 samples with $n = 100$, calculated the sample proportion, standard error, and 95% CI interval for each sample
+
+```{r}
+set.seed(26)
+
+cv <- qnorm(0.025)
+
+ci_data <- sample_props_data %>% 
+  sample_n(100) %>% 
+  rename(p = sample_props) %>% 
+  mutate(SE = sqrt((p*(1-p))/100),
+         lower_bound = p + (cv*SE),
+         upper_bound = p  - (cv*SE))
+
+
+ci_data
+```
+
+---
+
+## Understanding Confidence Intervals
+
+```{r}
+ci_data <-
+  ci_data %>% 
+  mutate(n = 1:nrow(ci_data)) %>% 
+  mutate(contains = ifelse(lower_bound < bike_prop & upper_bound > bike_prop , 1,0)) 
+```
+
+
+```{r}
+ci_data %>% 
+  ggplot() +
+  aes(x = p, y = n) +
+  geom_point() +
+  geom_errorbarh(aes(xmin = lower_bound, xmax = upper_bound)) +
+  labs(y = " ") +
+  theme(axis.text.y = element_blank()) 
+```
+
+---
+
+## Understanding Confidence Intervals
+
+
+```{r}
+ci_data %>% 
+  ggplot() +
+  aes(x = p, y = n, color = as.factor(contains)) +
+  geom_point() +
+  geom_errorbarh(aes(xmin = lower_bound, xmax = upper_bound)) +
+  labs(y = " ") +
+  theme(axis.text.y = element_blank(),
+        legend.position = "none")  +
+  geom_vline(xintercept =  bike_prop, color= "#e56646") 
+  
+```
+
+
+---
+
+class: middle
+
+## Confidence Interval Width
+
+Which of the following confidence intervals would be the widest? Why?
+
+- 90% CI
+- 95% CI
+- 99% CI
+
+---
+
+class: middle
+
+CI = $\text{point estimate} \pm \text { critical value} \times \text{standard error}$
+
+
+```{r echo = TRUE}
+qnorm(0.05, mean = 0, sd = 1) # critical value for 90%CI
+```
+
+
+```{r fig.height=4}
+
+z <- seq(-4, 4, by = 0.01)
+y <- dnorm(z)
+data <- tibble(z = z, y = y)
+qplot(z, y, data = data, 
+          geom = "line") +
+  geom_ribbon(data = subset(data, z > -1.64 & z <1.64),
+                  aes(ymax = y), 
+                  ymin = 0,
+                  fill = "#e56646", 
+                  colour = NA, 
+                  alpha = 0.5) +
+  ylab("") +
+  scale_x_continuous(breaks = c(-1.64,0,1.64)) +
+  annotate(geom = "text", x = 0, y = 0.15, label = "90%") +
+  annotate(geom = "text", x = 2, y = 0.03, label = "5%") +
+  annotate(geom = "text", x = - 2, y = 0.03, label = "5%")
+
+  
+```
+
+---
+
+class: middle
+
+CI = $\text{point estimate} \pm \text { critical value} \times \text{standard error}$
+
+
+```{r echo = TRUE}
+qnorm(0.025, mean = 0, sd = 1) # critical value for 95%CI
+```
+
+
+```{r fig.height=4}
+
+z <- seq(-4, 4, by = 0.01)
+y <- dnorm(z)
+data <- tibble(z = z, y = y)
+qplot(z, y, data = data, 
+          geom = "line") +
+  geom_ribbon(data = subset(data, z > -1.64 & z <1.64),
+                  aes(ymax = y), 
+                  ymin = 0,
+                  fill = "#e56646", 
+                  colour = NA, 
+                  alpha = 0.5) +
+  ylab("") +
+  scale_x_continuous(breaks = c(-1.96,0,1.96)) +
+  annotate(geom = "text", x = 0, y = 0.15, label = "95%") +
+  annotate(geom = "text", x = 2.23, y = 0.01, label = "2.5%") +
+  annotate(geom = "text", x = - 2.23, y = 0.01, label = "2.5%")
+
+  
+```
+
+---
+
+class: middle
+
+CI = $\text{point estimate} \pm \text { critical value} \times \text{standard error}$
+
+
+```{r echo = TRUE}
+qnorm(0.005, mean = 0, sd = 1) # critical value for 99%CI
+```
+
+
+```{r fig.height=4}
+
+z <- seq(-4, 4, by = 0.01)
+y <- dnorm(z)
+data <- tibble(z = z, y = y)
+qplot(z, y, data = data, 
+          geom = "line") +
+  geom_ribbon(data = subset(data, z > -2.58 & z <2.58),
+                  aes(ymax = y), 
+                  ymin = 0,
+                  fill = "#e56646", 
+                  colour = NA, 
+                  alpha = 0.5) +
+  ylab("") +
+  scale_x_continuous(breaks = c(-2.58,0,2.58)) +
+  annotate(geom = "text", x = 0, y = 0.15, label = "99%")
+
+  
+```
+---
+
+class: middle
+
+CI = $\text{point estimate} \pm \text { critical value} \times \text{standard error}$
+
+- 99% CI has the highest critical value.
+- Higher critical value means higher margin of error.
+- Higher margin of error means wider CI.
+
+Thus 99% CI would be the widest.
+
+
+---
+
+class: center middle
+[Garfield](https://www.gocomics.com/garfield/1999/03/12)
+
+---
+
+class: middle
+
+## Effect of Sample Size on Confidence Interval 
+
+Researchers A, B, and C are interested in proportion of bike ownership took samples. They each take separate samples of size 100, 500, and 1000 respectively. They each have a sample proportion of 0.18. What a surprise! Which of the researchers will find the narrowest 95% CI?
+
+---
+
+class: middle
+
+**Researcher A:** 95% CI for single proportion = $0.18 \pm 1.96 \times \sqrt{\frac{0.18(1-0.18)}{100}}$ 
+
+**Researcher B:** 95% CI for single proportion = $0.18 \pm 1.96 \times \sqrt{\frac{0.18(1-0.18)}{500}}$ 
+
+**Researcher C:** 95% CI for single proportion = $0.18 \pm 1.96 \times \sqrt{\frac{0.18(1-0.18)}{1000}}$ 
+
+--
+
+As sample size increases, the standard error decreases and the margin of error also decreases, thus the confidence interval interval gets narrower. The Researcher C would have the narrowest CI.
+
+---
+
+class: middle 
+
+## CLT
+
+If these conditions are met then
+
+$p \sim \text{approximately } N(\pi, \frac{\pi(1-\pi)}{n})$
+
+
+---
+
+class: middle
+
+## Conditions
+
+
+1. The sample data are independent. 
+2. There needs to be at least 10 successes and 10 failures in the sample.
+3. The sample size is smaller than 10% of the population.
+
+---
+
+class: middle
+
+__Example__
+
+According to a Gallup Survey  of 1017 adults living in US 66% of Americans favor legalizing marijuana. 
+
+Compute 95% confidence interval for the population proportion of those who favor legalizing marijuana. 
+
+.footnote[Information on the survey can be found [here](https://news.gallup.com/poll/267698/support-legal-marijuana-steady-past-year.aspx)]
+
+
+---
+
+
+## Checking Conditions
+
+$n = 1017$ and $p = 0.66$
+
+1) The survey link indicates that the respondents were chosen from a random sample. We would expect such sample to be independent.   
+
+--
+
+2) We need at least 10 people favoring legalizing marijuana and 10 people opposing this. 
+
+$np = 1017 \cdot 0.66 = 671.22$. There are more than 10 people favoring legalizing marijuana.
+$n(1-p) = 1017 \cdot (1-0.66) = 345.78$. There are more than 10 people opposing legalizing marijuana.
+
+--
+
+3) 1017 is less than 10% of US population.
+
+---
+
+## Confidence Interval 
+
+CI = $\text{point estimate} \pm \text { margin of error}$
+
+--
+
+CI = $\text{point estimate} \pm \text { critical value} \times \text{standard error}$
+
+--
+
+95% CI for single proportion = $p \pm 1.96 \times \sqrt{\frac{p(1-p)}{n}}$ 
+
+--
+
+95% CI = $0.66 \pm 1.96 \times \sqrt{\frac{0.66(1-0.66)}{1017}}$ 
+
+--
+
+95% CI = (0.6308857, 0.6891143)
+
+We are 95% confident that the true proportion of Americans who support legalizing marijuana falls between 0.6308857 and 0.6891143.
+
+---
+
+## Confidence Interval Using R
+
+```{r echo = TRUE}
+p <- 0.66 #sample proportion
+n <- 1017 #sample size
+
+se <- sqrt(p*(1-p)/n) #standard error
+cv <- qnorm(0.975) #critical value
+
+p - cv*se #lower bound of the CI
+p + cv*se #upper bound of the CI
+```
+

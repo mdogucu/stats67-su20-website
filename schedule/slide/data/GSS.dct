@@ -1,0 +1,6 @@
+infile dictionary {
+    _column(1)    numeric                               YEAR   %20f  "Gss year for this respondent                       "
+   _column(21)    numeric                                ID_   %20f  "Respondent id number"
+   _column(41)    numeric                               HRS2   %20f  "Number of hours usually work a week"
+   _column(61)    numeric                             DEGREE   %20f  "Rs highest degree"
+}

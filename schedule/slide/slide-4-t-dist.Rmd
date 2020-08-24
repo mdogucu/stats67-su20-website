@@ -1,0 +1,365 @@
+---
+title: "$t$ Distribution"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+class: middle
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+library(tidyverse)
+options(scipen=0)
+theme_set(theme_gray(base_size = 18))
+
+set.seed(84735)
+
+plot_norm_x <- function(value, mean, sd, end = 3){
+  data_norm <-  data.frame(x = c(mean-(end*sd), mean+(end*sd)))
+  
+  data_line <- data.frame(x = value, y = dnorm(value, mean, sd), 
+                          label = paste("x = ", value))
+  ggplot(data_norm, 
+         aes(x)) +
+    stat_function(fun = dnorm, n = 1001, args = list(mean = mean, sd = sd)) + 
+    ylab("") +
+    geom_segment(data = data_line, aes(x = value, y = 0, xend = x, yend = y), color = "#e56646") +
+    geom_text(data = data_line, aes(x = x, y = 0, label = label), color = "#e56646") +
+    labs(title =  bquote("N("*mu == .(mean) ~ "," ~ sigma == .(sd)*")"))
+}
+
+
+
+plot_norm_z <- function(value, mean, sd, end = 3){
+  
+  data_norm <-  data.frame(x = c(mean-(end*sd), mean+(end*sd)))
+  data_z <- data.frame(x = c(-end,end))
+
+  
+  data_line_z <- data.frame(z = (value-mean)/sd, y = dnorm((value-mean)/sd), 
+                            label = paste("z = ", (value-mean)/sd))
+  
+ggplot(data_z, 
+               aes(x)) +
+    stat_function(fun = dnorm, n = 1001, args = list(mean = 0, sd = 1)) + 
+    xlab("z")+
+    ylab("") +
+    geom_segment(data = data_line_z, aes(x = z, y = 0, xend = z, yend = y), color = "#e56646") +
+    geom_text(data = data_line_z, aes(x = z, y = 0, label = label), color = "#e56646") +
+  labs(title =  bquote("N("*mu == 0 ~ "," ~ sigma == 1*")"))
+
+  
+}
+
+
+plot_norm_x_prob <- function(value, mean, sd, end = 3, lower = TRUE){
+  
+  x <- seq(mean-(end*sd),mean+(end*sd), 0.01)
+  
+  y <- dnorm(x, mean = mean, sd = sd)
+  
+  data <- data.frame(x = x, y = y)
+  
+  data_line <- data.frame(x = value, y = dnorm(value, mean, sd), 
+                          label = paste("x = ", value))
+  
+  if (lower == TRUE){
+    p <- qplot(x, y, data = data, 
+          geom = "line") +
+      geom_ribbon(data = subset(data, x > (mean-(end*sd)) & x < value),
+                  aes(ymax = y), 
+                  ymin = 0,
+                  fill = "#e56646", 
+                  colour = NA, 
+                  alpha = 0.5) +
+      ylab("") 
+
+  }
+  
+  if (lower == FALSE){
+    p <- qplot(x, y, data = data, 
+          geom = "line") +
+      geom_ribbon(data = subset(data, x < (mean+(end*sd)) & x > value),
+                  aes(ymax = y), 
+                  ymin = 0,
+                  fill = "#e56646", 
+                  colour = NA, 
+                  alpha = 0.5) +
+      ylab("")
+  }
+  
+p
+}
+
+```
+
+## Uses of Normal Distribution
+
+- SAT scores are normally distributed we were able to use normal distribution.
+
+--
+
+- Baby weights are normally distributed we were able to use normal distribution.
+
+--
+
+- According to Central Limit Theorem, sample proportions are approximately normally distributed (if certain conditions are met).
+
+--
+
+- According to Central Limit Theorem, difference of two proportions are approximately normally distributed (if certain conditions are met).
+
+---
+
+class: middle
+
+## What about Single Mean?
+
+
+- According to Central Limit Theorem, sample means are approximately normally distributed (if certain conditions are met).
+
+---
+
+class: middle
+
+
+## Conditions
+
+We can rely on Central Limit Theorem in order to make inference for a single mean if the following conditions have been met 
+
+__Independence__ The sample data must be independent.
+
+__Normality__ If the sample size is small, then the sample data must come from a population with a normal distribution. 
+
+---
+
+class: middle
+
+
+## Using CLT for Single Mean
+
+If the conditions are met then
+
+$\bar x \sim \text{approximately }N(mean = \mu, sd = \frac{\sigma}{\sqrt{n}})$
+
+We have a problem! We do not know $\sigma$ so we may not calculate the standard error easily. 
+
+---
+
+class: middle
+
+## How did we handle this problem before?
+
+When making inference for single proportion and difference of two proportions
+
+$p \sim \text{approximately } N(mean = \pi, sd = \sqrt{\frac{\pi(1-\pi)}{n}})$
+
+$(p_1 - \hat p_2) \sim \text{approximately } N((mean = \pi_1 - \pi_2), sd = \sqrt{\frac{\pi_1(1-\pi_1)}{n_1} + \frac{\pi_2(1-\pi_2)}{n_2}})$
+
+we did not know the population proportions. How did we deal with this problem when calculating standard error?
+
+---
+
+class: middle
+
+## How did we handle this problem before?
+
+We used the sample proportions. 
+
+---
+
+class: middle 
+
+## How can we handle our current problem?
+
+Since we do not know $\sigma$, the population standard deviation, we will instead use $s$, the sample standard deviation.
+
+Using $s$ instead of $\sigma$ creates a problem in estimation.
+
+Rather than using Normal distribution, we will now rely on $t$-distribution.
+
+---
+
+## t-distribution
+
+```{r warning = FALSE}
+ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dt, n = 101, args = list(df = 2)) + 
+  scale_y_continuous(breaks = NULL) +
+  ylab("f(x)") +
+  theme(text = element_text(size = 20))
+
+```
+
+---
+
+## t-distribution vs Normal Distribution
+
+```{r warning = FALSE}
+
+ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1), aes(color = "z"))  +
+  stat_function(fun = dt, n = 101, args = list(df = 1), aes(color = "t")) + 
+  ylab("f(x)") +
+  scale_y_continuous(breaks = NULL) +
+  scale_colour_manual(name="Distribution",
+  values=c(z="red", t="blue")) +
+  theme(text = element_text(size = 20))
+
+
+```
+
+---
+
+class: middle
+
+
+## t-distribution
+
+In $t$-distribution, we will use one parameter only which is named degrees of freedom. 
+
+$df = n - 1$
+
+---
+
+## t-distribution with different df
+
+```{r warning = FALSE}
+
+ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dt, n = 101, args = list(df = 1), aes(color = "df1")) + 
+  stat_function(fun = dt, n = 101, args = list(df = 2), aes(color = "df2")) + 
+  stat_function(fun = dt, n = 101, args = list(df = 4), aes(color = "df4")) + 
+  stat_function(fun = dt, n = 101, args = list(df = 7), aes(color = "df7")) + 
+  stat_function(fun = dt, n = 101, args = list(df = 10), aes(color = "df9")) + 
+  ylab("f(x)") +
+  scale_y_continuous(breaks = NULL) +
+  scale_colour_manual(name="df",
+  values=c(df1 = "red", df2="blue", df4 = "green", df7 = "black", df9 = "orange")) +
+  theme(text = element_text(size = 20))
+
+
+```
+
+## t-distribution vs Normal Distribution
+
+Note that as degrees of freedom increases t-distribution approaches a normal distribution. 
+---
+## t-distribution using R
+
+```{r fig.height=3}
+x <- seq(-4,4, 0.01)
+y <- dt(x, df = 1)
+data <- data.frame(x = x, y = y)
+qplot(x, y, data = data, 
+      geom = "line")+
+  geom_ribbon(data = subset(data, x >- 4 & x < -2),
+              aes(ymax = y), ymin = 0,
+              fill = "#e56646", colour = NA, alpha = 0.5)+
+  scale_y_continuous(limits = c(0, .4)) +
+  ylab("f(x)") 
+
+```
+
+
+What proportion of values are below -2 in this distribution? 
+
+$X \sim t_{df = 1} \text{ then }P(x \leq -2)$
+
+```{r echo = TRUE}
+pt(-2, df = 1) 
+```
+
+---
+
+## t-distribution using R
+
+```{r fig.height=3}
+x <- seq(-4,4, 0.01)
+y <- dt(x, df = 1)
+data <- data.frame(x = x, y = y)
+qplot(x, y, data = data, 
+      geom = "line")+
+  geom_ribbon(data = subset(data, x >- 4 & x < -2),
+              aes(ymax = y), ymin = 0,
+              fill = "#e56646", colour = NA, alpha = 0.5)+
+  scale_y_continuous(limits = c(0, .4)) +
+  ylab("f(x)") 
+
+```
+
+
+Below which value does the 14.75836% of the data lie?
+
+```{r echo = TRUE}
+qt(0.1475836, df = 1) #
+```
+
+---
+
+## Where does the middle 95% of the data lie when $df = 14$? 
+
+```{r fig.height=3}
+x <- seq(-4,4, 0.01)
+y <- dt(x, df = 14)
+data <- data.frame(x = x, y = y)
+qplot(x, y, data = data, 
+      geom = "line")+
+  geom_ribbon(data = subset(data, x >-2.144787 & x < 2.144787),
+              aes(ymax = y), ymin = 0,
+              fill = "#e56646", colour = NA, alpha = 0.5) +
+  scale_y_continuous(limits = c(0, .4)) +
+  ylab("f(x)") +
+  theme(text = element_text(size = 20))
+
+```
+
+```{r echo = TRUE}
+qt(0.025, df = 14)
+```
+
+95% of the data lies between -2.144787 and 2.144787
+
+---
+
+## Where does the middle 90% of the data lie when $df = 149$? 
+
+```{r fig.height=3}
+x <- seq(-4,4, 0.01)
+y <- dt(x, df = 149)
+data <- data.frame(x = x, y = y)
+qplot(x, y, data = data, 
+      geom = "line")+
+  geom_ribbon(data = subset(data, x > -1.655145 & x < 1.655145),
+              aes(ymax = y), ymin = 0,
+              fill = "#e56646", colour = NA, alpha = 0.5) +
+  scale_y_continuous(limits = c(0, .4)) +
+  ylab("f(x)") +
+  theme(text = element_text(size = 20))
+
+```
+
+```{r echo = TRUE}
+qt(0.05, df = 149)
+```
+
+90% of the data lies between `r qt(0.05, df = 149)` and `r qt(0.05, df = 149)*-1`
+
+
+

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Writing and Testing Hypotheses</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Dogucu" />
+    <link rel="stylesheet" href="slide-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Writing and Testing Hypotheses
+### Dr. Dogucu
+
+---
+
+
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt; 
+ Copyright &amp;copy; &lt;a href="https://mdogucu.ics.uci.edu"&gt;Dr. Mine Dogucu&lt;/a&gt;. &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;&lt;/div&gt; 
+
+
+---
+class: middle
+
+
+
+
+## Review of Notation
+
+&lt;table align ="center"&gt;
+
+&lt;thead&gt;
+&lt;th&gt; &lt;/th&gt;
+&lt;th&gt;Sample Statistic&lt;/th&gt;
+&lt;th&gt;Population Parameter&lt;/th&gt;
+&lt;/thead&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Mean&lt;/td&gt;
+&lt;td&gt; x&amp;#772; &lt;/td&gt;
+&lt;td&gt; &amp;mu;&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt; Standard Deviation &lt;/td&gt;
+&lt;td&gt; s &lt;/td&gt;
+&lt;td&gt; &amp;sigma;&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt; Variance &lt;/td&gt;
+&lt;td&gt; s&lt;sup&gt;2&lt;/sup&gt; &lt;/td&gt;
+&lt;td&gt; &amp;sigma;&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt; 
+&lt;td&gt;Proportion&lt;/td&gt;
+&lt;td&gt;p&lt;/td&gt;
+&lt;td&gt;&amp;pi;&lt;/td&gt;
+
+&lt;/tr&gt;
+
+
+&lt;/table&gt;
+
+---
+
+class:center middle 
+
+In statistics, we are interested in making an inference about population parameters. We set and test hypotheses about the population. 
+
+---
+
+class: middle
+
+## Goals
+
+- Learn to write hypotheses in words.
+- Learn to write hypotheses using notation.
+
+
+---
+
+class:center middle
+
+null means zero(which represents nothingness)
+
+
+---
+
+class: middle center
+
+## Research Question
+
+Are there any pink cows in the world?
+
+---
+
+class: middle 
+
+## Hypotheses
+
+**Null** hypothesis: There are __no__ pink cows in the world.  
+
+**Alternative** hypothesis: There is a pink cow in the world.
+
+---
+
+class: middle 
+
+## Hypothesis Testing Procedure
+
+We go looking for evidence to against the null. 
+
+- If we find any evidence against the null (a single pink cow) then we can conclude null is false. We say we **reject the null** hypothesis.
+
+- If we do not find any evidence against the null (a single pink cow) then **we fail to reject the null**. We can keep searching for more evidence against the null (i.e. continue looking for a pink cow). We will never be able to say the null is true so we never accept the null. All we can do is keep looking for a pink cow.
+
+---
+
+class:  center middle 
+
+## Research Question
+
+Are there any black cows in the world?
+
+---
+
+class: middle 
+
+## Hypotheses
+
+**Null** hypothesis: There are __no__ black cows in the world.
+
+**Alternative** hypothesis: There are is a black cow in the world.
+
+
+---
+
+&lt;img src="slide-4-write-hypotheses_files/figure-html/unnamed-chunk-2-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+When we see a black cow, we **reject** the null hypothesis and conclude that there is a black cow in the world. 
+
+---
+
+class:middle
+
+&lt;img src="img/tweet.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: center middle
+
+## Research Question
+
+Is there a foreign object in the cat's body?
+
+
+---
+
+class: middle
+
+## Hypothesis Testing
+
+**Null** hypothesis: There is __no__ foreign object in the cat's body.
+
+**Alternative** hypothesis: There are is a foreign object in the cat's body.
+
+---
+
+class: center middle
+
+## Collect Evidence
+
+X-ray
+
+---
+class: middle 
+
+## Conclusion and Decision
+
+
+X-ray does not show any foreign object. 
+
+
+- Fail to reject the null hypothesis.
+- We __cannot__ conclude the null hypothesis is true. We __cannot__ accept the null hypothesis.
+
+---
+
+class: middle 
+
+## Example
+
+
+**Null** hypothesis: There is **no** problem with my cell phone.
+
+**Alternative** hypothesis: There is a problem with my cell phone.
+
+---
+
+class: middle
+
+## Collect Evidence
+
+- Check if the screen is broken.
+
+--
+
+- Check if the battery life is too short.
+
+--
+
+- Check if the response times of apps are long.
+
+--
+
+- ...
+
+---
+
+class: middle
+
+## Conclusion and Decision
+
+No problems were detected.
+
+- Fail to reject the null hypothesis. 
+
+--
+
+- You __cannot__ conclude that there is no problem with the cell phone.
+
+--
+
+- You can state that there were no problems detected (i.e. there was no evidence against the null).
+
+---
+class: middle
+
+## Remember
+
+- Null hypothesis is always about nothing: **no** pink cow, **no** effect, **no** difference etc.
+
+--
+
+- We __never__ accept the null hypothesis. We either reject it or fail to reject it.
+
+--
+
+- We always start a hypothesis test with the assumption that the null hypothesis is true and try to find evidence against it. 
+
+---
+
+class: subtopic center middle
+
+.subtopic-note[Writing Hypotheses with Notation]
+
+---
+
+
+class: middle
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/&gt;&lt;/svg&gt; **Research Question** Do UCI students sleep 8 hours on a typical night? 
+
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"/&gt;&lt;/svg&gt; **Variable** `sleep` (8,7,9,7.5, ...)
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 640 512"&gt;&lt;path d="M152.1 236.2c-3.5-12.1-7.8-33.2-7.8-33.2h-.5s-4.3 21.1-7.8 33.2l-11.1 37.5H163zM616 96H336v320h280c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24zm-24 120c0 6.6-5.4 12-12 12h-11.4c-6.9 23.6-21.7 47.4-42.7 69.9 8.4 6.4 17.1 12.5 26.1 18 5.5 3.4 7.3 10.5 4.1 16.2l-7.9 13.9c-3.4 5.9-10.9 7.8-16.7 4.3-12.6-7.8-24.5-16.1-35.4-24.9-10.9 8.7-22.7 17.1-35.4 24.9-5.8 3.5-13.3 1.6-16.7-4.3l-7.9-13.9c-3.2-5.6-1.4-12.8 4.2-16.2 9.3-5.7 18-11.7 26.1-18-7.9-8.4-14.9-17-21-25.7-4-5.7-2.2-13.6 3.7-17.1l6.5-3.9 7.3-4.3c5.4-3.2 12.4-1.7 16 3.4 5 7 10.8 14 17.4 20.9 13.5-14.2 23.8-28.9 30-43.2H412c-6.6 0-12-5.4-12-12v-16c0-6.6 5.4-12 12-12h64v-16c0-6.6 5.4-12 12-12h16c6.6 0 12 5.4 12 12v16h64c6.6 0 12 5.4 12 12zM0 120v272c0 13.3 10.7 24 24 24h280V96H24c-13.3 0-24 10.7-24 24zm58.9 216.1L116.4 167c1.7-4.9 6.2-8.1 11.4-8.1h32.5c5.1 0 9.7 3.3 11.4 8.1l57.5 169.1c2.6 7.8-3.1 15.9-11.4 15.9h-22.9a12 12 0 0 1-11.5-8.6l-9.4-31.9h-60.2l-9.1 31.8c-1.5 5.1-6.2 8.7-11.5 8.7H70.3c-8.2 0-14-8.1-11.4-15.9z"/&gt;&lt;/svg&gt; **Research Question Using Notation** `\(\mu \stackrel{?}{=} 8\)`
+
+--
+&lt;hr&gt; 
+
+.center[
+**Hypotheses** 
+
+`\(H_0 : \mu = 8\)`  
+`\(H_A : \mu \neq 8\)`
+]
+
+&lt;hr&gt;
+--
+
+The parameter we want to infer about is **a single mean**.
+
+---
+
+class: middle
+
+## Null Hypothesis
+
+It might be harder for us to see the null hypothesis being the "zero/no" case until we move things around. 
+
+.pull-left[
+`\(H_0 : \mu = 8\)`  
+`\(H_A : \mu \neq 8\)`
+]
+
+.pull-right[
+`\(H_0 : \mu - 8 = 0\)`  
+`\(H_A : \mu - 8 \neq 0\)`  
+]
+
+
+---
+
+## Side Note
+
+If you write HA and H0 to refer to null and alternative hypotheses on Gradescope when you type, we will understand what you are referring to.
+
+--
+
+If you want to type it out correctly as `\(H_0\)` and `\(H_A\)` then you can write 
+
+
+```r
+$$H_0$$
+$$H_A$$
+```
+
+The double dollar signs at the beginning and at the end let Gradescope know that you are writing a math equation.
+
+_ makes the preceding character a subscript. 
+
+---
+
+class: middle 
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/&gt;&lt;/svg&gt; **Research Question** Do the majority of Americans approve allowing DACA immigrants to become citizens?
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"/&gt;&lt;/svg&gt; **Variable** `approve` (yes, yes, yes, no, yes, no, no)
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 640 512"&gt;&lt;path d="M152.1 236.2c-3.5-12.1-7.8-33.2-7.8-33.2h-.5s-4.3 21.1-7.8 33.2l-11.1 37.5H163zM616 96H336v320h280c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24zm-24 120c0 6.6-5.4 12-12 12h-11.4c-6.9 23.6-21.7 47.4-42.7 69.9 8.4 6.4 17.1 12.5 26.1 18 5.5 3.4 7.3 10.5 4.1 16.2l-7.9 13.9c-3.4 5.9-10.9 7.8-16.7 4.3-12.6-7.8-24.5-16.1-35.4-24.9-10.9 8.7-22.7 17.1-35.4 24.9-5.8 3.5-13.3 1.6-16.7-4.3l-7.9-13.9c-3.2-5.6-1.4-12.8 4.2-16.2 9.3-5.7 18-11.7 26.1-18-7.9-8.4-14.9-17-21-25.7-4-5.7-2.2-13.6 3.7-17.1l6.5-3.9 7.3-4.3c5.4-3.2 12.4-1.7 16 3.4 5 7 10.8 14 17.4 20.9 13.5-14.2 23.8-28.9 30-43.2H412c-6.6 0-12-5.4-12-12v-16c0-6.6 5.4-12 12-12h64v-16c0-6.6 5.4-12 12-12h16c6.6 0 12 5.4 12 12v16h64c6.6 0 12 5.4 12 12zM0 120v272c0 13.3 10.7 24 24 24h280V96H24c-13.3 0-24 10.7-24 24zm58.9 216.1L116.4 167c1.7-4.9 6.2-8.1 11.4-8.1h32.5c5.1 0 9.7 3.3 11.4 8.1l57.5 169.1c2.6 7.8-3.1 15.9-11.4 15.9h-22.9a12 12 0 0 1-11.5-8.6l-9.4-31.9h-60.2l-9.1 31.8c-1.5 5.1-6.2 8.7-11.5 8.7H70.3c-8.2 0-14-8.1-11.4-15.9z"/&gt;&lt;/svg&gt; **Research Question Using Notation** `\(\pi \stackrel{?}{&gt;} 0.5\)` but also check  `\(\pi \stackrel{?}{&lt;} 0.5\)`
+
+--
+&lt;hr&gt;
+
+.center[
+**Hypotheses** 
+
+`\(H_0: \pi = 0.5\)`  
+`\(H_A: \pi \neq 0.5\)`
+]
+
+&lt;hr&gt;
+
+--
+
+The parameter we want to infer about is **a single proportion**.
+
+---
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/&gt;&lt;/svg&gt; **Research Question** Is California March 2020 unemployment rate is different than US March 2020 unemployment rate which is at 4.4%?
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"/&gt;&lt;/svg&gt; **Variable** `unemployed_CA` (no, no, yes, no, yes, no, no...)
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 640 512"&gt;&lt;path d="M152.1 236.2c-3.5-12.1-7.8-33.2-7.8-33.2h-.5s-4.3 21.1-7.8 33.2l-11.1 37.5H163zM616 96H336v320h280c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24zm-24 120c0 6.6-5.4 12-12 12h-11.4c-6.9 23.6-21.7 47.4-42.7 69.9 8.4 6.4 17.1 12.5 26.1 18 5.5 3.4 7.3 10.5 4.1 16.2l-7.9 13.9c-3.4 5.9-10.9 7.8-16.7 4.3-12.6-7.8-24.5-16.1-35.4-24.9-10.9 8.7-22.7 17.1-35.4 24.9-5.8 3.5-13.3 1.6-16.7-4.3l-7.9-13.9c-3.2-5.6-1.4-12.8 4.2-16.2 9.3-5.7 18-11.7 26.1-18-7.9-8.4-14.9-17-21-25.7-4-5.7-2.2-13.6 3.7-17.1l6.5-3.9 7.3-4.3c5.4-3.2 12.4-1.7 16 3.4 5 7 10.8 14 17.4 20.9 13.5-14.2 23.8-28.9 30-43.2H412c-6.6 0-12-5.4-12-12v-16c0-6.6 5.4-12 12-12h64v-16c0-6.6 5.4-12 12-12h16c6.6 0 12 5.4 12 12v16h64c6.6 0 12 5.4 12 12zM0 120v272c0 13.3 10.7 24 24 24h280V96H24c-13.3 0-24 10.7-24 24zm58.9 216.1L116.4 167c1.7-4.9 6.2-8.1 11.4-8.1h32.5c5.1 0 9.7 3.3 11.4 8.1l57.5 169.1c2.6 7.8-3.1 15.9-11.4 15.9h-22.9a12 12 0 0 1-11.5-8.6l-9.4-31.9h-60.2l-9.1 31.8c-1.5 5.1-6.2 8.7-11.5 8.7H70.3c-8.2 0-14-8.1-11.4-15.9z"/&gt;&lt;/svg&gt; **Research Question Using Notation** `\(\pi \stackrel{?}{=} 0.044\)`
+--
+&lt;hr&gt;
+
+.center[
+
+**Hypotheses**
+
+`$$H_0:\pi= 0.044$$`  `$$H_A: \pi \neq 0.044$$`
+
+]
+&lt;hr&gt;
+
+--
+
+The parameter we want to infer about is **a single proportion**.
+
+---
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/&gt;&lt;/svg&gt; **Research Question** Are there more STEM majors at UCI than non-STEM majors?
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"/&gt;&lt;/svg&gt; **Variable** `STEM` (TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE...)
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 640 512"&gt;&lt;path d="M152.1 236.2c-3.5-12.1-7.8-33.2-7.8-33.2h-.5s-4.3 21.1-7.8 33.2l-11.1 37.5H163zM616 96H336v320h280c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24zm-24 120c0 6.6-5.4 12-12 12h-11.4c-6.9 23.6-21.7 47.4-42.7 69.9 8.4 6.4 17.1 12.5 26.1 18 5.5 3.4 7.3 10.5 4.1 16.2l-7.9 13.9c-3.4 5.9-10.9 7.8-16.7 4.3-12.6-7.8-24.5-16.1-35.4-24.9-10.9 8.7-22.7 17.1-35.4 24.9-5.8 3.5-13.3 1.6-16.7-4.3l-7.9-13.9c-3.2-5.6-1.4-12.8 4.2-16.2 9.3-5.7 18-11.7 26.1-18-7.9-8.4-14.9-17-21-25.7-4-5.7-2.2-13.6 3.7-17.1l6.5-3.9 7.3-4.3c5.4-3.2 12.4-1.7 16 3.4 5 7 10.8 14 17.4 20.9 13.5-14.2 23.8-28.9 30-43.2H412c-6.6 0-12-5.4-12-12v-16c0-6.6 5.4-12 12-12h64v-16c0-6.6 5.4-12 12-12h16c6.6 0 12 5.4 12 12v16h64c6.6 0 12 5.4 12 12zM0 120v272c0 13.3 10.7 24 24 24h280V96H24c-13.3 0-24 10.7-24 24zm58.9 216.1L116.4 167c1.7-4.9 6.2-8.1 11.4-8.1h32.5c5.1 0 9.7 3.3 11.4 8.1l57.5 169.1c2.6 7.8-3.1 15.9-11.4 15.9h-22.9a12 12 0 0 1-11.5-8.6l-9.4-31.9h-60.2l-9.1 31.8c-1.5 5.1-6.2 8.7-11.5 8.7H70.3c-8.2 0-14-8.1-11.4-15.9z"/&gt;&lt;/svg&gt; **Research Question Using Notation** `\(\pi_{STEM} \stackrel{?}{=} 0.5\)`
+
+--
+
+&lt;hr&gt;
+
+.center[
+
+**Hypotheses**
+
+`$$H_0: \pi = 0.5$$` `$$H_A: \pi \neq 0.5$$`
+]
+&lt;hr&gt;
+
+--
+
+The parameter we want to infer about is **a single proportion**.
+
+---
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/&gt;&lt;/svg&gt; **RQ** Do STEM (s) majors have higher or lower (different) income after graduation when compared to non-STEM (n) majors?
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"/&gt;&lt;/svg&gt; **Variables** explanatory: `STEM` (TRUE, FALSE, FALSE, TRUE,...)  
+response: `income`(40000, 20000, 65490, 115000,...)
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 640 512"&gt;&lt;path d="M152.1 236.2c-3.5-12.1-7.8-33.2-7.8-33.2h-.5s-4.3 21.1-7.8 33.2l-11.1 37.5H163zM616 96H336v320h280c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24zm-24 120c0 6.6-5.4 12-12 12h-11.4c-6.9 23.6-21.7 47.4-42.7 69.9 8.4 6.4 17.1 12.5 26.1 18 5.5 3.4 7.3 10.5 4.1 16.2l-7.9 13.9c-3.4 5.9-10.9 7.8-16.7 4.3-12.6-7.8-24.5-16.1-35.4-24.9-10.9 8.7-22.7 17.1-35.4 24.9-5.8 3.5-13.3 1.6-16.7-4.3l-7.9-13.9c-3.2-5.6-1.4-12.8 4.2-16.2 9.3-5.7 18-11.7 26.1-18-7.9-8.4-14.9-17-21-25.7-4-5.7-2.2-13.6 3.7-17.1l6.5-3.9 7.3-4.3c5.4-3.2 12.4-1.7 16 3.4 5 7 10.8 14 17.4 20.9 13.5-14.2 23.8-28.9 30-43.2H412c-6.6 0-12-5.4-12-12v-16c0-6.6 5.4-12 12-12h64v-16c0-6.6 5.4-12 12-12h16c6.6 0 12 5.4 12 12v16h64c6.6 0 12 5.4 12 12zM0 120v272c0 13.3 10.7 24 24 24h280V96H24c-13.3 0-24 10.7-24 24zm58.9 216.1L116.4 167c1.7-4.9 6.2-8.1 11.4-8.1h32.5c5.1 0 9.7 3.3 11.4 8.1l57.5 169.1c2.6 7.8-3.1 15.9-11.4 15.9h-22.9a12 12 0 0 1-11.5-8.6l-9.4-31.9h-60.2l-9.1 31.8c-1.5 5.1-6.2 8.7-11.5 8.7H70.3c-8.2 0-14-8.1-11.4-15.9z"/&gt;&lt;/svg&gt; **Research Question Using Notation** `\(\mu_{s} \stackrel{?}{=} \mu_{n}\)` 
+
+--
+
+&lt;hr&gt;
+.center[ **Hypotheses** ]
+
+.pull-left[
+
+
+`$$H_0:\mu_{s} = \mu_{n}$$`  `$$H_A:\mu_{s} \neq \mu_{n}$$`
+]
+
+.pull-right[
+
+
+`$$H_0:\mu_{s} - \mu_{n} = 0$$`  `$$H_A:\mu_{s} - \mu_{n} \neq 0$$`
+]
+
+&lt;hr&gt;
+
+--
+
+We want to infer about **difference of two means**.
+
+---
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/&gt;&lt;/svg&gt; **RQ** Do Democrats and Republicans approve legal abortion at same rates?
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"/&gt;&lt;/svg&gt; **Variables** explanatory: `party` (D, D, R, R,...)  
+response: `approve`(TRUE, FALSE, FALSE, TRUE,...)
+
+--
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 640 512"&gt;&lt;path d="M152.1 236.2c-3.5-12.1-7.8-33.2-7.8-33.2h-.5s-4.3 21.1-7.8 33.2l-11.1 37.5H163zM616 96H336v320h280c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24zm-24 120c0 6.6-5.4 12-12 12h-11.4c-6.9 23.6-21.7 47.4-42.7 69.9 8.4 6.4 17.1 12.5 26.1 18 5.5 3.4 7.3 10.5 4.1 16.2l-7.9 13.9c-3.4 5.9-10.9 7.8-16.7 4.3-12.6-7.8-24.5-16.1-35.4-24.9-10.9 8.7-22.7 17.1-35.4 24.9-5.8 3.5-13.3 1.6-16.7-4.3l-7.9-13.9c-3.2-5.6-1.4-12.8 4.2-16.2 9.3-5.7 18-11.7 26.1-18-7.9-8.4-14.9-17-21-25.7-4-5.7-2.2-13.6 3.7-17.1l6.5-3.9 7.3-4.3c5.4-3.2 12.4-1.7 16 3.4 5 7 10.8 14 17.4 20.9 13.5-14.2 23.8-28.9 30-43.2H412c-6.6 0-12-5.4-12-12v-16c0-6.6 5.4-12 12-12h64v-16c0-6.6 5.4-12 12-12h16c6.6 0 12 5.4 12 12v16h64c6.6 0 12 5.4 12 12zM0 120v272c0 13.3 10.7 24 24 24h280V96H24c-13.3 0-24 10.7-24 24zm58.9 216.1L116.4 167c1.7-4.9 6.2-8.1 11.4-8.1h32.5c5.1 0 9.7 3.3 11.4 8.1l57.5 169.1c2.6 7.8-3.1 15.9-11.4 15.9h-22.9a12 12 0 0 1-11.5-8.6l-9.4-31.9h-60.2l-9.1 31.8c-1.5 5.1-6.2 8.7-11.5 8.7H70.3c-8.2 0-14-8.1-11.4-15.9z"/&gt;&lt;/svg&gt; **Research Question Using Notation** `\(\pi_{d} \stackrel{?}{=} \pi_{r}\)` 
+
+--
+&lt;hr&gt;
+.center[**Hypotheses**]
+
+.pull-left[
+
+
+`\(H_0:\pi_{d} = \pi_{r}\)`  
+`\(H_A:\pi_{d} \neq \pi_{r}\)`
+]
+
+.pull-right[
+
+
+`\(H_0:\pi_{d} - \pi_{r} = 0\)`  
+`\(H_A:\pi_{d} - \pi_{r} \neq 0\)`]
+
+&lt;hr&gt;
+
+--
+
+We want to infer about **difference of two proportions**.
+
+
+---
+
+class: middle center
+
+
+In the next few lectures we will learn about the following in more detail.
+
+&lt;div align="center"&gt;
+
+|                               | Parameter of Interest | Response              |Explanatory            |
+|-------------------------------|-----------------------|-----------------------|-----------------------|
+| Single Mean                   | `\(\mu\)`                 | Numeric               |
+| Difference of Two Means       | `\(\mu_1 - \mu_2\)`       | Numeric               |Binary                 |
+| Single Proportion             | `\(\pi\)`                 | Binary                |
+| Difference of Two Proportions | `\(\pi_1 - \pi_2\)`       | Binary                |Binary                 |
+
+
+A categorical variable with two levels is called a __binary__ variable.
+
+---
+
+class: middle 
+
+&lt;div align = "center"&gt;
+
+| Parameter of Interest | Response              |Explanatory                |
+|-----------------------|-----------------------|-----------------------    |
+| `\(\beta_1\)`             | Numeric               | Categorical and/or Numeric|
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

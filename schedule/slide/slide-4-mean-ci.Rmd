@@ -1,0 +1,166 @@
+---
+title: "Confidence Interval for a Single Mean"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+library(tidyverse)
+options(scipen=0)
+theme_set(theme_gray(base_size = 18))
+
+```
+
+
+## Confidence Interval Review
+
+Confidence Interval = point estimate $\pm$ critical value $\times$ standard error of the estimate
+
+|                                           | point estimate | critical value | standard error of the estimate                    |
+|-------------------------------------------|----------------|:--------------:|---------------------------------------------------|
+| single proportion                         | $p$            | z*             | $\sqrt{\frac{p(1-p)}{n}}$                         |
+| difference of two proportions             | $p_1-p_2$      | z*             | $\sqrt{\frac{p_1(1-p_1)}{n}+\frac{p_2(1-p_2)}{n}}$ |
+
+
+---
+
+class: middle
+
+## Confidence Interval for Single Mean
+
+point estimate $\pm$ critical value $\times$ standard error
+
+
+$\bar x$ $\pm$ critical value $\times$ standard error
+
+--
+
+
+$\bar x \pm t^*_{df}\times$ standard error
+
+--
+
+$\bar x \pm t^*_{df} \times \frac{s}{\sqrt n}$
+
+
+
+
+---
+
+class: middle
+
+## Exercise  
+
+
+Prof. Garcia-Maldonado would like to know his average daily water intake. He records his water intake in his fitness app on his phone on 50 random days. His app shows that on average he drank 3.7 liters of water daily with standard deviation of 0.5 liters. Calculate a 95% confidence interval for average daily water intake of Prof. Garcia-Maldonado.
+
+---
+
+
+class: middle
+
+
+## Conditions
+
+__Independence__ Despite the fact that Prof. Garcia-Maldonado has randomly selected the days he recorded data there may be possible violation of the independence condition. Consider that he selected 50 days in a two month frame. There will be many data points that are collected on consecutive days. If he has certain patterns of water drinking in a week then consecutive day data would be dependent and thus the condition of independence wuld be violated. However if he selected 50 days in a two year time frame it is possible that the data may meet the independence condition.
+
+--
+
+__Normality__ The sample size is greater than 30. Are there any outliers in the data?
+
+---
+
+class: middle
+
+.pull-left[
+
+## Known
+
+$\bar x$ = 3.7
+
+$s = 0.5$
+
+$n = 50$
+
+]
+
+.pull-right[
+
+
+
+## Confidence Interval
+
+$\bar x \pm t^*_{df} \times \frac{s}{\sqrt n}$
+
+
+
+
+$3.7 \pm t^*_{df} \times \frac{0.5}{\sqrt{50}}$
+
+]
+---
+
+## Finding critical value for 95% CI when $n = 50$
+
+```{r fig.height=3}
+x <- seq(-4,4, 0.01)
+y <- dt(x, df = 49)
+data <- data.frame(x = x, y = y)
+qplot(x, y, data = data, 
+      geom = "line")+
+  geom_ribbon(data = subset(data, x > -2.009575 & x < 2.009575),
+              aes(ymax = y), ymin = 0,
+              fill = "red", colour = NA, alpha = 0.5) +
+  scale_y_continuous(limits = c(0, .4)) +
+  xlab("t") +
+  ylab("f(t)") +
+  theme(text = element_text(size = 20))
+
+```
+The critical value is:
+
+```{r echo = TRUE}
+qt(0.975, df = 49)
+```
+
+---
+
+## Confidence Interval
+
+$3.7 \pm 2.009575 \times \frac{0.5}{\sqrt{50}}$
+
+
+```{r echo = TRUE}
+se <- 0.5/sqrt(50)
+critical_value <- qt(0.975, df = 49) 
+
+3.7 - critical_value*se #lower bound
+3.7 + critical_value*se #upper bound
+```
+
+---
+
+class: middle
+
+We are 95% confident that the average daily water in take of Prof. Garcia- Maldonado is between 3.557902 and 3.842098 liters. 
+
+

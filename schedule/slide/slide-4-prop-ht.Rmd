@@ -1,0 +1,317 @@
+---
+title: "Hypothesis Testing for a Single Proportion"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+options(scipen=0)
+library(tidyverse)
+library(fivethirtyeight)
+library(scales)
+theme_set(theme_gray(base_size = 18))
+
+set.seed(84735)
+
+```
+
+
+
+## Review of Hypothesis Testing
+
+- We always assume the null hypothesis is true at the beginning.
+
+--
+
+- We look for evidence against the null.
+
+--
+
+- If we find any evidence against the null (e.g. a single pink cow) then we can conclude null is false. We say we **reject the null hypothesis**.
+
+--
+
+- If we do not find any evidence against the null (a single pink cow) then we fail to reject the null. We can keep searching for more evidence against the null (i.e. continue looking for a pink cow). We will never be able to say the null is true so we never accept the null. We **fail to reject the null**. All we can do is keep looking for a pink cow.
+
+---
+
+class: center middle
+
+We are searching for evidence against the null. 
+We are searching for samples that are _significantly_ different than the null.
+
+---
+
+class: middle
+
+## Research Question
+
+Do the majority of Americans approve allowing DACA immigrants to become citizens?
+
+
+.footnote[Survey about this topic can be found [here](https://news.gallup.com/poll/235775/americans-oppose-border-walls-favor-dealing-daca.aspx)]
+
+
+---
+
+class: middle
+
+## Hypotheses 
+
+$H_0: \pi = 0.5$  
+$H_A: \pi \neq 0.5$
+
+
+---
+
+class: middle
+
+## Assuming Null is True
+
+Recall that according to CLT $p \sim \text{approximately }N(\pi, \frac{\pi(1-\pi)}{n})$
+
+--
+
+If $H_0: \pi = 0.5$ then the null sampling distribution would be $N(0.5, \frac{0.5(1-0.5)}{n})$
+
+
+---
+
+## Looking for Evidence 
+
+
+According to a Gallup survey of 1520 US adults , 83% approve of allowing DACA immigrants to become citizens.
+
+.footnote[Gallup survey can be found [here](https://news.gallup.com/poll/235775/americans-oppose-border-walls-favor-dealing-daca.aspx)]
+
+--
+
+$p = 0.83$  
+$n = 1520$
+
+--
+
+We said that the null sampling distribution would be $N(0.5, \frac{0.5(1-0.5)}{n})$ which is
+
+$N(0.5, \frac{0.5(1-0.5)}{1520})$
+
+$N(0.5, 0.0001644737)$
+
+
+---
+
+## The $H_0$ Sampling Distribution 
+
+```{r}
+p <- seq(0.45, 0.55, by = 0.0001)
+y <- dnorm(p, mean = 0.5, sd = sqrt(0.5*0.5/1520))
+data <- tibble(p = p, y = y)
+qplot(p, y, data = data, 
+          geom = "line") +
+    ylab("") 
+
+
+```
+
+
+---
+
+class: middle
+
+## What counts as evidence against the null?
+
+Any sample proportion that falls of really far away from the center of the distribution would count as an evidence against the null.
+
+If the null is true, then it would be unlikely to observe extremely high or low sample proportions. 
+
+
+---
+
+## Sampling Distribution
+
+```{r}
+
+se <- sqrt(0.5*0.5/1520)
+p <- seq(0.1, 0.9, by = 0.0001)
+y <- dnorm(p, mean = 0.5, sd = se)
+data <- tibble(p = p, y = y)
+qplot(p, y, data = data, 
+          geom = "line") +
+  ylab("") +
+    geom_vline(xintercept = 0.83) +
+   annotate(geom = "text", x = 0.78, y = 20, label = "p = 0.83")
+
+
+```
+
+
+---
+
+class: middle
+
+We want to know the probability of observing an extreme sample proportion like ours (p = 0.83) if the $H_0$ were true.
+
+--
+
+If our sample proportion is "extreme" then so is 0.90, 0.91, 0.917, 0.9273423 etc. 
+
+--
+
+Our sample proportion is 0.83 - 0.5 = 0.33 units away from the null.
+
+--
+
+So we will consider 0.5 - 0.33 = 0.17 also an "extreme" sample proportion. 
+
+--
+
+This makes 0.16, 0.1512, 0.11... also "extreme" 
+
+
+---
+
+class: middle
+
+```{r}
+
+se <- sqrt(0.5*0.5/1520)
+p <- seq(0.1, 0.9, by = 0.0001)
+y <- dnorm(p, mean = 0.5, sd = se)
+data <- tibble(p = p, y = y)
+qplot(p, y, data = data, 
+          geom = "line") +
+  ylab("") +
+    geom_vline(xintercept = 0.83) +
+   annotate(geom = "text", x = 0.78, y = 20, label = "p = 0.83") +
+  geom_vline(xintercept = 0.17) + 
+  annotate(geom = "text", x = 0.21, y = 20, label = "p = 0.17") 
+
+
+```
+
+---
+
+
+If the $H_0$ is true what is the probability that we will observe an extremely high or an extremely low sample proportion?
+
+Probability of observing sample proportion of 0.17 and lower 
+
+--
+
+```{r echo = TRUE}
+pnorm(0.17, mean = 0.5, sd = 0.01282473)
+```
+--
+Probability of observing sample proportion of 0.83 and higher 
+
+```{r echo=TRUE}
+pnorm(0.83, mean = 0.5, sd = 0.01282473, 
+      lower.tail = FALSE)
+```
+
+---
+
+## p-value
+
+
+Adding those up (or you can multiply one of them with 2) we have
+
+```{r echo = TRUE}
+pnorm(0.17, mean = 0.5, sd = 0.01282473) + 
+  pnorm(0.83, mean = 0.5, sd = 0.01282473, 
+        lower.tail = FALSE)
+```
+
+--
+
+p-value  = $5.188482 \times 10^{-146}$
+
+--
+
+P-value is the probability of observing a sample statistic at least as extreme as the one that has been observed if the null hypothesis were true.
+
+--
+If p-value is less than 0.05 we reject the null hypothesis. 
+
+
+---
+
+## Decision and Conclusion
+
+In the Gallup survey the sample proportion was 0.83. 
+
+--
+
+If the null hypothesis (
+$H_0 = \pi = 0.5$
+) were true, then it would be quite unlikely (p = $5.188482 \times 10^{-146}$) to observe a sample proportion that is at least extreme like the one we observed. We consider this "quite unlikely" since p < 0.05.
+
+
+--
+
+Since we have observed the sample proportion of 0.83 then we reject the $H_0$.
+
+--
+
+We conclude that the population proportion of Americans who approve allowing DACA immigrants to become citizens is significantly different than 0.5
+
+---
+
+## Conditions
+
+`r fontawesome::fa(name = "check", fill = "#e56646")` [Gallup website](https://news.gallup.com/poll/235775/americans-oppose-border-walls-favor-dealing-daca.aspx) indicates that the sample was randomly selected. We will assume independence.
+
+--
+
+.pull-left[
+`r fontawesome::fa(name = "check", fill = "#e56646")`Number of successes > 10
+
+```{r echo = TRUE}
+0.83*1520
+```
+
+]
+
+.pull-right[
+
+`r fontawesome::fa(name = "check", fill = "#e56646")`Number of failures > 10
+
+```{r echo = TRUE}
+(1-0.83)*1520
+```
+]
+
+--
+
+`r fontawesome::fa(name = "check", fill = "#e56646")`1520 < 10% US Population
+
+---
+
+class: middle
+
+Steps
+
+1. Set hypotheses
+2. Identify Sampling Distribution of $H_0$  
+3. Calculate p-value  
+4. Make a Decision and a Conclusion.
+
+

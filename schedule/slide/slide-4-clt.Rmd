@@ -1,0 +1,281 @@
+---
+title: "Central Limit Theorem"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+options(scipen=0)
+library(tidyverse)
+library(fivethirtyeight)
+library(scales)
+
+set.seed(84735)
+
+```
+
+
+
+class: middle
+
+## Data
+
+```{r message = FALSE, warning = FALSE}
+lapd <- read_csv("data/lapd_2018.csv") %>% 
+  rename(base_pay = `Base Pay`) %>% 
+  select(base_pay)
+```
+
+We will be using payroll data from Los Angeles Police Department (LAPD) from 2018.
+
+
+```{r echo = TRUE}
+glimpse(lapd)
+```
+
+---
+
+## Population Distribution
+
+```{r}
+lapd %>% 
+  ggplot(aes(x = base_pay)) +
+  geom_histogram(binwidth = 5000) +
+  scale_x_continuous(labels = comma) +
+  theme(text = element_text(size = 20)) 
+  
+```
+
+---
+class: middle 
+
+## Population Mean
+
+
+We have data on everyone who worked for LAPD in the year 2018. So the distribution we just looked at is a population distribution. We can go ahead and calculate the population mean ( $\mu$ ).
+
+```{r echo = TRUE}
+summarize(lapd, mean(base_pay))
+```
+
+---
+class: middle 
+
+## Population Standard Deviation
+
+We can calculate the population standard deviation ( $\sigma$ ).
+
+```{r cho = TRUE}
+summarize(lapd, sd(base_pay))
+```
+
+---
+
+class: middle
+
+What if we did not have access to all this data? What would we do?
+
+--
+
+Rely on a sample!
+
+---
+
+class: middle
+
+```{r warning = FALSE}
+options(scipen = 0)
+pop_mean <-  mean(lapd$`Base Pay`)
+```
+
+Let's assume we went ahead and took a (random) sample of LAPD staff and asked their salary information (and they report to us truthfully) and calculated a mean, would we find a mean of 85149.05? Why, why not?
+
+---
+
+class: middle
+
+Let's pretend we have never seen the data and we do not know the population parameter $\mu$. In fact this is usually what happens in real life. We do not have the population information but we do want to know a population __parameter__ (does not necessarily have to be the mean).
+
+--
+
+If we took a sample and calculated the sample mean, we would name this __point estimate__ of the parameter. 
+
+
+---
+class: middle center
+
+
+
+|                               | Parameter of Interest | Point Estimate / Sample Statistic |
+|-------------------------------|-----------------------|-----------------------------------|
+| Mean                          | $\mu$                 | $\bar x$                          |
+| Difference of Two Means       | $\mu_1 - \mu_2$       | $\bar x_1 - \bar x_2$             |
+| Proportion                    | $\pi$                 | $p$                               |
+| Difference of Two Proportions | $\pi_1 - \pi_2$       | $p_1 - p_2$                       |
+
+
+---
+class: middle 
+
+## First Sample
+
+We would like to know about $\mu$ but we cannot access the whole population.
+
+A researcher takes a random sample of 20 LAPD staff and ask them about their base pay.
+
+--
+
+```{r}
+sample_1 <- lapd %>% 
+  sample_n(20) 
+sample_1$base_pay
+```
+
+--
+
+**Mean of first sample**, $\bar x_1$ = 
+
+```{r}
+mean(sample_1$base_pay)
+```
+
+
+---
+
+## Mean of second sample
+
+$\bar x_2$ = 
+
+```{r}
+
+sample_2 <- lapd %>% 
+  sample_n(20) %>% 
+  select(base_pay)
+
+mean(sample_2$base_pay)
+```
+
+--
+
+## Mean of third sample
+
+$\bar x_3$ = 
+
+```{r}
+
+sample_3 <- lapd %>% 
+  sample_n(20) %>% 
+  select(base_pay)
+
+mean(sample_3$base_pay)
+```
+
+---
+
+class: middle
+
+We could do this over and over again. Don't you worry! I did it.
+
+I have taken 10,000 samples of size 200 (sample size of 20 is just too small) and calculated their mean. The following slide shows the distribution of the **sample means**.
+
+---
+
+### Sampling Distribution of the Mean
+
+```{r warning = FALSE, cache = TRUE}
+set.seed(123)
+sample_means <-vector()
+
+for (i in 1:10000){
+    sample_means <- c(sample_means, mean(sample_n(lapd, 200)$base_pay))
+}
+
+sample_means_data <- data.frame(sample_means = sample_means)
+
+```
+
+```{r warning = FALSE, message = FALSE}
+sample_means_data %>% 
+  ggplot(aes(x = sample_means)) +
+  geom_histogram() +
+  labs(x = "Sample Means") +
+  scale_x_continuous(labels = comma) +
+  theme(text = element_text(size = 20))  +
+    geom_text(x = 0, y = 0, label = "bar(x)", parse=T)
+```
+
+---
+
+### Sampling Distribution of the Mean
+
+```{r warning = FALSE, message = FALSE}
+population_mean <- mean(lapd$base_pay)
+
+sample_means_data %>% 
+  ggplot(aes(x = sample_means)) +
+  geom_histogram() +
+  labs(x = "Sample Means") +
+  scale_x_continuous(labels = comma) +
+  theme(text = element_text(size = 20))  +
+    geom_text(x = 0, y = 0, label = "bar(x)", parse=T) +
+  geom_vline(xintercept = population_mean)
+
+```
+
+---
+
+class: middle
+
+## Conclusion
+
+When certain conditions are met then:
+
+
+$$\bar x \sim \text{approximately }N( \mu, \frac{\sigma^2}{n})$$
+
+--
+
+$$(\bar x_1 - \bar x_2) \sim \text{approximately } N(\mu_1 - \mu_2, \frac{\sigma_1^2}{n_1}+ \frac{\sigma_2^2}{n_2})$$
+
+--
+
+$$p \sim  \text{approximately } N(\pi,  \frac{\pi(1-\pi)}{n})$$
+
+--
+
+$$(p_1 - p_2) \sim \text{approximately } N((\pi_1 - \pi_2),  {\frac{\pi_1(1-\pi_1)}{n_1} + \frac{\pi_2(1-\pi_2)}{n_2}})$$
+
+---
+
+class: middle 
+
+## Central Limit Theorem (CLT)
+
+If certain conditions are met, the sampling distribution will be normally distributed with a mean equal to the population parameter. The standard deviation will be inversely proportional to the square root of the sample size. 
+
+--
+
+We will learn the conditions in the upcoming lectures.
+
+--
+
+Moving forward we will use CLT to make __inference__ about population parameters using sample statistics. 
+

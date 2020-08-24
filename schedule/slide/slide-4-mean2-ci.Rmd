@@ -1,0 +1,209 @@
+---
+title: "Confidence Interval for Difference of Two Means"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+library(tidyverse)
+options(scipen=0)
+theme_set(theme_gray(base_size = 18))
+
+```
+
+
+
+
+## Confidence Interval Review
+
+
+Confidence Interval = point estimate $\pm$ critical value $\times$ standard error of the estimate
+
+|                               | point estimate        | critical value | standard error of the estimate                    |
+|-------------------------------|-----------------------|:--------------:|---------------------------------------------------|
+| single proportion             | $p$                   | z*             | $\sqrt{\frac{p(1-p)}{n}}$                         |
+| difference of two proportions | $p_1-p_2$             | z*             | $\sqrt{\frac{p_1(1-p_1)}{n}+\frac{p_2(1-p_2)}{n}}$ |
+| single mean                   | $\bar x$              | $t*_{df}$      | $\sqrt{\frac{s^2}{n}}$                            |
+| difference of two means       | $\bar x_1 - \bar x_2$ | $t*_{df}$      | $\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$    |
+
+---
+class: middle
+
+## Conditions
+
+1. Independence: Within each group data have to be independent from each other. The two groups have to be independent from one another.
+
+2. Normality: We check for normality for each group.
+---
+
+
+class: center middle
+
+
+## Confidence Interval for Difference of Two Means
+
+
+$\bar x_1 - \bar x_2 \pm t^*_{df} \times \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$
+
+---
+
+class: middle
+
+## Example 
+Onnasch, L., & Roesler, E. (2019). Anthropomorphizing Robots: **The Effect of Framing in Human-Robot Collaboration.** Proceedings of the Human Factors and Ergonomics Society Annual Meeting, 63(1), 1311–1315. https://doi.org/10.1177/1071181319631209
+
+--
+
+**Experiment**: A humanoid robot supports the participant of the study to solve a math puzzle. Do participants perceive the robots differently if the robots are described with anthropomorphic framing or functional framing?
+
+
+
+---
+
+Response variable: Perception of the robot (humanness, eeriness, acceptance)
+
+.pull-left[
+
+**Anthropomorphic framing**
+
+- the robot has a name
+- has a personal story
+- has a favorite color and hobbies
+- pronoun: him
+]
+
+
+.pull-right[
+
+**Functional framing**
+
+- height, weight
+- pronoun: it
+]
+
+---
+
+Response variable: Perception of the robot (humanness, eeriness, acceptance)
+
+.pull-left[
+
+**Anthropomorphic framing**
+
+- the robot has a name
+- has a personal story
+- has a favorite color and hobbies
+- pronoun: him
+
+
+
+
+$n_1=20$  
+$\bar x_1 = 3.18$  
+$s_1 = 0.57$  
+]
+
+
+.pull-right[
+
+**Functional framing**
+
+- height, weight
+- pronoun: it
+
+<br>
+
+
+$n_2=20$  
+$\bar x_2 = 3.07$  
+$s_2 = 0.29$ 
+]
+
+
+---
+class: middle
+
+## Conditions
+
+- Independence within groups 
+
+- Independence between groups
+
+- Normality
+
+---
+
+class: center middle
+
+## CI
+
+
+$\bar x_1 - \bar x_2 \pm t^*_{df} \times \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$
+
+---
+
+## 95% CI
+
+.pull-left[
+```{r echo = TRUE}
+xbar1 <- 3.18
+xbar2 <- 3.07
+point_estimate <- xbar1-xbar2
+point_estimate
+
+s1 <- 0.57
+s2 <- 0.29
+n1 <- 20
+n2 <- 20
+
+
+```
+]
+
+.pull-right[
+
+
+
+```{r echo = TRUE}
+critical_value <- pt(0.975, df = 19) # we use the smaller groups n-1
+
+critical_value
+
+se <- sqrt((s1^2)/n1 + (s2^2)/n2)
+se
+
+```
+
+]
+
+
+---
+
+## 95% CI
+
+```{r echo= TRUE}
+point_estimate - critical_value*se
+point_estimate + critical_value*se
+
+```
+
+95% CI = (`r point_estimate - critical_value*se` , `r point_estimate + critical_value*se`)

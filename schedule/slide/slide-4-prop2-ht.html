@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Hypothesis Testing for Difference of Two Proportions</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Dogucu" />
+    <link rel="stylesheet" href="slide-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Hypothesis Testing for Difference of Two Proportions
+### Dr. Dogucu
+
+---
+
+
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt; 
+ Copyright &amp;copy; &lt;a href="https://mdogucu.ics.uci.edu"&gt;Dr. Mine Dogucu&lt;/a&gt;. &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;&lt;/div&gt; 
+
+
+---
+
+
+class: center middle
+
+
+
+
+
+class: middle 
+
+## Hypothesis Testing
+
+Steps
+
+1. Set hypotheses
+2. Identify Sampling Distribution of `\(H_0\)`  
+3. Calculate p-value  
+4. Make a Decision and a Conclusion.
+
+---
+
+## Example
+
+Is there a relationship between taking a college level science class and belief in life after death? Below are the responses from General Social Survey in 2018.
+
+
+
+&lt;table align = "center"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2" rowspan="2"&gt;&lt;/th&gt;
+    &lt;th colspan="2"&gt;Belief in Life After Death&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;No&lt;br&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="2"&gt;College Science Course&lt;br&gt;&lt;/td&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;375&lt;/td&gt;
+    &lt;td&gt;75&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;No&lt;/td&gt;
+    &lt;td&gt;485&lt;/td&gt;
+    &lt;td&gt;115&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+class: middle center
+## Step 1. Set hypotheses
+
+`$$H_0: \pi_1 = \pi_2$$`
+
+`$$H_A: \pi_1 \neq \pi_2$$`
+
+
+---
+
+class: middle
+
+## Step 2. Identify Sampling Distribution of `\(H_0\)` 
+
+If conditions are met then according to CLT `\((p_1 - p_2) \sim \text{approximately } N(\pi_1 - \pi_2,  {\frac{\pi_1(1-\pi_1)}{n_1} + \frac{\pi_2(1-\pi_2)}{n_2}})\)`
+
+--
+
+Assuming that the null is true then `$$\pi_1 = \pi_2$$` so we cannot use different `\(p_1\)` and `\(p_2\)` in place of `\(\pi_1\)` and `\(\pi_2\)`.
+
+
+---
+
+class: middle
+
+## Pooled estimate of a proportion when `\(H_0: \pi_1 = \pi_2\)`
+
+`\(p_{pooled} = \frac{\text{number of total successes}}{\text{number of total cases}} = \frac{p_1n_1+p_2n_2}{n_1+n_2}\)`
+
+`\(SE = \sqrt{\frac{p_{pooled}(1-p_{pooled})}{n_1}+\frac{p_{pooled}(1-p_{pooled})}{n_2}}\)`
+
+We also use the pooled proportion when checking conditions for success-failure counts.
+
+---
+
+class: middle
+
+## Calculating pooled proportion
+
+`\(p_{pooled} = \frac{\text{number of total successes}}{\text{number of total cases}} = \frac{p_1n_1+p_2n_2}{n_1+n_2}\)`
+
+
+```r
+p1 &lt;- 0.83
+p2 &lt;- 0.8083
+n1 &lt;- 450
+n2 &lt;- 600
+
+p_pooled &lt;- (p1*n1+p2*n2)/(n1+n2)
+
+p_pooled
+```
+
+```
+## [1] 0.8176
+```
+
+---
+
+## Calculating standard error
+
+
+`\(SE = \sqrt{\frac{p_{pooled}(1-p_{pooled})}{n_1}+\frac{p_{pooled}(1-p_{pooled})}{n_2}}\)`
+
+
+```r
+sqrt((p_pooled*(1-p_pooled)/n1) + (p_pooled*(1-p_pooled)/n2))
+```
+
+```
+## [1] 0.02408217
+```
+
+---
+
+class: middle
+
+## Step 3. Calculate p-value  
+
+.pull-left[
+
+
+```r
+p1 - p2
+```
+
+```
+## [1] 0.0217
+```
+How likely are we to observe a difference of proportions in samples that is at least as extreme as (0.0217)?
+
+
+]
+
+.pull-right[
+
+&lt;img src="slide-4-prop2-ht_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+If the null hypothesis is true then 
+
+
+```r
+se &lt;- sqrt((p_pooled*(1-p_pooled)/n1) + (p_pooled*(1-p_pooled)/n2))
+
+pnorm(0.0217, mean = 0, sd = se, lower.tail = FALSE) #P(p1-p2&gt;0.0217)
+```
+
+```
+## [1] 0.1837725
+```
+
+
+
+```r
+pnorm(-0.0217, mean = 0, sd = se) #P(p1-p2&lt;-0.0217)
+```
+
+```
+## [1] 0.1837725
+```
+
+
+
+```r
+pnorm(-0.0217, mean = 0, sd = se)*2 #p-value
+```
+
+```
+## [1] 0.367545
+```
+
+---
+
+class: middle
+
+## Step 4. Make a Decision and a Conclusion.
+
+If the null hypothesis was true ( `\(\pi_1 - \pi_2 = 0\)`  ) then the probability of observing a difference of proportions in the sample that is at least extreme as 0.0217 would be 0.37. In other words, p-value = 0.37 which is not less than 0.05. This implies that the observed value ( `\(p_1 - p_2 = 0.0217\)` ) is not significantly different than 0. We fail to reject the null and conclude that we have not found any evidence against the null.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

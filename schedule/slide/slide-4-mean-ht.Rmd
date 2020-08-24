@@ -1,0 +1,195 @@
+---
+title: "Hypothesis Testing for a Single Mean"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+class: middle
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+library(tidyverse)
+library(openintro)
+options(scipen=0)
+theme_set(theme_gray(base_size = 18))
+
+
+```
+
+
+## Steps
+
+1. Set hypotheses
+2. Identify Sampling Distribution of $H_0$  
+3. Calculate p-value  
+4. Make a Decision and a Conclusion.
+
+---
+
+class: middle
+
+## Review
+
+To calculate the p-value
+
+1. We assume the null hypothesis is true.  
+2. Based on the null hypothesis we plot/imagine the sampling distribution.  
+3. We then examine where the sample statistic falls in this distribution.  
+4. We then calculate the probability (p-value) of observing a sample statistic that is at least as extreme as the one that we have observed if the null hypothesis were true.
+
+---
+
+class: middle 
+
+```{r echo = FALSE}
+acs_employed <- acs12 %>% 
+  filter(employment == "employed") 
+acs_summary <- acs_employed %>% 
+  summarize(mean_work = mean(hrs_work), 
+            sd_work = sd(hrs_work))
+
+```
+
+The American Community Survey (ACS) is an ongoing survey by the U.S. Census Bureau that is conducted to gather information on people residing in the United States. We would like to know whether those who are employed work 40 hours a week on average. The ACS results in 2012 indicate that among the 843 people who were employed, the average work hour per week was `r acs_summary$mean_work` hours and standard deviation was `r acs_summary$sd_work` hours.
+
+
+--
+
+$\bar x = 38.9312$  
+$s = 12.91513$  
+$n = 843$  
+
+---
+
+## Conditions
+
+**Independence** We are not given enough information about the sampling method used for this survey. Since the aim of the survey is to gather information from people in the US and given that the survey is conducted by US Census we would expect some form of randomized sampling. However, there are sampling strategies such as cluster sampling. In such cases, a family may be selected to be surveyed. In this case, the data would not meet the independence condition. We should check US Census website to gather further information on sampling strategies. For now, we will assume independence.
+
+**Normality** Sample size > 30, outliers?
+
+---
+
+class: middle
+
+## Steps
+
+1. Set hypotheses
+2. Identify Sampling Distribution of $H_0$  
+3. Calculate p-value  
+4. Make a Decision and a Conclusion.
+
+---
+
+class: middle
+
+# Step 1 : Set hypotheses
+
+.pull-left[
+$H_0: \mu = 40$  
+$H_A: \mu \neq 40$
+]
+
+.pull-right[
+$H_0: \mu - 40 = 0$  
+$H_A: \mu - 40 \neq$
+]
+
+---
+
+class: middle
+
+# Step 2: Sampling Distribution of $H_0$  
+
+When certain __conditions__ are met then:
+
+
+$\bar x \sim \text{approximately } N(mean = \mu, sd =\frac{\sigma}{\sqrt{n}})$
+
+--
+
+We will assume $H_0$ is true
+
+$\bar x \sim \text{approximately } N( \text{mean} = 40,  \frac{12.91513}{\sqrt{843}})$
+
+--
+
+$\bar x \sim \text{approximately } N(40, \text{sd} = 0.4448207)$
+--
+
+
+---
+
+# Step 3: Calculate p-value  
+
+How many standard deviations (standard errors) is the point estimate away from the mean in the sampling distribution of the null hypothesis? 
+
+--
+
+$t = \frac{\bar x - \text{null}}{se}$
+
+
+$t = \frac{38.9312-40}{\frac{12.91513}{\sqrt{843}}} = -2.402766$
+
+
+
+---
+
+# Step 3: Calculate p-value  
+
+```{r, fig.height=4, fig.align='center'}
+
+z <- seq(-3.5, 3.5, by = 0.0001)
+
+t <- seq(-3.5, 3.5, by = 0.0001)
+
+y <- dt(z, df = 842)
+
+data <- tibble(t = t, y = y)
+
+qplot(t, y, data = data, 
+            geom = "line") +
+        ylab("") +
+        geom_ribbon(data = subset(data,  t < -2.402766),
+                    aes(ymax = y), 
+                    ymin = 0,
+                    fill = "darkturquoise", 
+                    colour = NA, 
+                    alpha = 0.5) +
+      
+        geom_ribbon(data = subset(data,  t > 2.402766),
+                    aes(ymax = y), 
+                    ymin = 0,
+                    fill = "darkturquoise", 
+                    colour = NA, 
+                    alpha = 0.5) +
+        geom_vline(xintercept =-2.402766, color = "darkslateblue") +
+        labs(title = "Null Distribution (t)") 
+```
+
+```{r echo = TRUE}
+pt(-2.402766, df = 842) * 2
+```
+
+
+---
+# Step 4: Make a Decision and a Conclusion.
+
+If the null hypothesis were true ( $\mu = 40$ ) then probability of observing a sample statistic that is at least as extreme as the one that we have observed ( $\bar x = 38.9312$ ) would be `r pt(-2.402766, df = 842) * 2`. We consider this to be an evidence against the null since p-value (`r pt(-2.402766, df = 842) * 2`) is less than 0.05. In other words, if the null were true, it would be quite unlikely to observe a sample mean that is at least that extreme but since we have observed this sample, it is unlikely that the null is true so we reject the null and conclude that the average work time in the US in 2012 differs significantly from 40.

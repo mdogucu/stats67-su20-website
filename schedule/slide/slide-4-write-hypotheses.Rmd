@@ -1,0 +1,530 @@
+---
+title: "Writing and Testing Hypotheses"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+class: middle
+
+```{r message = FALSE, echo = FALSE}
+library(tidyverse)
+library(datasets)
+```
+
+
+## Review of Notation
+
+<table align ="center">
+
+<thead>
+<th> </th>
+<th>Sample Statistic</th>
+<th>Population Parameter</th>
+</thead>
+
+<tr>
+<td>Mean</td>
+<td> x&#772; </td>
+<td> &mu;</td>
+
+</tr>
+
+<tr>
+<td> Standard Deviation </td>
+<td> s </td>
+<td> &sigma;</td>
+
+</tr>
+
+<tr>
+<td> Variance </td>
+<td> s<sup>2</sup> </td>
+<td> &sigma;<sup>2</sup></td>
+
+</tr>
+
+<tr> 
+<td>Proportion</td>
+<td>p</td>
+<td>&pi;</td>
+
+</tr>
+
+
+</table>
+
+---
+
+class:center middle 
+
+In statistics, we are interested in making an inference about population parameters. We set and test hypotheses about the population. 
+
+---
+
+class: middle
+
+## Goals
+
+- Learn to write hypotheses in words.
+- Learn to write hypotheses using notation.
+
+
+---
+
+class:center middle
+
+null means zero(which represents nothingness)
+
+
+---
+
+class: middle center
+
+## Research Question
+
+Are there any pink cows in the world?
+
+---
+
+class: middle 
+
+## Hypotheses
+
+**Null** hypothesis: There are __no__ pink cows in the world.  
+
+**Alternative** hypothesis: There is a pink cow in the world.
+
+---
+
+class: middle 
+
+## Hypothesis Testing Procedure
+
+We go looking for evidence to against the null. 
+
+- If we find any evidence against the null (a single pink cow) then we can conclude null is false. We say we **reject the null** hypothesis.
+
+- If we do not find any evidence against the null (a single pink cow) then **we fail to reject the null**. We can keep searching for more evidence against the null (i.e. continue looking for a pink cow). We will never be able to say the null is true so we never accept the null. All we can do is keep looking for a pink cow.
+
+---
+
+class:  center middle 
+
+## Research Question
+
+Are there any black cows in the world?
+
+---
+
+class: middle 
+
+## Hypotheses
+
+**Null** hypothesis: There are __no__ black cows in the world.
+
+**Alternative** hypothesis: There are is a black cow in the world.
+
+
+---
+
+```{r echo = FALSE, fig.align = 'center', out.width="40%"}
+library(emojifont)
+library(ggplot2)
+
+ggplot() + geom_emoji("cow", color='black') + theme_void()
+```
+
+When we see a black cow, we **reject** the null hypothesis and conclude that there is a black cow in the world. 
+
+---
+
+class:middle
+
+```{r echo=FALSE, out.width='50%', fig.align='center'}
+knitr::include_graphics('img/tweet.png')
+```
+
+---
+
+class: center middle
+
+## Research Question
+
+Is there a foreign object in the cat's body?
+
+
+---
+
+class: middle
+
+## Hypothesis Testing
+
+**Null** hypothesis: There is __no__ foreign object in the cat's body.
+
+**Alternative** hypothesis: There are is a foreign object in the cat's body.
+
+---
+
+class: center middle
+
+## Collect Evidence
+
+X-ray
+
+---
+class: middle 
+
+## Conclusion and Decision
+
+
+X-ray does not show any foreign object. 
+
+
+- Fail to reject the null hypothesis.
+- We __cannot__ conclude the null hypothesis is true. We __cannot__ accept the null hypothesis.
+
+---
+
+class: middle 
+
+## Example
+
+
+**Null** hypothesis: There is **no** problem with my cell phone.
+
+**Alternative** hypothesis: There is a problem with my cell phone.
+
+---
+
+class: middle
+
+## Collect Evidence
+
+- Check if the screen is broken.
+
+--
+
+- Check if the battery life is too short.
+
+--
+
+- Check if the response times of apps are long.
+
+--
+
+- ...
+
+---
+
+class: middle
+
+## Conclusion and Decision
+
+No problems were detected.
+
+- Fail to reject the null hypothesis. 
+
+--
+
+- You __cannot__ conclude that there is no problem with the cell phone.
+
+--
+
+- You can state that there were no problems detected (i.e. there was no evidence against the null).
+
+---
+class: middle
+
+## Remember
+
+- Null hypothesis is always about nothing: **no** pink cow, **no** effect, **no** difference etc.
+
+--
+
+- We __never__ accept the null hypothesis. We either reject it or fail to reject it.
+
+--
+
+- We always start a hypothesis test with the assumption that the null hypothesis is true and try to find evidence against it. 
+
+---
+
+class: subtopic center middle
+
+.subtopic-note[Writing Hypotheses with Notation]
+
+---
+
+
+class: middle
+
+`r fontawesome::fa(name = "search", fill = "#e56646")` **Research Question** Do UCI students sleep 8 hours on a typical night? 
+
+
+--
+
+`r fontawesome::fa(name = "table", fill = "#e56646")` **Variable** `sleep` (8,7,9,7.5, ...)
+
+--
+
+`r fontawesome::fa(name = "language", fill = "#e56646")` **Research Question Using Notation** $\mu \stackrel{?}{=} 8$
+
+--
+<hr> 
+
+.center[
+**Hypotheses** 
+
+$H_0 : \mu = 8$  
+$H_A : \mu \neq 8$
+]
+
+<hr>
+--
+
+The parameter we want to infer about is **a single mean**.
+
+---
+
+class: middle
+
+## Null Hypothesis
+
+It might be harder for us to see the null hypothesis being the "zero/no" case until we move things around. 
+
+.pull-left[
+$H_0 : \mu = 8$  
+$H_A : \mu \neq 8$
+]
+
+.pull-right[
+$H_0 : \mu - 8 = 0$  
+$H_A : \mu - 8 \neq 0$  
+]
+
+
+---
+
+## Side Note
+
+If you write HA and H0 to refer to null and alternative hypotheses on Gradescope when you type, we will understand what you are referring to.
+
+--
+
+If you want to type it out correctly as $H_0$ and $H_A$ then you can write 
+
+```{r eval = FALSE}
+$$H_0$$
+$$H_A$$
+```
+
+The double dollar signs at the beginning and at the end let Gradescope know that you are writing a math equation.
+
+_ makes the preceding character a subscript. 
+
+---
+
+class: middle 
+
+`r fontawesome::fa(name = "search", fill = "#e56646")` **Research Question** Do the majority of Americans approve allowing DACA immigrants to become citizens?
+
+--
+
+`r fontawesome::fa(name = "table", fill = "#e56646")` **Variable** `approve` (yes, yes, yes, no, yes, no, no)
+
+--
+
+`r fontawesome::fa(name = "language", fill = "#e56646")` **Research Question Using Notation** $\pi \stackrel{?}{>} 0.5$ but also check  $\pi \stackrel{?}{<} 0.5$
+
+--
+<hr>
+
+.center[
+**Hypotheses** 
+
+$H_0: \pi = 0.5$  
+$H_A: \pi \neq 0.5$
+]
+
+<hr>
+
+--
+
+The parameter we want to infer about is **a single proportion**.
+
+---
+
+`r fontawesome::fa(name = "search", fill = "#e56646")` **Research Question** Is California March 2020 unemployment rate is different than US March 2020 unemployment rate which is at 4.4%?
+
+--
+
+`r fontawesome::fa(name = "table", fill = "#e56646")` **Variable** `unemployed_CA` (no, no, yes, no, yes, no, no...)
+
+--
+
+`r fontawesome::fa(name = "language", fill = "#e56646")` **Research Question Using Notation** $\pi \stackrel{?}{=} 0.044$
+--
+<hr>
+
+.center[
+
+**Hypotheses**
+
+$$H_0:\pi= 0.044$$  $$H_A: \pi \neq 0.044$$
+
+]
+<hr>
+
+--
+
+The parameter we want to infer about is **a single proportion**.
+
+---
+
+`r fontawesome::fa(name = "search", fill = "#e56646")` **Research Question** Are there more STEM majors at UCI than non-STEM majors?
+
+--
+
+`r fontawesome::fa(name = "table", fill = "#e56646")` **Variable** `STEM` (TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE...)
+
+--
+
+`r fontawesome::fa(name = "language", fill = "#e56646")` **Research Question Using Notation** $\pi_{STEM} \stackrel{?}{=} 0.5$
+
+--
+
+<hr>
+
+.center[
+
+**Hypotheses**
+
+$$H_0: \pi = 0.5$$ $$H_A: \pi \neq 0.5$$
+]
+<hr>
+
+--
+
+The parameter we want to infer about is **a single proportion**.
+
+---
+
+`r fontawesome::fa(name = "search", fill = "#e56646")` **RQ** Do STEM (s) majors have higher or lower (different) income after graduation when compared to non-STEM (n) majors?
+
+--
+
+`r fontawesome::fa(name = "table", fill = "#e56646")` **Variables** explanatory: `STEM` (TRUE, FALSE, FALSE, TRUE,...)  
+response: `income`(40000, 20000, 65490, 115000,...)
+
+--
+
+`r fontawesome::fa(name = "language", fill = "#e56646")` **Research Question Using Notation** $\mu_{s} \stackrel{?}{=} \mu_{n}$ 
+
+--
+
+<hr>
+.center[ **Hypotheses** ]
+
+.pull-left[
+
+
+$$H_0:\mu_{s} = \mu_{n}$$  $$H_A:\mu_{s} \neq \mu_{n}$$
+]
+
+.pull-right[
+
+
+$$H_0:\mu_{s} - \mu_{n} = 0$$  $$H_A:\mu_{s} - \mu_{n} \neq 0$$
+]
+
+<hr>
+
+--
+
+We want to infer about **difference of two means**.
+
+---
+
+`r fontawesome::fa(name = "search", fill = "#e56646")` **RQ** Do Democrats and Republicans approve legal abortion at same rates?
+
+--
+
+`r fontawesome::fa(name = "table", fill = "#e56646")` **Variables** explanatory: `party` (D, D, R, R,...)  
+response: `approve`(TRUE, FALSE, FALSE, TRUE,...)
+
+--
+`r fontawesome::fa(name = "language", fill = "#e56646")` **Research Question Using Notation** $\pi_{d} \stackrel{?}{=} \pi_{r}$ 
+
+--
+<hr>
+.center[**Hypotheses**]
+
+.pull-left[
+
+
+$H_0:\pi_{d} = \pi_{r}$  
+$H_A:\pi_{d} \neq \pi_{r}$
+]
+
+.pull-right[
+
+
+$H_0:\pi_{d} - \pi_{r} = 0$  
+$H_A:\pi_{d} - \pi_{r} \neq 0$]
+
+<hr>
+
+--
+
+We want to infer about **difference of two proportions**.
+
+
+---
+
+class: middle center
+
+
+In the next few lectures we will learn about the following in more detail.
+
+<div align="center">
+
+|                               | Parameter of Interest | Response              |Explanatory            |
+|-------------------------------|-----------------------|-----------------------|-----------------------|
+| Single Mean                   | $\mu$                 | Numeric               |
+| Difference of Two Means       | $\mu_1 - \mu_2$       | Numeric               |Binary                 |
+| Single Proportion             | $\pi$                 | Binary                |
+| Difference of Two Proportions | $\pi_1 - \pi_2$       | Binary                |Binary                 |
+
+
+A categorical variable with two levels is called a __binary__ variable.
+
+---
+
+class: middle 
+
+<div align = "center">
+
+| Parameter of Interest | Response              |Explanatory                |
+|-----------------------|-----------------------|-----------------------    |
+| $\beta_1$             | Numeric               | Categorical and/or Numeric|
+
+
+
+
+

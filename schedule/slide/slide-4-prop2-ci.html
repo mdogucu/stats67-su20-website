@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Confidence Interval for Difference of Two Proportions</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Dogucu" />
+    <link rel="stylesheet" href="slide-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Confidence Interval for Difference of Two Proportions
+### Dr. Dogucu
+
+---
+
+
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt; 
+ Copyright &amp;copy; &lt;a href="https://mdogucu.ics.uci.edu"&gt;Dr. Mine Dogucu&lt;/a&gt;. &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;&lt;/div&gt; 
+
+
+---
+
+
+class: middle
+
+
+
+
+
+
+## Example
+
+Do those who take college level science courses and those who don't have different rates of belief in life after death? Below are the responses from General Social Survey in 2018.
+
+
+
+&lt;table align = "center"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2" rowspan="2"&gt;&lt;/th&gt;
+    &lt;th colspan="2"&gt;Belief in Life After Death&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;No&lt;br&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="2"&gt;College Science Course&lt;br&gt;&lt;/td&gt;
+    &lt;td&gt;Yes&lt;/td&gt;
+    &lt;td&gt;375&lt;/td&gt;
+    &lt;td&gt;75&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;No&lt;/td&gt;
+    &lt;td&gt;485&lt;/td&gt;
+    &lt;td&gt;115&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+class: middle
+
+## Understanding the Question
+
+Response: Belief in Life After Death (categorical)   
+Explanatory: College Science Course 
+
+---
+
+class: middle
+
+## What did we observe?
+
+Belief in Life After Death Among College Science Course Takers
+
+`\(p_{science} = \frac{375}{375+75} = 0.8333333\)`  
+
+`\(n_{science} = 450\)`
+
+Belief in Life After Death Among Non - College Science Course Takers
+
+`\(p_{noscience} = \frac{485}{485+115} = 0.8083333\)`  
+
+`\(n_{noscience} = 600\)`
+
+---
+
+class: middle
+
+## What did we observe?
+
+
+It seems like there are more after life believers among college science course takers (~83%) when compared to those who did not take college science course (~80.83%). But now that we have taken statistics course we cannot only rely on comparison of sample statistics. We know we have to think about population parameters.
+
+---
+
+class: middle
+
+## CLT for two proportions
+
+If conditions are met then according to CLT `\((p_1 - p_2) \sim \text{approximately } N(\pi_1 - \pi_2,  {\frac{\pi_1(1-\pi_1)}{n_1} + \frac{\pi_2(1-\pi_2)}{n_2}})\)`
+
+--
+
+Recall that the standard deviation of the the sampling distribution is the standard error.
+
+--
+
+Standard error for difference of two proportions
+
+`\(\sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}\)`
+
+---
+
+class: middle
+
+## Conditions
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt; Independence: Within each group data have to be independent from each other. The two groups have to be independent from one another.
+
+GSS utilizes some form of random sampling so we would expect independence within each group. People either have taken a college level science class or they have not taken so we can assume that the groups are independent from one another.
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt; There needs to be at least 10 successes and 10 failures in each group.
+
+We have seen that all the values in the contingency table were greater than 10.
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt; For each group the sample size needs to be smaller than 10% of the population. 
+
+Sample size of 1050 is less than 10% of the US population.
+
+---
+
+
+## Confidence Interval Construction 
+
+CI = `\(\text{point estimate} \pm \text { critical value} \times \text{standard error}\)`
+
+CI for difference of two proportions = `\(p_1 - p_2 \pm \text { critical value} \times \sqrt{{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}}\)`
+
+### Steps
+
+1. Calculate point estimate.  
+2. Calculate critical value.
+3. Calculate standard error.
+4. Construct the confidence interval.
+
+
+---
+
+CI for difference of two proportions = `\(p_1 - p_2 \pm \text { critical value} \times \sqrt{{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}}\)`
+
+.pull-left[
+
+
+```r
+p1 &lt;- 0.83
+p2 &lt;- 0.8083
+n1 &lt;- 450
+n2 &lt;- 600
+
+point_estimate &lt;- p1 - p2
+
+cv &lt;- qnorm(0.975)
+cv
+```
+
+```
+## [1] 1.959964
+```
+
+]
+
+--
+
+.pull-right[
+
+```r
+se &lt;- sqrt((p1*(1-p1)/n1)+(p2*(1-p2)/n2))
+
+point_estimate - cv*se
+```
+
+```
+## [1] -0.02516763
+```
+
+```r
+point_estimate + cv*se
+```
+
+```
+## [1] 0.06856763
+```
+
+95%CI for `\(p_1-p_2\)` is (-0.025,0.069)
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

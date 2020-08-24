@@ -1,0 +1,236 @@
+---
+title: "Hypothesis Testing for Difference of Two Proportions"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+
+class: center middle
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+library(tidyverse)
+options(scipen=0)
+theme_set(theme_gray(base_size = 20))
+
+set.seed(84735)
+
+
+```
+
+
+
+class: middle 
+
+## Hypothesis Testing
+
+Steps
+
+1. Set hypotheses
+2. Identify Sampling Distribution of $H_0$  
+3. Calculate p-value  
+4. Make a Decision and a Conclusion.
+
+---
+
+## Example
+
+Is there a relationship between taking a college level science class and belief in life after death? Below are the responses from General Social Survey in 2018.
+
+
+
+<table align = "center">
+<thead>
+  <tr>
+    <th colspan="2" rowspan="2"></th>
+    <th colspan="2">Belief in Life After Death</th>
+  </tr>
+  <tr>
+    <td>Yes</td>
+    <td>No<br></td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="2">College Science Course<br></td>
+    <td>Yes</td>
+    <td>375</td>
+    <td>75</td>
+  </tr>
+  <tr>
+    <td>No</td>
+    <td>485</td>
+    <td>115</td>
+  </tr>
+</tbody>
+</table>
+
+---
+class: middle center
+## Step 1. Set hypotheses
+
+$$H_0: \pi_1 = \pi_2$$
+
+$$H_A: \pi_1 \neq \pi_2$$
+
+
+---
+
+class: middle
+
+## Step 2. Identify Sampling Distribution of $H_0$ 
+
+If conditions are met then according to CLT $(p_1 - p_2) \sim \text{approximately } N(\pi_1 - \pi_2,  {\frac{\pi_1(1-\pi_1)}{n_1} + \frac{\pi_2(1-\pi_2)}{n_2}})$
+
+--
+
+Assuming that the null is true then $$\pi_1 = \pi_2$$ so we cannot use different $p_1$ and $p_2$ in place of $\pi_1$ and $\pi_2$.
+
+
+---
+
+class: middle
+
+## Pooled estimate of a proportion when $H_0: \pi_1 = \pi_2$
+
+$p_{pooled} = \frac{\text{number of total successes}}{\text{number of total cases}} = \frac{p_1n_1+p_2n_2}{n_1+n_2}$
+
+$SE = \sqrt{\frac{p_{pooled}(1-p_{pooled})}{n_1}+\frac{p_{pooled}(1-p_{pooled})}{n_2}}$
+
+We also use the pooled proportion when checking conditions for success-failure counts.
+
+---
+
+class: middle
+
+## Calculating pooled proportion
+
+$p_{pooled} = \frac{\text{number of total successes}}{\text{number of total cases}} = \frac{p_1n_1+p_2n_2}{n_1+n_2}$
+
+```{r echo = TRUE}
+p1 <- 0.83
+p2 <- 0.8083
+n1 <- 450
+n2 <- 600
+
+p_pooled <- (p1*n1+p2*n2)/(n1+n2)
+
+p_pooled
+```
+
+---
+
+## Calculating standard error
+
+
+$SE = \sqrt{\frac{p_{pooled}(1-p_{pooled})}{n_1}+\frac{p_{pooled}(1-p_{pooled})}{n_2}}$
+
+```{r echo = TRUE}
+sqrt((p_pooled*(1-p_pooled)/n1) + (p_pooled*(1-p_pooled)/n2))
+```
+
+---
+
+class: middle
+
+## Step 3. Calculate p-value  
+
+.pull-left[
+
+```{r echo = TRUE}
+p1 - p2
+```
+How likely are we to observe a difference of proportions in samples that is at least as extreme as (0.0217)?
+
+
+]
+
+.pull-right[
+
+```{r fig.height = 4}
+se <- sqrt((p_pooled*(1-p_pooled)/n1) + (p_pooled*(1-p_pooled)/n2))
+
+diff <- seq(-0.1, 0.1, by = 0.0001)
+
+y <- dnorm(diff, mean = 0, sd = se)
+
+data <- tibble(diff = diff, y = y)
+
+qplot(diff, y, data = data, 
+            geom = "line") +
+        ylab("") +
+        geom_ribbon(data = subset(data,  diff < -0.0217),
+                    aes(ymax = y), 
+                    ymin = 0,
+                    fill = "#e56646", 
+                    colour = NA, 
+                    alpha = 0.5) +
+      
+        geom_ribbon(data = subset(data,  diff > 0.0217),
+                    aes(ymax = y), 
+                    ymin = 0,
+                    fill = "#e56646", 
+                    colour = NA, 
+                    alpha = 0.5) +
+  geom_segment(x = -0.0217, 
+                 xend = -0.0217, 
+                 y = 0, 
+                 yend = dnorm(-0.0217, mean = 0, sd = se)) + 
+    geom_segment(x = 0.0217, 
+                 xend = 0.0217, 
+                 y = 0, 
+                 yend = dnorm(0.0217, mean = 0, sd = se)) +
+  scale_x_continuous(breaks = c(-0.05, -0.022, 0, 0.022, 0.05)) +
+  labs(x = expression(p[1]-p[2]))
+
+```
+
+]
+
+---
+
+If the null hypothesis is true then 
+
+```{r echo = TRUE}
+
+se <- sqrt((p_pooled*(1-p_pooled)/n1) + (p_pooled*(1-p_pooled)/n2))
+
+pnorm(0.0217, mean = 0, sd = se, lower.tail = FALSE) #P(p1-p2>0.0217)
+```
+
+
+```{r echo = TRUE}
+pnorm(-0.0217, mean = 0, sd = se) #P(p1-p2<-0.0217)
+```
+
+
+```{r echo = TRUE}
+pnorm(-0.0217, mean = 0, sd = se)*2 #p-value
+
+```
+
+---
+
+class: middle
+
+## Step 4. Make a Decision and a Conclusion.
+
+If the null hypothesis was true ( $\pi_1 - \pi_2 = 0$  ) then the probability of observing a difference of proportions in the sample that is at least extreme as 0.0217 would be 0.37. In other words, p-value = 0.37 which is not less than 0.05. This implies that the observed value ( $p_1 - p_2 = 0.0217$ ) is not significantly different than 0. We fail to reject the null and conclude that we have not found any evidence against the null. 
+

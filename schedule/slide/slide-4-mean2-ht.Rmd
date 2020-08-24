@@ -1,0 +1,147 @@
+---
+title: "Hypothesis Testing for Difference of Two Means"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+library(tidyverse)
+options(scipen=0)
+theme_set(theme_gray(base_size = 18))
+
+```
+
+Onnasch, L., & Roesler, E. (2019). Anthropomorphizing Robots: **The Effect of Framing in Human-Robot Collaboration.** Proceedings of the Human Factors and Ergonomics Society Annual Meeting, 63(1), 1311–1315. https://doi.org/10.1177/1071181319631209
+
+
+---
+
+Response variable: Perception of the robot (humanness, eeriness, acceptance)
+
+.pull-left[
+
+**Anthropomorphic framing**
+
+- the robot has a name
+- has a personal story
+- has a favorite color and hobbies
+- pronoun: him
+
+
+
+
+$n_1=20$  
+$\bar x_1 = 3.18$  
+$s_1 = 0.57$  
+]
+
+
+.pull-right[
+
+**Functional framing**
+
+- height, weight
+- pronoun: it
+
+<br>
+
+
+$n_2=20$  
+$\bar x_2 = 3.07$  
+$s_2 = 0.29$ 
+]
+
+
+
+---
+
+class: center middle
+
+## Step 1: Set Hypotheses
+
+$H_0: \mu_1-\mu_2 = 0$  
+$H_A: \mu_1-\mu_2 \neq 0$
+
+---
+
+
+class:middle
+
+## Step 2: Identify the Sampling Distribution
+
+$(\bar x_1 - \bar x_2) \sim \text{approximately }N(\text{mean} = \mu_1 - \mu_2, \text{sd} = \sqrt{\frac{\sigma_1^2}{n_1}+ \frac{\sigma_2^2}{n_2}})$ 
+
+If the null hypothesis is true then the sampling distribution will be approximately normal
+
+$N(\text{mean} = 0, \text{sd} = \sqrt{\frac{0.57^2}{20}+\frac{0.29^2}{20}})$
+
+$N(\text{mean} = 0, \text{sd} = 0.14)$
+
+---
+
+Where does the point estimate fall on the sampling distribution?
+
+$\frac{(3.18-3.07)-0}{0.14} = 0.79$
+
+
+---
+
+# Step 3: Calculate p-value  
+
+```{r, fig.height=4, fig.align='center'}
+
+z <- seq(-3.5, 3.5, by = 0.0001)
+
+t <- seq(-3.5, 3.5, by = 0.0001)
+
+y <- dt(z, df = 19)
+
+data <- tibble(t = t, y = y)
+
+qplot(t, y, data = data, 
+            geom = "line") +
+        ylab("") +
+        geom_ribbon(data = subset(data,  t < -0.79),
+                    aes(ymax = y), 
+                    ymin = 0,
+                    fill = "darkturquoise", 
+                    colour = NA, 
+                    alpha = 0.5) +
+      
+        geom_ribbon(data = subset(data,  t > 0.79),
+                    aes(ymax = y), 
+                    ymin = 0,
+                    fill = "darkturquoise", 
+                    colour = NA, 
+                    alpha = 0.5) +
+        geom_vline(xintercept =0.79, color = "darkslateblue") +
+        labs(title = "Null Distribution (t)") 
+```
+
+```{r echo = TRUE}
+pt(0.79, df = 19, lower.tail = FALSE) * 2
+```
+
+---
+
+## Step 4: Decision and Conclusion
+
+If the null hypothesis were true ( $\mu_1 - \mu_2 = 0$ ) then the probability of observing a difference in means in the sample that is at least as extreme as the difference ( $\bar x_1 - \bar x_2$ ) that we have observed is 0.44 which is greater than 0.05. The sample we have observed does not serve as an evidence against the null. We fail to reject the null. We CANNOT conclude that there is not a significant difference in humans perception of humanoid robots between anthropomorphic framing and functional framing. 

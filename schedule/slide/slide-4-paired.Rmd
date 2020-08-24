@@ -1,0 +1,120 @@
+---
+title: "Paired Means or Difference of Two Means?"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+class: middle
+
+```{r echo = FALSE, cache = TRUE}
+library(foreign)
+  read.dct <- function(dct, labels.included = "yes") {
+      temp <- readLines(dct)
+      temp <- temp[grepl("_column", temp)]
+      switch(labels.included,
+             yes = {
+                 pattern <- "_column\\(([0-9]+)\\)\\s+([a-z0-9]+)\\s+(.*)\\s+%([0-9]+)[a-z]\\s+(.*)"
+                 classes <- c("numeric", "character", "character", "numeric", "character")
+                 N <- 5
+                 NAMES <- c("StartPos", "Str", "ColName", "ColWidth", "ColLabel")
+             },
+             no = {
+                 pattern <- "_column\\(([0-9]+)\\)\\s+([a-z0-9]+)\\s+(.*)\\s+%([0-9]+).*"
+                 classes <- c("numeric", "character", "character", "numeric")
+                 N <- 4
+                 NAMES <- c("StartPos", "Str", "ColName", "ColWidth")
+             })
+      temp_metadata <- setNames(lapply(1:N, function(x) {
+          out <- gsub(pattern, paste("\\", x, sep = ""), temp)
+          out <- gsub("^\\s+|\\s+$", "", out)
+          out <- gsub('\"', "", out, fixed = TRUE)
+          class(out) <- classes[x] ; out }), NAMES)
+      temp_metadata[["ColName"]] <- make.names(gsub("\\s", "", temp_metadata[["ColName"]]))
+      temp_metadata
+  }
+
+  read.dat <- function(dat, metadata_var, labels.included = "yes") {
+      read.fwf(dat, widths = metadata_var[["ColWidth"]], col.names = metadata_var[["ColName"]])
+  }
+
+
+GSS_metadata <- read.dct("data/GSS.dct")
+GSS_ascii <- read.dat("data/GSS.dat", GSS_metadata)
+attr(GSS_ascii, "col.label") <- GSS_metadata[["ColLabel"]]
+gss <- GSS_ascii
+```
+
+
+## Example 1
+
+
+```{r message = FALSE, echo = FALSE, include = FALSE}
+library(tidyverse)
+gss <- gss %>% 
+  filter(YEAR == 2016) %>% 
+  mutate(college = case_when(DEGREE == 0 | DEGREE == 1 | DEGREE == 2 ~ 0,
+                             DEGREE == 3 | DEGREE == 4 ~ 1))
+gss$HRS2 <-na_if(gss$HRS2, -1)
+
+gss_summary <- gss %>%
+  drop_na(HRS2) %>%
+  group_by(college) %>% 
+  summarize(mean(HRS2, na.rm = TRUE), sd(HRS2, na.rm = TRUE), n())
+
+
+
+
+```
+
+
+The General Social Survey collects data on demographics, education, and work, among many other characteristics of US residents. A data anlyst examines the data from 2016 and finds those with a college degree worked `r gss_summary[2,2]` hours on average in a typical week, those without a college degree worked `r round(gss_summary[1,2],1)` hours. Write hypotheses that test whether there is any significant difference between average hours of work of those who have a college degree and those who do not. 
+
+---
+
+class: middle
+
+## Example 2
+
+A statistics professor thinks that talking to students about self-confidence will help them improve their self confidence. She gives students a survey about self-confidence and then uses the scores to calculate a self-confidence score of each student. Then she talks to students about self-confidence and then gives them the survey again. Write hypotheses that test the statistics professor's question. 
+
+---
+
+class: middle
+
+## Example 3
+
+Many websites do A/B testing. During A/B testing they have two versions of the website A and B. When users log onto the website, random half of the users see Version A and and the other random half of the users see Version B. In one version of a web page (version A) users spend on average 3.18 minutes on the web page. In the other version of the web page (version B) they spend on average 2.97 minutes. Write hypotheses to test whether version A leads to users spending more time on the web page than version B. 
+
+---
+
+class: middle
+
+## Example 4
+
+The following is an excerpt from a [research study](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0216241) by Peterson DAM, Biederman LA, Andersen D, Ditonto TM, Roe K (2019).
+
+<div style="font-size:12">
+
+Student evaluations of teaching are widely believed to contain gender bias. In this study, we conduct a randomized experiment with the student evaluations of teaching in four classes with large enrollments, two taught by male instructors and two taught by female instructors. In each of the courses, students were randomly assigned to either receive the standard evaluation instrument or the same instrument with language intended to reduce gender bias. Students in the anti-bias language condition had significantly higher rankings of female instructors than students in the standard treatment. There were no differences between treatment groups for male instructors. These results indicate that a relatively simple intervention in language can potentially mitigate gender bias in student evaluation of teaching.
+
+</div>
+
+
+Write out hypotheses that would test the claim about the evaluation of female instructors.

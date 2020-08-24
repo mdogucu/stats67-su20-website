@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Hypothesis Testing for a Single Proportion</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Dogucu" />
+    <link rel="stylesheet" href="slide-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Hypothesis Testing for a Single Proportion
+### Dr. Dogucu
+
+---
+
+
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt; 
+ Copyright &amp;copy; &lt;a href="https://mdogucu.ics.uci.edu"&gt;Dr. Mine Dogucu&lt;/a&gt;. &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;&lt;/div&gt; 
+
+
+---
+
+
+
+
+
+## Review of Hypothesis Testing
+
+- We always assume the null hypothesis is true at the beginning.
+
+--
+
+- We look for evidence against the null.
+
+--
+
+- If we find any evidence against the null (e.g. a single pink cow) then we can conclude null is false. We say we **reject the null hypothesis**.
+
+--
+
+- If we do not find any evidence against the null (a single pink cow) then we fail to reject the null. We can keep searching for more evidence against the null (i.e. continue looking for a pink cow). We will never be able to say the null is true so we never accept the null. We **fail to reject the null**. All we can do is keep looking for a pink cow.
+
+---
+
+class: center middle
+
+We are searching for evidence against the null. 
+We are searching for samples that are _significantly_ different than the null.
+
+---
+
+class: middle
+
+## Research Question
+
+Do the majority of Americans approve allowing DACA immigrants to become citizens?
+
+
+.footnote[Survey about this topic can be found [here](https://news.gallup.com/poll/235775/americans-oppose-border-walls-favor-dealing-daca.aspx)]
+
+
+---
+
+class: middle
+
+## Hypotheses 
+
+`\(H_0: \pi = 0.5\)`  
+`\(H_A: \pi \neq 0.5\)`
+
+
+---
+
+class: middle
+
+## Assuming Null is True
+
+Recall that according to CLT `\(p \sim \text{approximately }N(\pi, \frac{\pi(1-\pi)}{n})\)`
+
+--
+
+If `\(H_0: \pi = 0.5\)` then the null sampling distribution would be `\(N(0.5, \frac{0.5(1-0.5)}{n})\)`
+
+
+---
+
+## Looking for Evidence 
+
+
+According to a Gallup survey of 1520 US adults , 83% approve of allowing DACA immigrants to become citizens.
+
+.footnote[Gallup survey can be found [here](https://news.gallup.com/poll/235775/americans-oppose-border-walls-favor-dealing-daca.aspx)]
+
+--
+
+`\(p = 0.83\)`  
+`\(n = 1520\)`
+
+--
+
+We said that the null sampling distribution would be `\(N(0.5, \frac{0.5(1-0.5)}{n})\)` which is
+
+`\(N(0.5, \frac{0.5(1-0.5)}{1520})\)`
+
+`\(N(0.5, 0.0001644737)\)`
+
+
+---
+
+## The `\(H_0\)` Sampling Distribution 
+
+&lt;img src="slide-4-prop-ht_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: middle
+
+## What counts as evidence against the null?
+
+Any sample proportion that falls of really far away from the center of the distribution would count as an evidence against the null.
+
+If the null is true, then it would be unlikely to observe extremely high or low sample proportions. 
+
+
+---
+
+## Sampling Distribution
+
+&lt;img src="slide-4-prop-ht_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: middle
+
+We want to know the probability of observing an extreme sample proportion like ours (p = 0.83) if the `\(H_0\)` were true.
+
+--
+
+If our sample proportion is "extreme" then so is 0.90, 0.91, 0.917, 0.9273423 etc. 
+
+--
+
+Our sample proportion is 0.83 - 0.5 = 0.33 units away from the null.
+
+--
+
+So we will consider 0.5 - 0.33 = 0.17 also an "extreme" sample proportion. 
+
+--
+
+This makes 0.16, 0.1512, 0.11... also "extreme" 
+
+
+---
+
+class: middle
+
+&lt;img src="slide-4-prop-ht_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+If the `\(H_0\)` is true what is the probability that we will observe an extremely high or an extremely low sample proportion?
+
+Probability of observing sample proportion of 0.17 and lower 
+
+--
+
+
+```r
+pnorm(0.17, mean = 0.5, sd = 0.01282473)
+```
+
+```
+## [1] 2.594241e-146
+```
+--
+Probability of observing sample proportion of 0.83 and higher 
+
+
+```r
+pnorm(0.83, mean = 0.5, sd = 0.01282473, 
+      lower.tail = FALSE)
+```
+
+```
+## [1] 2.594241e-146
+```
+
+---
+
+## p-value
+
+
+Adding those up (or you can multiply one of them with 2) we have
+
+
+```r
+pnorm(0.17, mean = 0.5, sd = 0.01282473) + 
+  pnorm(0.83, mean = 0.5, sd = 0.01282473, 
+        lower.tail = FALSE)
+```
+
+```
+## [1] 5.188482e-146
+```
+
+--
+
+p-value  = `\(5.188482 \times 10^{-146}\)`
+
+--
+
+P-value is the probability of observing a sample statistic at least as extreme as the one that has been observed if the null hypothesis were true.
+
+--
+If p-value is less than 0.05 we reject the null hypothesis. 
+
+
+---
+
+## Decision and Conclusion
+
+In the Gallup survey the sample proportion was 0.83. 
+
+--
+
+If the null hypothesis (
+`\(H_0 = \pi = 0.5\)`
+) were true, then it would be quite unlikely (p = `\(5.188482 \times 10^{-146}\)`) to observe a sample proportion that is at least extreme like the one we observed. We consider this "quite unlikely" since p &lt; 0.05.
+
+
+--
+
+Since we have observed the sample proportion of 0.83 then we reject the `\(H_0\)`.
+
+--
+
+We conclude that the population proportion of Americans who approve allowing DACA immigrants to become citizens is significantly different than 0.5
+
+---
+
+## Conditions
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt; [Gallup website](https://news.gallup.com/poll/235775/americans-oppose-border-walls-favor-dealing-daca.aspx) indicates that the sample was randomly selected. We will assume independence.
+
+--
+
+.pull-left[
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt;Number of successes &gt; 10
+
+
+```r
+0.83*1520
+```
+
+```
+## [1] 1261.6
+```
+
+]
+
+.pull-right[
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt;Number of failures &gt; 10
+
+
+```r
+(1-0.83)*1520
+```
+
+```
+## [1] 258.4
+```
+]
+
+--
+
+&lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt;1520 &lt; 10% US Population
+
+---
+
+class: middle
+
+Steps
+
+1. Set hypotheses
+2. Identify Sampling Distribution of `\(H_0\)`  
+3. Calculate p-value  
+4. Make a Decision and a Conclusion.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
