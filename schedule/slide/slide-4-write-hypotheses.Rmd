@@ -116,9 +116,9 @@ class: middle
 
 ## Hypothesis Testing Procedure
 
-We go looking for evidence to against the null. 
+We go looking for evidence against the null. 
 
-- If we find any evidence against the null (a single pink cow) then we can conclude null is false. We say we **reject the null** hypothesis.
+- If we find any evidence against the null (a single pink cow) then we can conclude the null is false. We say we **reject the null** hypothesis.
 
 - If we do not find any evidence against the null (a single pink cow) then **we fail to reject the null**. We can keep searching for more evidence against the null (i.e. continue looking for a pink cow). We will never be able to say the null is true so we never accept the null. All we can do is keep looking for a pink cow.
 
@@ -138,7 +138,7 @@ class: middle
 
 **Null** hypothesis: There are __no__ black cows in the world.
 
-**Alternative** hypothesis: There are is a black cow in the world.
+**Alternative** hypothesis: There is a black cow in the world.
 
 
 ---
@@ -157,7 +157,7 @@ When we see a black cow, we **reject** the null hypothesis and conclude that the
 class:middle
 
 ```{r echo=FALSE, out.width='50%', fig.align='center'}
-knitr::include_graphics('img/tweet.png')
+knitr::include_graphics('img/tweet.png', error = FALSE)
 ```
 
 ---
@@ -177,7 +177,7 @@ class: middle
 
 **Null** hypothesis: There is __no__ foreign object in the cat's body.
 
-**Alternative** hypothesis: There are is a foreign object in the cat's body.
+**Alternative** hypothesis: There  is a foreign object in the cat's body.
 
 ---
 
@@ -370,7 +370,7 @@ The parameter we want to infer about is **a single proportion**.
 
 ---
 
-`r fontawesome::fa(name = "search", fill = "#e56646")` **Research Question** Is California March 2020 unemployment rate is different than US March 2020 unemployment rate which is at 4.4%?
+`r fontawesome::fa(name = "search", fill = "#e56646")` **Research Question** Is California March 2020 unemployment rate different than US March 2020 unemployment rate which is at 4.4%?
 
 --
 
