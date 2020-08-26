@@ -184,7 +184,8 @@ n2 <- 20
 
 
 ```{r echo = TRUE}
-critical_value <- pt(0.975, df = 19) # we use the smaller groups n-1
+critical_value <- qt(0.975, df = 19) 
+# we use the smaller group's n-1
 
 critical_value
 

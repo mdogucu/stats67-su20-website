@@ -189,13 +189,14 @@ n2 &lt;- 20
 
 
 ```r
-critical_value &lt;- pt(0.975, df = 19) # we use the smaller groups n-1
+critical_value &lt;- qt(0.975, df = 19) 
+# we use the smaller group's n-1
 
 critical_value
 ```
 
 ```
-## [1] 0.8290944
+## [1] 2.093024
 ```
 
 ```r
@@ -220,7 +221,7 @@ point_estimate - critical_value*se
 ```
 
 ```
-## [1] -0.008563393
+## [1] -0.1893098
 ```
 
 ```r
@@ -228,10 +229,10 @@ point_estimate + critical_value*se
 ```
 
 ```
-## [1] 0.2285634
+## [1] 0.4093098
 ```
 
-95% CI = (-0.0085634 , 0.2285634)
+95% CI = (-0.1893098 , 0.4093098)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
