@@ -1,0 +1,16 @@
+---
+title: "Birth Weight of Babies"
+output: html_document
+---
+
+
+```{r echo = FALSE, message = FALSE}
+library(tidyverse)
+library(openintro)
+library(broom)
+theme_set(theme_gray(base_size = 18))
+data(babies)
+```
+
+
+You can use this file to keep track of all the code in this week's videos.
