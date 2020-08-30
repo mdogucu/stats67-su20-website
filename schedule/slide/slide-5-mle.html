@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Maximum Likelihood Estimation</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Dogucu" />
+    <link rel="stylesheet" href="slide-style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Maximum Likelihood Estimation
+### Dr. Dogucu
+
+---
+
+
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt; 
+ Copyright &amp;copy; &lt;a href="https://mdogucu.ics.uci.edu"&gt;Dr. Mine Dogucu&lt;/a&gt;. &lt;a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;CC BY-NC-SA 4.0&lt;/a&gt;&lt;/div&gt; 
+
+
+---
+
+
+
+class: middle 
+
+
+&lt;img src="img/prob-likelihood.jpeg" width="667" style="display: block; margin: auto;" /&gt;
+
+.footnote[Modified from an image by Federica Ricci]
+---
+
+&lt;img src="img/prob.jpeg" width="50%" style="display: block; margin: auto;" /&gt;
+
+Let `\(X\sim \text{Bernoulli}(p)\)`
+
+If we flip a __fair__ coin, what is the **probability** that we get a head (success)?
+
+--
+
+Parameter p is known, `\(p = 0.5\)`
+
+--
+
+We would like to know what `\(P(X = 1)\)` is.
+
+---
+
+## Likelihood
+
+&lt;img src="img/likelihood.jpeg" width="50%" style="display: block; margin: auto;" /&gt;
+
+--
+
+If we observe a head what is the **likelihood** that p is 0.5?
+
+--
+
+We know that `\(x = 1\)` and we would like to know `\(L(p = 0.5 | x = 1)\)`
+
+---
+
+## Probability
+
+Let `\(X \sim \text{Binomial}(n = 2, p = 0.3)\)`
+
+Let X be the number of spam emails received among two emails with a 0.3 probability of spam email.
+
+--
+
+What is the probability that one of the two emails received is spam?
+
+--
+
+`\(P(X = 1)\)` =
+
+
+```r
+dbinom(x = 1, size = 2, prob = 0.3)
+```
+
+```
+## [1] 0.42
+```
+
+---
+
+## Likelihood
+
+Let `\(X \sim \text{Binomial}(n, p)\)`
+
+There were 5 emails received and 3 of them turned out to be spam. What is the likelihood that `\(p\)` is 0.1 (i.e. `\(L(p = 0.1 | x = 3)\)`?
+
+--
+
+
+```r
+dbinom(x = 3, size = 5, prob = 0.1)
+```
+
+```
+## [1] 0.0081
+```
+
+---
+
+class: middle
+
+What about `\(L(p = 0.8 | x = 3)\)`?
+
+
+```r
+dbinom(x = 3, size = 5, prob = 0.8)
+```
+
+```
+## [1] 0.2048
+```
+
+--
+
+&lt;hr&gt;
+
+What about `\(L(p = 0.5 | x = 3)\)`?
+
+
+```r
+dbinom(x = 3, size = 5, prob = 0.5)
+```
+
+```
+## [1] 0.3125
+```
+
+
+---
+
+.pull-left[
+
+&lt;br&gt;
+
+
+| p   | L(p &amp;#124; x = 3)                           |
+|-----|-----------------------------------------|
+| 0   | 0 |
+| 0.1 | 0.0081                                        |
+| 0.2 | 0.0512                                        |
+| 0.3 | 0.1323                                        |
+| 0.4 | 0.2304                                        |
+| 0.5 | 0.3125                                        |
+| 0.6 | 0.3456                                        |
+| 0.7 | 0.3087                                        |
+| 0.8 | 0.2048                                        |
+| 0.9 | 0.0729                                        |
+| 1   | 0                                        |
+
+]
+
+
+.pull-right[
+
+&lt;br&gt;
+
+![](slide-5-mle_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Likelihood
+
+.pull-left[
+![](slide-5-mle_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+]
+--
+
+.pull-right[
+
+- Likelihood is a function.
+
+- We call 0.6 the maximum likelihood estimate (MLE) of `\(p\)` where the function reaches its maximum value.
+
+- A maximum likelihood estimate, in this case, is our best estimate of the unknown parameter `\(p\)`.
+]
+
+---
+class: center middle
+.subtopic-note[Math Review]
+
+---
+
+## Review
+
+`\(\ln(ab) = \ln(a) + \ln(b)\)`
+
+--
+
+`\(\ln(a^b) = b\ln(a)\)`
+
+--
+
+`\(\frac{d}{dx}x^n = nx^{n-1}\)`
+
+--
+
+`\(\frac{d}{dx}e^x = e^x\)`
+
+--
+
+`\(\frac{d}{dx}\ln x = \frac{1}{x}\)`
+
+--
+
+`\(\frac{d}{dx}\ln (1-x) = -\frac{1}{(1-x)}\)`
+
+
+---
+
+class: center middle
+.subtopic-note[MLE]
+
+---
+
+**Deriving MLE for p**
+
+Let `\(X \sim \text{Bernoulli(p)}\)` and `\(x_1, x_2,...x_n\)` following this distribution.
+
+--
+e.g. 1, 1, 0, 0 ,1 
+
+`\(x_1 = 1, x_2 = 1, x_3 = 0, x_4 = 0, x_5 = 1\)`
+
+--
+
+`\(x_1 = 1, x_2 = 1, x_3 = 0, x_4 = 0, x_5 = 1\)` and `\(n = 5\)`
+
+--
+
+`\(L(p) = p^{x_1}(1-p)^{1-x_1} p^{x_2}(1-p)^{1-x_2}.... p^{x_n}(1-p)^{1-x_n}\)`
+
+--
+
+`\(L(p) = \prod_{i=1}^{n} p^{x_i}(1-p)^{1-x_i}\)`
+
+--
+
+`\(L(p) = p^{\sum_{i=1}^nx_i}(1-p)^{\sum_{i=1}^n1-x_i}\)`
+
+---
+
+**Steps**
+
+We want to find the maximum  value of `\(p\)`. 
+
+1. Find `\(L(p)\)`  &lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt;
+
+2. Take the first derivative of the likelihood with respect to the parameter, in this case `\(p\)`.
+
+3. Set the first derivative equal to 0 and solve for p.
+
+4. Check whether the second derivative of the likelihood is negative.
+
+
+---
+
+
+**Steps**
+
+We want to find the maximum  value of `\(p\)`. 
+
+1. Find `\(L(p)\)`  &lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt;
+
+1. .formula[Find ln L(p)] 
+
+2. Take the first derivative of the likelihood with respect to the parameter, in this case `\(p\)`.
+
+3. Set the first derivative equal to 0 and solve for p.
+
+4. Check whether the second derivative of the likelihood is negative.
+
+---
+
+class: middle
+
+## Step 2: Find ln L(p)
+
+`\(\ell(p) = \ln L(p) = \ln[p^{\sum_{i=1}^nx_i}(1-p)^{\sum_{i=1}^n1-x_i}]\)`
+
+--
+
+`\(\ell(p)= {\sum_{i=1}^nx_i}\ln(p) + n-{\sum_{i=1}^nx_i}\ln(1-p)\)`
+
+---
+
+class:middle
+
+## Step 3: Take the first derivative with respect `\(p\)`
+
+`\(\frac{d}{dp}\ell(p) = \frac{d}{dp}[{\sum_{i=1}^nx_i}\ln(p) + n-{\sum_{i=1}^nx_i}\ln(1-p)]\)`
+
+
+--
+
+`\(\frac{d}{dp}\ell(p) = \frac{\sum_{i=1}^nx_i}{p} + \frac{n-{\sum_{i=1}^nx_i}}{1-p} (-1)\)`
+
+--
+
+`\(\frac{d}{dp}\ell(p) = \frac{\sum_{i=1}^nx_i}{p} - \frac{n-{\sum_{i=1}^nx_i}}{1-p}\)`
+
+---
+
+class:middle
+
+## Step 4: Set the first derivative equal to 0 and solve for p
+
+--
+
+`\(\frac{\sum_{i=1}^nx_i}{p} - \frac{n-{\sum_{i=1}^nx_i}}{1-p} = 0\)`
+
+`\(\frac{\sum_{i=1}^nx_i}{p} = \frac{n-{\sum_{i=1}^nx_i}}{1-p}\)`
+
+`\(\sum_{i=1}^nx_i -p \sum_{i=1}^nx_i= pn-p\sum_{i=1}^nx_i\)`
+
+`\(\sum_{i=1}^nx_i= p n\)`
+
+`\(\hat p = \frac{\sum_{i=1}^nx_i}{n}\)`
+
+
+---
+
+class:middle
+
+## Step 5: Check that the second derivative is always negative
+
+`\(\frac{d^2}{d^2p}\ell(p) = \frac{d}{dp}[\frac{\sum_{i=1}^nx_i}{p} - \frac{n-{\sum_{i=1}^nx_i}}{1-p}]\)`
+
+--
+
+`\(\frac{d^2}{d^2p}\ell(p) = -\frac{\sum_{i=1}^nx_i}{p^2} - \frac{n-{\sum_{i=1}^nx_i}}{(1-p)^2}\)`
+
+--
+
+`\(\sum_{i=1}^nx_i \geq 0\)`
+
+--
+and `\(n-\sum_{i=1}^nx_i \geq 0\)`
+
+--
+and `\(n \geq\sum_{i=1}^nx_i\)`
+
+--
+
+`\(p^2 &gt;0\)`
+
+--
+and `\((1-p)^2 &gt; 0\)`
+
+--
+
+`\(-\frac{\sum_{i=1}^nx_i}{p^2} - \frac{n-{\sum_{i=1}^nx_i}}{(1-p)^2} &lt;0\)` &lt;svg style="height:0.8em;top:.04em;position:relative;fill:#e56646;" viewBox="0 0 512 512"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt;
+
+---
+
+class: middle
+
+## Conclusion
+
+`\(\hat p = \frac{\sum_{i=1}^nx_i}{n}\)` is in fact the maximum likelihood estimator of `\(p\)`.
+
+
+---
+
+Let's use this estimator!
+
+--
+
+Let X represent a random variable with a binomial distribution. We have observed 3 successes in 5 trials. What is the maximum likelihood of `\(p\)`?
+
+--
+
+5 Bernoulli trials so `\(n = 5\)`
+
+--
+
+3 successes so `\(\sum_{i=1}^nx_i = 3\)`
+
+
+--
+
+`\(\hat p = \frac{\sum_{i=1}^nx_i}{n} = \frac{3}{5} = 0.6\)` 
+
+--
+
+p is most likely `\(\frac{3}{5} = 0.6\)`
+
+---
+
+class: middle
+
+Let X represent number of failures that follows a Geometric distribution. We have observed the first success at the 10th trial. What is the maximum likelihood of `\(p\)`? 
+
+--
+
+`\(n = 10\)`
+
+--
+
+Geometric distribution always has failures first so `\(x_1 = 0, x_2, = 0....x_8 =0, x_9 = 0\)` but `\(x_{10}=1\)`.
+
+--
+
+`\(\sum_{i=1}^nx_i =1\)`
+
+--
+
+`\(\hat p = \frac{\sum_{i=1}^nx_i}{n} = \frac{1}{10} = 0.1\)`
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

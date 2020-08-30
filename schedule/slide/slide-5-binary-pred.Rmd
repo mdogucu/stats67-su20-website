@@ -1,0 +1,89 @@
+---
+title: "Binary Predictors"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+```{r echo = FALSE, message = FALSE}
+library(tidyverse)
+library(openintro)
+library(broom)
+theme_set(theme_gray(base_size = 18))
+```
+
+#### Data `babies`
+
+```{r echo = FALSE}
+glimpse(babies)
+```
+
+---
+
+
+class: middle
+
+<div align = "center">
+
+| y | Response    | Birth weight | Numeric |
+|---|-------------|-----------------|---------|
+| x | Explanatory | Smoke           | Binary |
+
+
+---
+
+class: middle center
+
+$$bwt_i = \beta_0 + \beta_1smoke_i +\epsilon_i$$
+
+--
+
+$$\hat {bwt_i} = \beta_0 + \beta_1smoke_i$$
+
+
+---
+
+
+```{r}
+model_s <- lm(bwt ~ smoke, data = babies)
+tidy(model_s)
+```
+
+
+--
+
+.pull-left[
+**Non-smoker mother**
+$\hat bwt_i = 123 - 8.94\times 0$   
+$\hat bwt_i =123$
+]
+
+.pull-right[
+
+**Smoker mother**
+$\hat bwt_i = 123 - 8.94\times 1$   
+$\hat bwt_i =114.06$
+
+]
+
+--
+
+The slope represents the difference between two groups. The difference is significant.
+
+

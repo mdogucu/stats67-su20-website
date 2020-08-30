@@ -1,0 +1,99 @@
+---
+title: "Multiple Linear Regression"
+author: "Dr. Dogucu"
+output: 
+  xaringan::moon_reader:
+    css: slide-style.css
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      
+---
+
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"> 
+ Copyright &copy; <a href="https://mdogucu.ics.uci.edu">Dr. Mine Dogucu</a>. <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div> 
+
+
+---
+
+```{r echo = FALSE, message = FALSE}
+library(tidyverse)
+library(openintro)
+library(broom)
+theme_set(theme_gray(base_size = 18))
+```
+
+
+## Multiple Linear Regression
+
+So far, we have been working with only one predictor (gestation or smoke). Because there was only one predictor in each model, we call these models single linear regression models.
+
+--
+
+Both of these predictors are significant in explaining the variation in birth weight. We can simultanously consider them in a single model, a multiple linear regression model.
+
+--
+
+$$y_i = \beta_0 + \beta_1x_{1i} +\beta_2x_{2i} +\epsilon_i$$
+--
+$$y_i = \beta_0 + \beta_1x_{1i} +\beta_2x_{2i} +.... + \beta_kx_{ki} +\epsilon_i$$
+
+---
+
+#### Data `babies`
+
+```{r echo = FALSE}
+glimpse(babies)
+```
+
+---
+
+
+class: middle
+
+<div align = "center">
+
+| y | Response    | Birth weight | Numeric |
+|---|-------------|-----------------|---------|
+| $x_1$ | Explanatory | Gestation           | Numeric |
+| $x_2$ | Explanatory | Smoke           | Binary |
+
+
+---
+
+class: middle center
+
+$$bwt_i = \beta_0 + \beta_1gestation_{i} +\beta_2smoke_{i} +\epsilon_i$$
+
+--
+
+$$\hat{bwt}_i = \beta_0 + \beta_1gestation_{i} +\beta_2smoke_{i}$$
+
+
+---
+
+
+```{r}
+model_gs <- lm(bwt ~ gestation + smoke, data = babies)
+tidy(model_gs)
+```
+
+
+--
+
+**Non-smoker mother & 300 days of gestation**  
+$\hat bwt_i = -0.932 + 0.443 \times 300 - 8.09\times 0=$ `r -0.932 + 0.443*300 - 8.09*0`   
+
+
+
+**Smoker mother & 300 days of gestation**  
+$\hat bwt_i = -0.932 + 0.443 \times 300 - 8.09\times 1=$ `r -0.932 + 0.443*300 - 8.09*1`   
+
+
+
+
