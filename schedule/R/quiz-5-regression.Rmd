@@ -1,0 +1,34 @@
+---
+title: "Week 5 quizzes"
+output: html_document
+---
+
+Before you begin run the following line by copying and pasting it into Console
+
+
+install.packages(c("broom", "modelr"))
+
+
+
+
+
+
+```{r message = FALSE}
+library(tidyverse)
+library(broom)
+student <- read.csv("https://www.openintro.org/data/csv/satgpa.csv")
+```
+
+
+## Fitting Model
+
+
+## Checking Conditions
+
+Put the following lines of code in a code chunk. When you run this code, notice that there is a new variable `resid` in the student data frame.
+
+student <- student %>% 
+  modelr::add_residuals(model_h)
+
+
+
