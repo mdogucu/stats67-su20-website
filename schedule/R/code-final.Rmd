@@ -1,0 +1,10 @@
+---
+title: "Final Exam"
+output: html_document
+---
+
+```{r message = FALSE}
+library(tidyverse)
+resume <- read_csv("https://www.openintro.org/data/csv/resume.csv")
+```
+
