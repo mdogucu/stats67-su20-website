@@ -15,7 +15,7 @@ Course TA: Federica Zoe Ricci
 
 Introduction to the basic concepts of probability and statistics with discussion of applications to computer science.
 
-Course website is hosted at [stats4cs.com](https://stats4cs.com).
+Course website is hosted at [mdogucu.github.io/stats67-su20-website](https://mdogucu.github.io/stats67-su20-website/).
 
 <hr>
 
